@@ -1,0 +1,8 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <array name="required_packages">
+        <item>android</item>
+        <item>com.android.launcher3</item>
+        <item>com.google.android.apps.nexuslauncher</item>
+    </array>
+</resources>
