@@ -3,23 +3,24 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:id="@+id/mobile_navigation"
-    app:startDestination="@+id/navigation_home">
+    app:startDestination="@+id/navigation_all_apps">
 
     <fragment
-        android:id="@+id/navigation_home"
-        android:name="com.hhvvg.launcher3customizer.ui.home.HomeFragment"
-        android:label="@string/title_home"
-        tools:layout="@layout/fragment_home" />
+        android:id="@+id/navigation_all_apps"
+        android:name="com.hhvvg.launcher3customizer.ui.apps.AllAppsFragment"
+        android:label="@string/title_all_apps"
+        tools:layout="@layout/fragment_all_apps" >
+    </fragment>
 
     <fragment
-        android:id="@+id/navigation_dashboard"
-        android:name="com.hhvvg.launcher3customizer.ui.dashboard.DashboardFragment"
-        android:label="@string/title_dashboard"
-        tools:layout="@layout/fragment_dashboard" />
+        android:id="@+id/navigation_customization"
+        android:name="com.hhvvg.launcher3customizer.ui.customize.CustomizeFragment"
+        android:label="@string/title_customize"
+        tools:layout="@layout/fragment_customize" />
 
     <fragment
-        android:id="@+id/navigation_notifications"
-        android:name="com.hhvvg.launcher3customizer.ui.notifications.NotificationsFragment"
-        android:label="@string/title_notifications"
-        tools:layout="@layout/fragment_notifications" />
+        android:id="@+id/navigation_more_settings"
+        android:name="com.hhvvg.launcher3customizer.ui.more.MoreSettingsFragment"
+        android:label="@string/title_more_settings"
+        tools:layout="@layout/fragment_more_settings" />
 </navigation>

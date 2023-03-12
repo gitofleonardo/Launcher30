@@ -1,4 +1,4 @@
-package com.hhvvg.launcher3customizer.viewmodel
+package com.hhvvg.launcher3customizer.ui.apps
 
 import android.content.Context
 import androidx.lifecycle.MutableLiveData
@@ -8,7 +8,8 @@ import com.hhvvg.launcher3customizer.data.AppItem
 import com.hhvvg.launcher3customizer.model.AppsModel
 import kotlinx.coroutines.launch
 
-class MainViewModel : ViewModel() {
+class AllAppsViewModel : ViewModel() {
+
     private val model = AppsModel()
 
     val allApps = MutableLiveData<List<AppItem>>(emptyList())

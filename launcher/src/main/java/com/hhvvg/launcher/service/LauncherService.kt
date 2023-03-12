@@ -57,6 +57,24 @@ class LauncherService(private val context: Context) : ILauncherService.Stub() {
         return commonRepository.isIconClickEffectEnable()
     }
 
+    override fun setDotParamsColor(color: Int) {
+        commonRepository.setDotParamsColor(color)
+        broadcast {
+            it.onDotParamsColorChanged(color)
+        }
+    }
+
+    override fun restoreDotParamsColor() {
+        commonRepository.removeDotParamsColor()
+        broadcast {
+            it.onDotParamsColorRestored()
+        }
+    }
+
+    override fun getDotParamsColor(): Int {
+        return commonRepository.getDotParamsColor()
+    }
+
     private fun broadcast(action: (ILauncherCallbacks) -> Unit) {
         var i = callbackList.beginBroadcast()
         while (i > 0) {

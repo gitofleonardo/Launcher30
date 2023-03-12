@@ -21,7 +21,20 @@ class CommonRepository(private val context: Context) {
         return preferences.getBoolean(KEY_ICON_CLICK_EFFECT_ENABLED, true)
     }
 
+    fun setDotParamsColor(color: Int) {
+        preferences.edit().putInt(KEY_DOT_PARAMS_COLOR, color).commit()
+    }
+
+    fun removeDotParamsColor() {
+        preferences.edit().remove(KEY_DOT_PARAMS_COLOR).commit()
+    }
+
+    fun getDotParamsColor(): Int {
+        return preferences.getInt(KEY_DOT_PARAMS_COLOR, -1)
+    }
+
     companion object {
         private const val KEY_ICON_CLICK_EFFECT_ENABLED = "KEY_ICON_CLICK_EFFECT_ENABLED"
+        private const val KEY_DOT_PARAMS_COLOR = "KEY_DOT_PARAMS_COLOR"
     }
 }

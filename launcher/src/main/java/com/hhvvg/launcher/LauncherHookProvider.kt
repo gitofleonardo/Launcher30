@@ -4,6 +4,9 @@ import com.hhvvg.launcher.component.Inject
 import com.hhvvg.launcher.component.LauncherArgs
 import com.hhvvg.launcher.component.LauncherComponent
 import com.hhvvg.launcher.component.LauncherMethod
+import com.hhvvg.launcher.folder.FolderIcon
+import com.hhvvg.launcher.folder.PreviewBackground
+import com.hhvvg.launcher.icon.BubbleTextView
 import com.hhvvg.launcher.icon.FastBitmapDrawable
 import com.hhvvg.launcher.icon.IconCache
 import com.hhvvg.launcher.icon.LauncherActivityCachingLogic
@@ -28,6 +31,9 @@ class LauncherHookProvider {
         FastBitmapDrawable::class.java,
         IconCache::class.java,
         LauncherActivityCachingLogic::class.java,
+        BubbleTextView::class.java,
+        FolderIcon::class.java,
+        PreviewBackground::class.java
     )
 
     fun init(param: XC_LoadPackage.LoadPackageParam) {

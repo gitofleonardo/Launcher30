@@ -12,7 +12,9 @@ import androidx.annotation.NonNull;
 import com.hhvvg.launcher.component.Inject;
 import com.hhvvg.launcher.component.LauncherComponent;
 import com.hhvvg.launcher.component.LauncherMethod;
+import com.hhvvg.launcher.icon.BubbleTextView;
 import com.hhvvg.launcher.icon.FastBitmapDrawable;
+import com.hhvvg.launcher.icon.Workspace;
 import com.hhvvg.launcher.model.LauncherModel;
 import com.hhvvg.launcher.service.LauncherService;
 import com.hhvvg.launcher.utils.ExtensionsKt;
@@ -24,6 +26,7 @@ import de.robv.android.xposed.XposedHelpers;
 public class Launcher extends LauncherComponent {
 
     private LauncherModel mModel;
+    private Workspace mWorkspace;
 
     private ILauncherService mLauncherService;
 
@@ -34,6 +37,7 @@ public class Launcher extends LauncherComponent {
         getLauncher().setInstance(param.thisObject);
 
         mModel = createLauncherModel();
+        mWorkspace = createWorkspace();
     }
 
     @LauncherMethod(inject = Inject.After)
@@ -51,8 +55,18 @@ public class Launcher extends LauncherComponent {
         return model;
     }
 
+    private Workspace createWorkspace() {
+        Workspace workspace = new Workspace();
+        workspace.setInstance(XposedHelpers.callMethod(getInstance(), "getWorkspace"));
+        return workspace;
+    }
+
     public LauncherModel getModel() {
         return mModel;
+    }
+
+    public Workspace getWorkspace() {
+        return mWorkspace;
     }
 
     public static Launcher getLauncher() {
@@ -84,18 +98,31 @@ public class Launcher extends LauncherComponent {
     }
 
     private void initConfigurations(ILauncherService service) throws RemoteException {
-        FastBitmapDrawable.CLICK_EFFECT_ENABLE = service.isClickEffectEnable();
+        FastBitmapDrawable.sClickEffectEnable = service.isClickEffectEnable();
+        BubbleTextView.sDotParamsColor = service.getDotParamsColor();
     }
 
     private final ILauncherCallbacks mCallbacks = new ILauncherCallbacks.Stub() {
         @Override
         public void onIconClickEffectEnable(boolean enabled) throws RemoteException {
-            FastBitmapDrawable.CLICK_EFFECT_ENABLE = enabled;
+            FastBitmapDrawable.sClickEffectEnable = enabled;
         }
 
         @Override
         public void onComponentLabelUpdated(ComponentName cn, UserHandle user, CharSequence label) throws RemoteException {
             mModel.onPackageChanged(cn.getPackageName(), user);
+        }
+
+        @Override
+        public void onDotParamsColorChanged(int color) throws RemoteException {
+            BubbleTextView.sDotParamsColor = color;
+            getWorkspace().invalidate();
+        }
+
+        @Override
+        public void onDotParamsColorRestored() {
+            BubbleTextView.sDotParamsColor = null;
+            getWorkspace().invalidate();
         }
     };
 }

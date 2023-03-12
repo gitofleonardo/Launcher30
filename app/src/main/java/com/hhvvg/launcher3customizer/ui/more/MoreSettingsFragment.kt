@@ -1,4 +1,4 @@
-package com.hhvvg.launcher3customizer.ui.notifications
+package com.hhvvg.launcher3customizer.ui.more
 
 import android.os.Bundle
 import android.view.LayoutInflater
@@ -6,30 +6,27 @@ import android.view.View
 import android.view.ViewGroup
 import android.widget.TextView
 import androidx.fragment.app.Fragment
+import androidx.fragment.app.viewModels
 import androidx.lifecycle.ViewModelProvider
-import com.hhvvg.launcher3customizer.databinding.FragmentNotificationsBinding
+import com.hhvvg.launcher3customizer.databinding.FragmentMoreSettingsBinding
 
-class NotificationsFragment : Fragment() {
+class MoreSettingsFragment : Fragment() {
 
-    private var _binding: FragmentNotificationsBinding? = null
-
-    // This property is only valid between onCreateView and
-    // onDestroyView.
+    private var _binding: FragmentMoreSettingsBinding? = null
     private val binding get() = _binding!!
+
+    private val viewModel by viewModels<MoreSettingsViewModel>()
 
     override fun onCreateView(
         inflater: LayoutInflater,
         container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View {
-        val notificationsViewModel =
-            ViewModelProvider(this).get(NotificationsViewModel::class.java)
-
-        _binding = FragmentNotificationsBinding.inflate(inflater, container, false)
+        _binding = FragmentMoreSettingsBinding.inflate(inflater, container, false)
         val root: View = binding.root
 
         val textView: TextView = binding.textNotifications
-        notificationsViewModel.text.observe(viewLifecycleOwner) {
+        viewModel.text.observe(viewLifecycleOwner) {
             textView.text = it
         }
         return root

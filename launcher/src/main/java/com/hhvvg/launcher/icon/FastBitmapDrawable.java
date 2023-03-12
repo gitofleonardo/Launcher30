@@ -12,7 +12,6 @@ import com.hhvvg.launcher.component.Inject;
 import com.hhvvg.launcher.component.LauncherComponent;
 import com.hhvvg.launcher.component.LauncherMethod;
 import com.hhvvg.launcher.utils.ExtensionsKt;
-import com.hhvvg.launcher.utils.Logger;
 
 import de.robv.android.xposed.XC_MethodHook;
 
@@ -21,8 +20,7 @@ public class FastBitmapDrawable extends LauncherComponent {
     private static final float ICON_SCALE = 0.8F;
     private static final long DURATION = 100;
 
-    public static boolean CLICK_EFFECT_ENABLE = true;
-
+    public static boolean sClickEffectEnable = true;
 
     @NonNull
     @Override
@@ -32,7 +30,7 @@ public class FastBitmapDrawable extends LauncherComponent {
 
     @LauncherMethod(inject = Inject.After)
     public void override_onStateChange(XC_MethodHook.MethodHookParam param, int[] state) throws RemoteException {
-        if (!CLICK_EFFECT_ENABLE) {
+        if (!sClickEffectEnable) {
             return;
         }
         if (isPressed()) {

@@ -9,11 +9,20 @@
         <item name="colorSecondary">@color/teal_200</item>
         <item name="colorSecondaryVariant">@color/teal_700</item>
         <item name="colorOnSecondary">@color/black</item>
-        <!-- Status bar color. -->
-        <!-- Customize your theme here. -->
         <!-- Transparent system bars for edge-to-edge. -->
         <item name="android:navigationBarColor">@android:color/transparent</item>
         <item name="android:statusBarColor">@android:color/transparent</item>
         <item name="android:windowLightStatusBar">?attr/isLightTheme</item>
+    </style>
+
+    <style name="TextAppearance.CollapsingToolbar.AllApps" parent="TextAppearance.Design.CollapsingToolbar.Expanded">
+        <item name="android:textSize">42sp</item>
+    </style>
+
+    <style name="Preference.SwitchPreferenceCompat.Material3" parent="Preference.SwitchPreferenceCompat.Material">
+        <item name="android:widgetLayout">@layout/material_switch_widget</item>
+    </style>
+
+    <style name="Preference.PreferenceCompat.Material3" parent="Preference.Material">
     </style>
 </resources>

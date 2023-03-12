@@ -1,4 +1,4 @@
-package com.hhvvg.launcher3customizer
+package com.hhvvg.launcher3customizer.ui.apps
 
 import android.view.LayoutInflater
 import android.view.View

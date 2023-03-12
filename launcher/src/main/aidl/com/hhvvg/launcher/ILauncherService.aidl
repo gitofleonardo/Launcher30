@@ -12,4 +12,8 @@ interface ILauncherService {
 
     void setClickEffectEnable(boolean enabled);
     boolean isClickEffectEnable();
+
+    void setDotParamsColor(int color);
+    void restoreDotParamsColor();
+    int getDotParamsColor();
 }

@@ -17,6 +17,8 @@ class AppsModel {
         val activityInfos = la.getActivityList(null, UserHandle.getUserHandleForUid(0))
         activityInfos.map {
             AppItem(it.getIcon(DisplayMetrics.DENSITY_XXXHIGH), it.label.toString(), it.componentName, it.user)
+        }.sortedBy {
+            it.label
         }
     }
 }
