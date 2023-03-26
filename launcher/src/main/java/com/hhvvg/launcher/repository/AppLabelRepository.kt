@@ -31,4 +31,9 @@ class AppLabelRepository(private val context: Context) {
         val key = ComponentKey(component, user).toString()
         return dataPreference.getString(key, null)
     }
+
+    fun clearLabelForComponent(cn: ComponentName, user: UserHandle) {
+        val key = ComponentKey(cn, user).toString()
+        dataPreference.edit().remove(key).commit()
+    }
 }

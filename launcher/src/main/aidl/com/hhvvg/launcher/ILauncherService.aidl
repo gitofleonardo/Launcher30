@@ -16,4 +16,6 @@ interface ILauncherService {
     void setDotParamsColor(int color);
     void restoreDotParamsColor();
     int getDotParamsColor();
+
+    void resetAppFavorites(in ComponentName cn, in UserHandle user);
 }

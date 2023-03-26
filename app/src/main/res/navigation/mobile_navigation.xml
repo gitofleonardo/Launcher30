@@ -10,17 +10,46 @@
         android:name="com.hhvvg.launcher3customizer.ui.apps.AllAppsFragment"
         android:label="@string/title_all_apps"
         tools:layout="@layout/fragment_all_apps" >
+        <action
+            android:id="@+id/action_navigation_all_apps_to_navigation_per_app"
+            app:destination="@id/navigation_per_app"
+            app:enterAnim="@anim/anim_window_open_enter"
+            app:exitAnim="@anim/anim_window_open_exit"
+            app:popEnterAnim="@anim/anim_window_close_enter"
+            app:popExitAnim="@anim/anim_window_close_exit">
+        </action>
     </fragment>
 
     <fragment
         android:id="@+id/navigation_customization"
         android:name="com.hhvvg.launcher3customizer.ui.customize.CustomizeFragment"
         android:label="@string/title_customize"
-        tools:layout="@layout/fragment_customize" />
+        tools:layout="@layout/fragment_customize">
+        <action
+            android:id="@+id/action_navigation_customization_to_navigation_notification_color"
+            app:destination="@id/navigation_notification_color"
+            app:enterAnim="@anim/anim_window_open_enter"
+            app:exitAnim="@anim/anim_window_open_exit"
+            app:popEnterAnim="@anim/anim_window_close_enter"
+            app:popExitAnim="@anim/anim_window_close_exit"/>
+    </fragment>
 
     <fragment
         android:id="@+id/navigation_more_settings"
         android:name="com.hhvvg.launcher3customizer.ui.more.MoreSettingsFragment"
         android:label="@string/title_more_settings"
         tools:layout="@layout/fragment_more_settings" />
+
+    <fragment android:id="@+id/navigation_per_app"
+        android:name="com.hhvvg.launcher3customizer.ui.perapps.PerAppFragment"
+        android:label="@string/title_app_settings"
+        tools:layout="@layout/fragment_per_app">
+        <argument android:name="component" app:argType="android.content.ComponentName"/>
+        <argument android:name="user" app:argType="android.os.UserHandle"/>
+    </fragment>
+
+    <fragment android:id="@+id/navigation_notification_color"
+        android:name="com.hhvvg.launcher3customizer.ui.notificationcolor.NotificationColorPickerFragment"
+        android:label="@string/title_notification_dot_color"
+        tools:layout="@layout/fragment_notification_color_picker"/>
 </navigation>

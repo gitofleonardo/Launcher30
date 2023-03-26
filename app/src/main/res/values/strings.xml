@@ -1,9 +1,10 @@
 <resources>
-    <string name="app_name">Launcher4</string>
+    <string name="app_name">Launcher30</string>
     <string name="title_activity_home">HomeActivity</string>
     <string name="title_all_apps">All Apps</string>
     <string name="title_customize">Customizations</string>
     <string name="title_more_settings">More Settings</string>
+    <string name="title_app_settings">App Settings</string>
 
     <string name="title_nav_all_apps">Apps</string>
     <string name="title_nav_customize">Customizations</string>
@@ -11,4 +12,16 @@
     <string name="cancel">Cancel</string>
     <string name="confirm">Confirm</string>
     <string name="restore">Restore</string>
+
+    <string name="title_icon_touch_effect">Icon Touch Effect</string>
+    <string name="desc_icon_touch_effect">Icon shrinks when touched instead of zooming in</string>
+    <string name="title_notification_dot_color">Notification Dot Color</string>
+    <string name="desc_notification_dot_color">Color of notification dot shown on top of icons</string>
+    <!-- TODO: Remove or change this placeholder text -->
+    <string name="hello_blank_fragment">Hello blank fragment</string>
+    <string name="reset_app_settings">Reset App Settings</string>
+    <string name="btn_apply">Apply</string>
+    <string name="reset">Reset</string>
+
+    <string name="desc_reset_notification_color">Color reset will only take effect after next launcher restart</string>
 </resources>

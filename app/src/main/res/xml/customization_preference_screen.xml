@@ -4,13 +4,13 @@
     <com.hhvvg.launcher3customizer.view.MaterialSwitchPreference
         app:persistent="true"
         app:key="@string/key_customized_icon_click_effect"
-        app:title="Custom Icon Click Effect"
+        app:title="@string/title_icon_touch_effect"
         app:icon="@drawable/ic_touch_app_24"
-        app:summary="Icon shrinks when clicked instead of zooming in"/>
-    <com.hhvvg.launcher3customizer.view.ColorDialogPreference
+        app:summary="@string/desc_icon_touch_effect"/>
+    <Preference
         app:persistent="true"
         app:key="@string/key_icon_dot_color"
         app:icon="@drawable/ic_color_palette_24"
-        app:title="Icon dot color"
-        app:summary="Color of notification dot on top of icons"/>
+        app:title="@string/title_notification_dot_color"
+        app:summary="@string/desc_notification_dot_color"/>
 </PreferenceScreen>

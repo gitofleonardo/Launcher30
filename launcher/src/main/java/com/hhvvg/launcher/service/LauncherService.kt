@@ -75,6 +75,13 @@ class LauncherService(private val context: Context) : ILauncherService.Stub() {
         return commonRepository.getDotParamsColor()
     }
 
+    override fun resetAppFavorites(cn: ComponentName, user: UserHandle) {
+        appLabelRepository.clearLabelForComponent(cn, user)
+        broadcast {
+            it.onComponentLabelUpdated(cn, user, "")
+        }
+    }
+
     private fun broadcast(action: (ILauncherCallbacks) -> Unit) {
         var i = callbackList.beginBroadcast()
         while (i > 0) {

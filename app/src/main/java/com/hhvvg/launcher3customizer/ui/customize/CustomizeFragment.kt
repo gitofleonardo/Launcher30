@@ -1,14 +1,14 @@
 package com.hhvvg.launcher3customizer.ui.customize
 
 import android.os.Bundle
+import androidx.navigation.fragment.findNavController
 import androidx.preference.Preference
 import androidx.preference.PreferenceFragmentCompat
 import com.hhvvg.launcher.service.LauncherService
 import com.hhvvg.launcher3customizer.R
-import com.hhvvg.launcher3customizer.view.ColorDialogPreference
-import com.hhvvg.launcher3customizer.view.ColorPickerDialog
+import com.hhvvg.launcher3customizer.ui.customize.CustomizeFragmentDirections.actionNavigationCustomizationToNavigationNotificationColor
 
-class CustomizeFragment : PreferenceFragmentCompat(), ColorPickerDialog.ColorCallback {
+class CustomizeFragment : PreferenceFragmentCompat(){
     private val launcherService by lazy { LauncherService.getLauncherService() }
     private val dataStore by lazy { CustomizationDataStore(launcherService, requireContext()) }
 
@@ -17,19 +17,14 @@ class CustomizeFragment : PreferenceFragmentCompat(), ColorPickerDialog.ColorCal
         setPreferencesFromResource(R.xml.customization_preference_screen, rootKey)
     }
 
-    override fun onDisplayPreferenceDialog(preference: Preference) {
-        if (preference is ColorDialogPreference) {
-            preference.showDialog(preference, this)
-        } else {
-            super.onDisplayPreferenceDialog(preference)
+    override fun onPreferenceTreeClick(preference: Preference): Boolean {
+        return when (preference.key) {
+            getString(R.string.key_icon_dot_color) -> {
+                val action = actionNavigationCustomizationToNavigationNotificationColor()
+                findNavController().navigate(action)
+                true
+            }
+            else -> false
         }
-    }
-
-    override fun onColorSelected(color: Int) {
-        dataStore.putInt(getString(R.string.key_icon_dot_color), color)
-    }
-
-    override fun onColorRestore() {
-        launcherService.restoreDotParamsColor()
     }
 }

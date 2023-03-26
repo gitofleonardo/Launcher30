@@ -8,8 +8,8 @@ import android.os.UserHandle
  * @author hhvvg
  */
 data class AppItem(
-    val icon: Drawable,
-    val label: String,
-    val component: ComponentName,
-    val user: UserHandle
+    var icon: Drawable,
+    var label: String,
+    var component: ComponentName,
+    var user: UserHandle
 )

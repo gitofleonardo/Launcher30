@@ -6,6 +6,7 @@ import android.view.View
 import android.view.ViewGroup
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.viewModels
+import androidx.navigation.fragment.findNavController
 import com.hhvvg.launcher3customizer.data.AppItem
 import com.hhvvg.launcher3customizer.databinding.FragmentAllAppsBinding
 
@@ -30,6 +31,10 @@ class AllAppsFragment : Fragment() {
         val root: View = binding.root
 
         binding.appList.adapter = allAppsAdapter
+        allAppsAdapter.setOnItemClickListener {
+            val action = AllAppsFragmentDirections.actionNavigationAllAppsToNavigationPerApp(it.component, it.user)
+            findNavController().navigate(action)
+        }
         binding.swipeToRefresh.setOnRefreshListener {
             context?.let { allAppsViewModel.loadAllApps(it) }
         }

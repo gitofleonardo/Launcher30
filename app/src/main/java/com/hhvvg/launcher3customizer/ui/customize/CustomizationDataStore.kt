@@ -25,23 +25,6 @@ class CustomizationDataStore(private val service: ILauncherService, private val 
         }
     }
 
-    override fun getInt(key: String?, defValue: Int): Int {
-        return when (key) {
-            stringOf(R.string.key_icon_dot_color) -> {
-                service.dotParamsColor
-            }
-            else -> super.getInt(key, defValue)
-        }
-    }
-
-    override fun putInt(key: String?, value: Int) {
-        when (key) {
-            stringOf(R.string.key_icon_dot_color) -> {
-                service.dotParamsColor = value
-            }
-        }
-    }
-
     private fun stringOf(res: Int): String {
         return context.getString(res)
     }
