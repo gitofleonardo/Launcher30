@@ -33,8 +33,17 @@ class CommonRepository(private val context: Context) {
         return preferences.getInt(KEY_DOT_PARAMS_COLOR, -1)
     }
 
+    fun setIconPackProvider(provider: String?) {
+        preferences.edit().putString(KEY_ICON_PACK_PROVIDER, provider).commit()
+    }
+
+    fun getIconPackProvider(): String? {
+        return preferences.getString(KEY_ICON_PACK_PROVIDER, null)
+    }
+
     companion object {
         private const val KEY_ICON_CLICK_EFFECT_ENABLED = "KEY_ICON_CLICK_EFFECT_ENABLED"
         private const val KEY_DOT_PARAMS_COLOR = "KEY_DOT_PARAMS_COLOR"
+        private const val KEY_ICON_PACK_PROVIDER = "KEY_ICON_PACK_PROVIDER"
     }
 }

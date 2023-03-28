@@ -82,6 +82,17 @@ class LauncherService(private val context: Context) : ILauncherService.Stub() {
         }
     }
 
+    override fun setIconPackProvider(provider: String?) {
+        commonRepository.setIconPackProvider(provider)
+        broadcast {
+            it.onIconPackProviderChanged(provider)
+        }
+    }
+
+    override fun getIconPackProvider(): String? {
+        return commonRepository.getIconPackProvider()
+    }
+
     private fun broadcast(action: (ILauncherCallbacks) -> Unit) {
         var i = callbackList.beginBroadcast()
         while (i > 0) {

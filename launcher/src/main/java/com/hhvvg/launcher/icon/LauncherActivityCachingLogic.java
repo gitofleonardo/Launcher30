@@ -1,6 +1,5 @@
 package com.hhvvg.launcher.icon;
 
-import android.content.Context;
 import android.content.pm.LauncherActivityInfo;
 import android.os.RemoteException;
 
@@ -31,9 +30,6 @@ public class LauncherActivityCachingLogic extends LauncherComponent {
             param.setResult(label.toString());
         }
     }
-
-    @LauncherMethod(inject = Inject.After)
-    public void override_loadIcon(XC_MethodHook.MethodHookParam param, Context context, LauncherActivityInfo info) { }
 
     @NonNull
     @Override

@@ -10,6 +10,7 @@ import com.hhvvg.launcher.icon.BubbleTextView
 import com.hhvvg.launcher.icon.FastBitmapDrawable
 import com.hhvvg.launcher.icon.IconCache
 import com.hhvvg.launcher.icon.LauncherActivityCachingLogic
+import com.hhvvg.launcher.icon.LauncherIconProvider
 import com.hhvvg.launcher.utils.Logger
 import com.hhvvg.launcher.utils.getAdditionalInstanceField
 import com.hhvvg.launcher.utils.setAdditionalInstanceField
@@ -33,7 +34,8 @@ class LauncherHookProvider {
         LauncherActivityCachingLogic::class.java,
         BubbleTextView::class.java,
         FolderIcon::class.java,
-        PreviewBackground::class.java
+        PreviewBackground::class.java,
+        LauncherIconProvider::class.java
     )
 
     fun init(param: XC_LoadPackage.LoadPackageParam) {

@@ -24,6 +24,7 @@ class Init : IXposedHookLoadPackage, IXposedHookZygoteInit{
             // Init ILauncherService
             LauncherService.initLauncherService()
         }
+        classLoader = param.classLoader
         if ("android" != param.packageName) {
             launcherProvider.init(param)
         }
@@ -35,6 +36,9 @@ class Init : IXposedHookLoadPackage, IXposedHookZygoteInit{
     }
 
     companion object {
+        @JvmStatic
+        lateinit var classLoader: ClassLoader
+
         @JvmStatic
         lateinit var moduleRes: Resources
 

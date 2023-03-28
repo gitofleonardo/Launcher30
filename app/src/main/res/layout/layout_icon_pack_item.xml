@@ -17,20 +17,11 @@
         android:ellipsize="end"
         app:layout_constraintStart_toEndOf="@id/appIcon"
         app:layout_constraintTop_toTopOf="@id/appIcon"
+        app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         android:layout_marginStart="10dp"
         android:maxLines="1"
         android:id="@+id/appLabel"
-        android:layout_width="0dp"
-        android:layout_height="wrap_content"/>
-
-    <TextView
-        android:ellipsize="end"
-        app:layout_constraintBottom_toBottomOf="@id/appIcon"
-        app:layout_constraintStart_toStartOf="@id/appLabel"
-        app:layout_constraintEnd_toEndOf="parent"
-        android:maxLines="1"
-        android:id="@+id/componentName"
         android:layout_width="0dp"
         android:layout_height="wrap_content"/>
 </androidx.constraintlayout.widget.ConstraintLayout>

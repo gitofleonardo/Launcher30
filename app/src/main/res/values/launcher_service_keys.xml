@@ -2,4 +2,5 @@
 <resources>
     <string name="key_customized_icon_click_effect">key_customized_icon_click_effect</string>
     <string name="key_icon_dot_color">key_icon_dot_color</string>
+    <string name="key_icon_packs">key_icon_packs</string>
 </resources>

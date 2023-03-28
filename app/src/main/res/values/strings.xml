@@ -5,6 +5,8 @@
     <string name="title_customize">Customizations</string>
     <string name="title_more_settings">More Settings</string>
     <string name="title_app_settings">App Settings</string>
+    <string name="title_icon_packs">Icon Packs</string>
+    <string name="title_icon_pack_icons">All Icons</string>
 
     <string name="title_nav_all_apps">Apps</string>
     <string name="title_nav_customize">Customizations</string>
@@ -14,11 +16,10 @@
     <string name="restore">Restore</string>
 
     <string name="title_icon_touch_effect">Icon Touch Effect</string>
-    <string name="desc_icon_touch_effect">Icon shrinks when touched instead of zooming in</string>
+    <string name="desc_icon_touch_effect">Icon zooms out when touched instead of zooming in</string>
     <string name="title_notification_dot_color">Notification Dot Color</string>
-    <string name="desc_notification_dot_color">Color of notification dot shown on top of icons</string>
-    <!-- TODO: Remove or change this placeholder text -->
-    <string name="hello_blank_fragment">Hello blank fragment</string>
+    <string name="desc_notification_dot_color">Color of notification dots shown on top of icons</string>
+    <string name="desc_icon_packs">All available icon packs</string>
     <string name="reset_app_settings">Reset App Settings</string>
     <string name="btn_apply">Apply</string>
     <string name="reset">Reset</string>

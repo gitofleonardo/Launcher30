@@ -32,6 +32,13 @@
             app:exitAnim="@anim/anim_window_open_exit"
             app:popEnterAnim="@anim/anim_window_close_enter"
             app:popExitAnim="@anim/anim_window_close_exit"/>
+        <action
+            android:id="@+id/action_navigation_customization_to_navigation_icon_packs"
+            app:destination="@id/navigation_icon_packs"
+            app:enterAnim="@anim/anim_window_open_enter"
+            app:exitAnim="@anim/anim_window_open_exit"
+            app:popEnterAnim="@anim/anim_window_close_enter"
+            app:popExitAnim="@anim/anim_window_close_exit"/>
     </fragment>
 
     <fragment
@@ -52,4 +59,19 @@
         android:name="com.hhvvg.launcher3customizer.ui.notificationcolor.NotificationColorPickerFragment"
         android:label="@string/title_notification_dot_color"
         tools:layout="@layout/fragment_notification_color_picker"/>
+
+    <fragment android:id="@+id/navigation_icon_packs"
+        android:name="com.hhvvg.launcher3customizer.ui.iconpack.allpacks.AllIconPacksFragment"
+        android:label="@string/title_icon_packs"
+        tools:layout="@layout/fragment_all_icon_packs">
+        <action
+            android:id="@+id/action_navigation_icon_packs_to_navigation_icon_pack_icons"
+            app:destination="@id/navigation_icon_pack_icons">
+            <argument android:name="icon_pkg" app:argType="string" app:nullable="false"/>
+        </action>
+    </fragment>
+
+    <fragment android:id="@+id/navigation_icon_pack_icons"
+        android:name="com.hhvvg.launcher3customizer.ui.iconpack.allicons.IconPackDetailsFragment"
+        android:label="@string/title_icon_pack_icons"/>
 </navigation>

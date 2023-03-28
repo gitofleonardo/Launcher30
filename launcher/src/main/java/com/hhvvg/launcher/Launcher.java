@@ -14,6 +14,8 @@ import com.hhvvg.launcher.component.LauncherComponent;
 import com.hhvvg.launcher.component.LauncherMethod;
 import com.hhvvg.launcher.icon.BubbleTextView;
 import com.hhvvg.launcher.icon.FastBitmapDrawable;
+import com.hhvvg.launcher.icon.LauncherActivityCachingLogic;
+import com.hhvvg.launcher.icon.LauncherIconProvider;
 import com.hhvvg.launcher.icon.Workspace;
 import com.hhvvg.launcher.model.LauncherModel;
 import com.hhvvg.launcher.service.LauncherService;
@@ -100,6 +102,7 @@ public class Launcher extends LauncherComponent {
     private void initConfigurations(ILauncherService service) throws RemoteException {
         FastBitmapDrawable.sClickEffectEnable = service.isClickEffectEnable();
         BubbleTextView.sDotParamsColor = service.getDotParamsColor();
+        LauncherIconProvider.sIconProvider = service.getIconPackProvider();
     }
 
     private final ILauncherCallbacks mCallbacks = new ILauncherCallbacks.Stub() {
@@ -123,6 +126,13 @@ public class Launcher extends LauncherComponent {
         public void onDotParamsColorRestored() {
             BubbleTextView.sDotParamsColor = null;
             getWorkspace().invalidate();
+        }
+
+        @Override
+        public void onIconPackProviderChanged(String providerPkg) throws RemoteException {
+            LauncherIconProvider.sIconProvider = providerPkg;
+            LauncherIconProvider.sIconCaches.clear();
+            getModel().getApp().refreshAndReloadLauncher();
         }
     };
 }

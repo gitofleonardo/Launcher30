@@ -1,16 +1,24 @@
 <?xml version="1.0" encoding="utf-8"?>
 <PreferenceScreen xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:android="http://schemas.android.com/apk/res/android">
+    <Preference
+        app:persistent="false"
+        app:key="@string/key_icon_packs"
+        app:icon="@drawable/ic_color_palette_24"
+        app:title="@string/title_icon_packs"
+        app:summary="@string/desc_icon_packs"/>
+
     <com.hhvvg.launcher3customizer.view.MaterialSwitchPreference
         app:persistent="true"
         app:key="@string/key_customized_icon_click_effect"
         app:title="@string/title_icon_touch_effect"
         app:icon="@drawable/ic_touch_app_24"
         app:summary="@string/desc_icon_touch_effect"/>
+
     <Preference
-        app:persistent="true"
+        app:persistent="false"
         app:key="@string/key_icon_dot_color"
-        app:icon="@drawable/ic_color_palette_24"
+        app:icon="@drawable/ic_notifications_24"
         app:title="@string/title_notification_dot_color"
         app:summary="@string/desc_notification_dot_color"/>
 </PreferenceScreen>

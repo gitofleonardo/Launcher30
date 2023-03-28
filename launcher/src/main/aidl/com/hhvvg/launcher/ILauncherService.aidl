@@ -18,4 +18,7 @@ interface ILauncherService {
     int getDotParamsColor();
 
     void resetAppFavorites(in ComponentName cn, in UserHandle user);
+
+    void setIconPackProvider(in String providerPkg);
+    String getIconPackProvider();
 }
