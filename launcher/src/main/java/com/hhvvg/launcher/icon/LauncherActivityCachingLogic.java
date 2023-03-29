@@ -1,5 +1,6 @@
 package com.hhvvg.launcher.icon;
 
+import android.content.Context;
 import android.content.pm.LauncherActivityInfo;
 import android.os.RemoteException;
 
@@ -10,6 +11,7 @@ import com.hhvvg.launcher.component.Inject;
 import com.hhvvg.launcher.component.LauncherComponent;
 import com.hhvvg.launcher.component.LauncherMethod;
 import com.hhvvg.launcher.service.LauncherService;
+import com.hhvvg.launcher.utils.Logger;
 
 import de.robv.android.xposed.XC_MethodHook;
 
@@ -29,6 +31,12 @@ public class LauncherActivityCachingLogic extends LauncherComponent {
         if (label != null) {
             param.setResult(label.toString());
         }
+    }
+
+    @LauncherMethod(inject = Inject.After)
+    public void override_loadIcon(XC_MethodHook.MethodHookParam param, Context context,
+                                  LauncherActivityInfo info) {
+        Logger.log("override load icon: " + info.getComponentName());
     }
 
     @NonNull

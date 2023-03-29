@@ -11,6 +11,7 @@ import com.hhvvg.launcher.icon.FastBitmapDrawable
 import com.hhvvg.launcher.icon.IconCache
 import com.hhvvg.launcher.icon.LauncherActivityCachingLogic
 import com.hhvvg.launcher.icon.LauncherIconProvider
+import com.hhvvg.launcher.icon.LauncherIcons
 import com.hhvvg.launcher.utils.Logger
 import com.hhvvg.launcher.utils.getAdditionalInstanceField
 import com.hhvvg.launcher.utils.setAdditionalInstanceField
@@ -35,7 +36,8 @@ class LauncherHookProvider {
         BubbleTextView::class.java,
         FolderIcon::class.java,
         PreviewBackground::class.java,
-        LauncherIconProvider::class.java
+        LauncherIconProvider::class.java,
+        LauncherIcons::class.java
     )
 
     fun init(param: XC_LoadPackage.LoadPackageParam) {
@@ -194,10 +196,23 @@ private class MethodHook(
         if (methodProcessor.method.name.equals("constructor")) {
             XposedHelpers.findAndHookConstructor(launcherClass, *launcherMethodParams, methodHook)
         } else {
-            val launcherMethod = XposedHelpers.findMethodBestMatch(launcherClass,
-                methodProcessor.launcherMethodName, *launcherMethodParams)
-            XposedBridge.hookMethod(launcherMethod, methodHook)
+            var parentClz = launcherClass
+            var launcherMethod: Method? = null
+            while (parentClz != Any::class.java) {
+                Logger.log("Current find method in class: ${parentClz.name}")
+                try {
+                    launcherMethod = XposedHelpers.findMethodBestMatch(parentClz,
+                        methodProcessor.launcherMethodName, *launcherMethodParams)
+                    break
+                } catch (e : Throwable) {
+                    Logger.log("method not found in class, find in parent class", e)
+                    parentClz = parentClz.superclass
+                }
+            }
+            launcherMethod?.let {
+                XposedBridge.hookMethod(it, methodHook)
+                Logger.log("Hook method: ${methodProcessor.launcherMethodName}")
+            }
         }
-        Logger.log("Hook method: ${methodProcessor.launcherMethodName}")
     }
 }

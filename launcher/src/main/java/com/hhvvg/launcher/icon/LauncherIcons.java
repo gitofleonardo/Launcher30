@@ -1,15 +1,21 @@
 package com.hhvvg.launcher.icon;
 
 import android.content.Context;
+import android.graphics.RectF;
 import android.graphics.drawable.Drawable;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 
 import com.hhvvg.launcher.Init;
+import com.hhvvg.launcher.component.Inject;
 import com.hhvvg.launcher.component.LauncherComponent;
+import com.hhvvg.launcher.component.LauncherMethod;
 import com.hhvvg.launcher.utils.Logger;
 
+import java.util.Arrays;
+
+import de.robv.android.xposed.XC_MethodHook;
 import de.robv.android.xposed.XposedHelpers;
 
 public class LauncherIcons extends LauncherComponent {
@@ -42,6 +48,13 @@ public class LauncherIcons extends LauncherComponent {
         } catch (Exception e) {
             return null;
         }
+    }
+
+    @LauncherMethod(inject = Inject.Before)
+    public void override_normalizeAndWrapToAdaptiveIcon(XC_MethodHook.MethodHookParam param,
+                                                        Drawable icon, boolean shrinkNonAdaptiveIcons,
+                                                        RectF outIconBounds, float[] outScale) {
+        param.args[1] = false;
     }
 
     @NonNull
