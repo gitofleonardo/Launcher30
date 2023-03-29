@@ -36,7 +36,6 @@ public class LauncherActivityCachingLogic extends LauncherComponent {
     @LauncherMethod(inject = Inject.After)
     public void override_loadIcon(XC_MethodHook.MethodHookParam param, Context context,
                                   LauncherActivityInfo info) {
-        Logger.log("override load icon: " + info.getComponentName());
     }
 
     @NonNull

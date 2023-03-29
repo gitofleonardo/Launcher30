@@ -93,6 +93,17 @@ class LauncherService(private val context: Context) : ILauncherService.Stub() {
         return commonRepository.getIconPackProvider()
     }
 
+    override fun setAdaptiveIconEnable(enabled: Boolean) {
+        commonRepository.setAdaptiveIconEnable(enabled)
+        broadcast {
+            it.onIconPackProviderChanged(commonRepository.getIconPackProvider())
+        }
+    }
+
+    override fun isAdaptiveIconEnable(): Boolean {
+        return commonRepository.isAdaptiveIconEnable()
+    }
+
     private fun broadcast(action: (ILauncherCallbacks) -> Unit) {
         var i = callbackList.beginBroadcast()
         while (i > 0) {

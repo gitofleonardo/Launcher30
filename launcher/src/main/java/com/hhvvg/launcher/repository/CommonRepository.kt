@@ -41,9 +41,18 @@ class CommonRepository(private val context: Context) {
         return preferences.getString(KEY_ICON_PACK_PROVIDER, null)
     }
 
+    fun setAdaptiveIconEnable(enabled: Boolean) {
+        preferences.edit().putBoolean(KEY_ADAPTIVE_ICON_ENABLE, enabled).commit()
+    }
+
+    fun isAdaptiveIconEnable(): Boolean {
+        return preferences.getBoolean(KEY_ADAPTIVE_ICON_ENABLE, false)
+    }
+
     companion object {
         private const val KEY_ICON_CLICK_EFFECT_ENABLED = "KEY_ICON_CLICK_EFFECT_ENABLED"
         private const val KEY_DOT_PARAMS_COLOR = "KEY_DOT_PARAMS_COLOR"
         private const val KEY_ICON_PACK_PROVIDER = "KEY_ICON_PACK_PROVIDER"
+        private const val KEY_ADAPTIVE_ICON_ENABLE = "KEY_ADAPTIVE_ICON_ENABLE"
     }
 }

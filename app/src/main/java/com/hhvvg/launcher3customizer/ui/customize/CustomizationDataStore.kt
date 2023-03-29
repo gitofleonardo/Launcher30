@@ -13,6 +13,9 @@ class CustomizationDataStore(private val service: ILauncherService, private val 
             stringOf(R.string.key_customized_icon_click_effect) -> {
                 service.isClickEffectEnable
             }
+            stringOf(R.string.key_adaptive_icon_enable) -> {
+                service.isAdaptiveIconEnable
+            }
             else -> defValue
         }
     }
@@ -21,6 +24,9 @@ class CustomizationDataStore(private val service: ILauncherService, private val 
         when (key) {
             stringOf(R.string.key_customized_icon_click_effect) -> {
                 service.isClickEffectEnable = value
+            }
+            stringOf(R.string.key_adaptive_icon_enable) -> {
+                service.isAdaptiveIconEnable = value
             }
         }
     }

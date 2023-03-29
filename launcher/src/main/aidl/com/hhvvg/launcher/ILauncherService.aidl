@@ -21,4 +21,7 @@ interface ILauncherService {
 
     void setIconPackProvider(in String providerPkg);
     String getIconPackProvider();
+
+    void setAdaptiveIconEnable(boolean enable);
+    boolean isAdaptiveIconEnable();
 }
