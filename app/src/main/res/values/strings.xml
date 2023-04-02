@@ -23,7 +23,7 @@
     <string name="reset_app_settings">Reset App Settings</string>
     <string name="btn_apply">Apply</string>
     <string name="reset">Reset</string>
-    <string name="title_enable_adaptive_icon">Enable Adaptive Icon</string>
+    <string name="title_enable_adaptive_icon">Use Adaptive Icon</string>
     <string name="desc_adaptive_icon">An adaptive icon, or AdaptiveIconDrawable, can display differently depending on individual device capabilities and user theming</string>
 
     <string name="desc_reset_notification_color">Color reset will only take effect after next launcher restart</string>
