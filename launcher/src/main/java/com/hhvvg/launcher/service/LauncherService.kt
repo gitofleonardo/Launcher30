@@ -2,9 +2,6 @@ package com.hhvvg.launcher.service
 
 import android.content.ComponentName
 import android.content.Context
-import android.os.Binder
-import android.os.IBinder
-import android.os.IBinder.DeathRecipient
 import android.os.RemoteCallbackList
 import android.os.UserHandle
 import com.hhvvg.launcher.ILauncherCallbacks
@@ -102,6 +99,12 @@ class LauncherService(private val context: Context) : ILauncherService.Stub() {
 
     override fun isAdaptiveIconEnable(): Boolean {
         return commonRepository.isAdaptiveIconEnable()
+    }
+
+    override fun forceReloadLauncher() {
+        broadcast {
+            it.onLauncherReload()
+        }
     }
 
     private fun broadcast(action: (ILauncherCallbacks) -> Unit) {

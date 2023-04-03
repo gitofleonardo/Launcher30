@@ -7,4 +7,5 @@ interface ILauncherCallbacks {
     void onDotParamsColorChanged(int color);
     void onDotParamsColorRestored();
     void onIconPackProviderChanged(in String providerPkg);
+    void onLauncherReload();
 }

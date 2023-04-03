@@ -6,6 +6,7 @@ import android.content.Context;
 import android.os.Bundle;
 import android.os.RemoteException;
 import android.os.UserHandle;
+import android.util.Log;
 
 import androidx.annotation.NonNull;
 
@@ -133,6 +134,11 @@ public class Launcher extends LauncherComponent {
             LauncherIconProvider.sIconProvider = providerPkg;
             LauncherIconProvider.sIconCaches.clear();
             getModel().getApp().refreshAndReloadLauncher();
+        }
+
+        @Override
+        public void onLauncherReload() {
+            getModel().forceReload();
         }
     };
 }

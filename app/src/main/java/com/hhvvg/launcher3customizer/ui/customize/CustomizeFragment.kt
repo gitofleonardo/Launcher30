@@ -9,7 +9,7 @@ import com.hhvvg.launcher3customizer.R
 import com.hhvvg.launcher3customizer.ui.customize.CustomizeFragmentDirections.actionNavigationCustomizationToNavigationIconPacks
 import com.hhvvg.launcher3customizer.ui.customize.CustomizeFragmentDirections.actionNavigationCustomizationToNavigationNotificationColor
 
-class CustomizeFragment : PreferenceFragmentCompat(){
+class CustomizeFragment : PreferenceFragmentCompat() {
     private val launcherService by lazy { LauncherService.getLauncherService() }
     private val dataStore by lazy { CustomizationDataStore(launcherService, requireContext()) }
 

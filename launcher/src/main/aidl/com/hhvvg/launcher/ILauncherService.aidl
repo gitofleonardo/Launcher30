@@ -24,4 +24,6 @@ interface ILauncherService {
 
     void setAdaptiveIconEnable(boolean enable);
     boolean isAdaptiveIconEnable();
+
+    void forceReloadLauncher();
 }

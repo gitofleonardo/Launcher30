@@ -4,4 +4,7 @@
     <string name="key_icon_dot_color">key_icon_dot_color</string>
     <string name="key_icon_packs">key_icon_packs</string>
     <string name="key_adaptive_icon_enable">key_adaptive_icon_enable</string>
+
+    <string name="key_reload_launcher">key_reload_launcher</string>
+    <string name="key_clear_icon_cache">key_clear_icon_cache</string>
 </resources>

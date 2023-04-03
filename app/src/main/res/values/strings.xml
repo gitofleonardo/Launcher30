@@ -31,4 +31,9 @@
     <string name="title_done_toast">Done</string>
     <string name="title_icon_applied">Icon Applied</string>
     <string name="title_notification_dot_color_applied">Color Applied</string>
+
+    <string name="title_reload_launcher">Reload Launcher</string>
+    <string name="desc_reload_launcher">Force reload launcher and rebind all workspace components</string>
+    <string name="title_clear_icon_caches">Clear Icon Caches</string>
+    <string name="desc_clear_icon_caches">Clear all icon caches in database, and reload launcher to load all workspace components</string>
 </resources>
