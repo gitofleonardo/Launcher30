@@ -8,10 +8,13 @@ import androidx.paging.PagingDataAdapter
 import androidx.recyclerview.widget.DiffUtil.ItemCallback
 import androidx.recyclerview.widget.RecyclerView.Adapter
 import androidx.recyclerview.widget.RecyclerView.ViewHolder
+import com.bumptech.glide.Glide
 import com.hhvvg.launcher3customizer.data.IconDrawableItem
+import com.hhvvg.launcher3customizer.data.IconItem
 import com.hhvvg.launcher3customizer.databinding.LayoutIconDrawableItemBinding
+import java.util.Objects
 
-class IconListAdapter : PagingDataAdapter<IconDrawableItem, IconItemHolder>(IconDrawableDifferCallback()) {
+class IconListAdapter : PagingDataAdapter<IconItem, IconItemHolder>(IconDrawableDifferCallback()) {
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): IconItemHolder {
         val binding = LayoutIconDrawableItemBinding.inflate(LayoutInflater.from(parent.context), parent, false)
         return IconItemHolder(binding.root)
@@ -21,17 +24,17 @@ class IconListAdapter : PagingDataAdapter<IconDrawableItem, IconItemHolder>(Icon
         val binding = LayoutIconDrawableItemBinding.bind(holder.itemView)
         val item = getItem(position)!!
 
-        binding.iconDrawable.setImageDrawable(item.icon)
+        Glide.with(binding.root.context).load(item).into(binding.iconDrawable)
     }
 }
 
-private class IconDrawableDifferCallback : ItemCallback<IconDrawableItem>() {
-    override fun areItemsTheSame(oldItem: IconDrawableItem, newItem: IconDrawableItem): Boolean {
+private class IconDrawableDifferCallback : ItemCallback<IconItem>() {
+    override fun areItemsTheSame(oldItem: IconItem, newItem: IconItem): Boolean {
         return oldItem.resourceName == newItem.resourceName
     }
 
-    override fun areContentsTheSame(oldItem: IconDrawableItem, newItem: IconDrawableItem): Boolean {
-        return oldItem == newItem
+    override fun areContentsTheSame(oldItem: IconItem, newItem: IconItem): Boolean {
+        return Objects.equals(oldItem, newItem)
     }
 
 }
