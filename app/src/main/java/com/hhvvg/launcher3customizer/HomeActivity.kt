@@ -1,6 +1,5 @@
 package com.hhvvg.launcher3customizer
 
-import android.graphics.Insets
 import android.os.Bundle
 import com.google.android.material.bottomnavigation.BottomNavigationView
 import androidx.appcompat.app.AppCompatActivity

@@ -4,6 +4,7 @@ import android.content.ComponentName
 import android.os.Bundle
 import android.os.UserHandle
 import android.view.*
+import android.widget.Toast
 import androidx.core.view.MenuProvider
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.viewModels
@@ -44,6 +45,7 @@ class PerAppFragment : Fragment(), MenuProvider {
         binding.applyButton.setOnClickListener {
             val label = binding.appLabelEt.text ?: ""
             launcherService.setComponentLabel(component, user, label)
+            Toast.makeText(requireContext(), R.string.title_done_toast, Toast.LENGTH_SHORT).show()
         }
 
         viewModel.appItem.observe(viewLifecycleOwner) {
@@ -68,6 +70,7 @@ class PerAppFragment : Fragment(), MenuProvider {
         return when (menuItem.itemId) {
             R.id.reset_menu -> {
                 launcherService.resetAppFavorites(component, user)
+                Toast.makeText(requireContext(), R.string.title_done_toast, Toast.LENGTH_SHORT).show()
                 true
             }
             else -> false

@@ -2,6 +2,7 @@ package com.hhvvg.launcher3customizer.ui.iconpack.allicons
 
 import android.os.Bundle
 import android.view.*
+import android.widget.Toast
 import androidx.fragment.app.Fragment
 import androidx.core.view.MenuProvider
 import androidx.fragment.app.viewModels
@@ -80,7 +81,8 @@ class IconPackDetailsFragment : Fragment(), MenuProvider {
     override fun onMenuItemSelected(menuItem: MenuItem): Boolean {
         return when (menuItem.itemId) {
             R.id.apply -> {
-                launcherService.setIconPackProvider(iconPack)
+                launcherService.iconPackProvider = iconPack
+                Toast.makeText(requireContext(), R.string.title_icon_applied, Toast.LENGTH_SHORT).show()
                 true
             }
             else -> false

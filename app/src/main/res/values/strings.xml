@@ -27,4 +27,8 @@
     <string name="desc_adaptive_icon">An adaptive icon, or AdaptiveIconDrawable, can display differently depending on individual device capabilities and user theming</string>
 
     <string name="desc_reset_notification_color">Color reset will only take effect after next launcher restart</string>
+
+    <string name="title_done_toast">Done</string>
+    <string name="title_icon_applied">Icon Applied</string>
+    <string name="title_notification_dot_color_applied">Color Applied</string>
 </resources>

@@ -51,6 +51,7 @@ class NotificationColorPickerFragment : Fragment(), MenuProvider {
             }
             R.id.apply -> {
                 launcherService.dotParamsColor = binding.colorPicker.pureColor
+                Toast.makeText(requireContext(), R.string.title_notification_dot_color_applied, Toast.LENGTH_SHORT).show()
                 true
             }
             else -> false
