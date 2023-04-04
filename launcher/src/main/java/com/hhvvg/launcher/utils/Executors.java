@@ -11,7 +11,6 @@ public class Executors {
         Class<?> clazz = XposedHelpers.findClass(CLASS, Init.classLoader);
         Object executor = XposedHelpers.getStaticObjectField(clazz, "MAIN_EXECUTOR");
         XposedHelpers.callMethod(executor, "execute", task);
-        Logger.log(executor.toString());
     }
 
     public static void postModelThread(Runnable task) {
