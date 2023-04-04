@@ -16,6 +16,9 @@ class CustomizationDataStore(private val service: ILauncherService, private val 
             stringOf(R.string.key_adaptive_icon_enable) -> {
                 service.isAdaptiveIconEnable
             }
+            stringOf(R.string.key_hide_icon_text) -> {
+                !service.isIconTextVisible
+            }
             else -> defValue
         }
     }
@@ -27,6 +30,9 @@ class CustomizationDataStore(private val service: ILauncherService, private val 
             }
             stringOf(R.string.key_adaptive_icon_enable) -> {
                 service.isAdaptiveIconEnable = value
+            }
+            stringOf(R.string.key_hide_icon_text) -> {
+                service.isIconTextVisible = !value
             }
         }
     }

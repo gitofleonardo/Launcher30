@@ -26,4 +26,7 @@ interface ILauncherService {
     boolean isAdaptiveIconEnable();
 
     void forceReloadLauncher();
+
+    void setIconTextVisible(boolean visible);
+    boolean isIconTextVisible();
 }

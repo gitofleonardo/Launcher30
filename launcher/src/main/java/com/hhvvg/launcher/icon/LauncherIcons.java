@@ -91,7 +91,6 @@ public class LauncherIcons extends LauncherComponent {
             dr.setBounds(0, 0, 1, 1);
             boolean[] outShape = new boolean[1];
             scale = getNormalizer().getScale(icon, outIconBounds, dr.getIconMask(), outShape);
-            Logger.log("scale: " + scale + ", outshape: " + outShape[0]);
             if (!outShape[0]) {
                 FixedScaleDrawable fsd = (FixedScaleDrawable) dr.getForeground();
                 fsd.setDrawable(icon);

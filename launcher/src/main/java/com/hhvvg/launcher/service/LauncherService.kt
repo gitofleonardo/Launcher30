@@ -107,6 +107,17 @@ class LauncherService(private val context: Context) : ILauncherService.Stub() {
         }
     }
 
+    override fun setIconTextVisible(visible: Boolean) {
+        commonRepository.setIconTextVisible(visible)
+        broadcast {
+            it.onIconTextVisibilityChanged(visible)
+        }
+    }
+
+    override fun isIconTextVisible(): Boolean {
+        return commonRepository.isIconTextVisible()
+    }
+
     private fun broadcast(action: (ILauncherCallbacks) -> Unit) {
         var i = callbackList.beginBroadcast()
         while (i > 0) {

@@ -8,4 +8,5 @@ interface ILauncherCallbacks {
     void onDotParamsColorRestored();
     void onIconPackProviderChanged(in String providerPkg);
     void onLauncherReload();
+    void onIconTextVisibilityChanged(boolean visible);
 }

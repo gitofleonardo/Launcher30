@@ -4,6 +4,8 @@ import android.app.AndroidAppHelper;
 import android.content.ComponentName;
 import android.content.Context;
 import android.os.Bundle;
+import android.os.Handler;
+import android.os.Looper;
 import android.os.RemoteException;
 import android.os.UserHandle;
 import android.util.Log;
@@ -20,6 +22,7 @@ import com.hhvvg.launcher.icon.LauncherIconProvider;
 import com.hhvvg.launcher.icon.Workspace;
 import com.hhvvg.launcher.model.LauncherModel;
 import com.hhvvg.launcher.service.LauncherService;
+import com.hhvvg.launcher.utils.Executors;
 import com.hhvvg.launcher.utils.ExtensionsKt;
 import com.hhvvg.launcher.utils.Logger;
 
@@ -32,6 +35,7 @@ public class Launcher extends LauncherComponent {
     private Workspace mWorkspace;
 
     private ILauncherService mLauncherService;
+    private final Handler mHandler = new Handler(Looper.getMainLooper());
 
     @LauncherMethod(inject = Inject.After)
     public void override_onCreate(XC_MethodHook.MethodHookParam param, Bundle bundle) {
@@ -106,6 +110,10 @@ public class Launcher extends LauncherComponent {
         LauncherIconProvider.sIconProvider = service.getIconPackProvider();
     }
 
+    public void onIdpChanged(boolean modelPropertiesChanged) {
+        XposedHelpers.callMethod(getInstance(), "onIdpChanged", modelPropertiesChanged);
+    }
+
     private final ILauncherCallbacks mCallbacks = new ILauncherCallbacks.Stub() {
         @Override
         public void onIconClickEffectEnable(boolean enabled) throws RemoteException {
@@ -139,6 +147,14 @@ public class Launcher extends LauncherComponent {
         @Override
         public void onLauncherReload() {
             getModel().forceReload();
+        }
+
+        @Override
+        public void onIconTextVisibilityChanged(boolean visible) {
+            Executors.postUiThread(() -> {
+                getModel().getApp().getIdp().onConfigChanged(getInstance());
+                onIdpChanged(true);
+            });
         }
     };
 }
