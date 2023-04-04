@@ -19,7 +19,7 @@
         app:persistent="true"
         app:key="@string/key_adaptive_icon_enable"
         app:title="@string/title_enable_adaptive_icon"
-        app:icon="@drawable/ic_clock_filled_24"
+        app:icon="@drawable/ic_clock_24"
         app:summary="@string/desc_adaptive_icon"/>
 
     <Preference
