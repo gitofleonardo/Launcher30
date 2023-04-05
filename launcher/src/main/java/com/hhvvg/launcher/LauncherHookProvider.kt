@@ -7,6 +7,7 @@ import com.hhvvg.launcher.component.LauncherMethod
 import com.hhvvg.launcher.folder.FolderIcon
 import com.hhvvg.launcher.folder.PreviewBackground
 import com.hhvvg.launcher.icon.BubbleTextView
+import com.hhvvg.launcher.icon.DotRenderer
 import com.hhvvg.launcher.icon.FastBitmapDrawable
 import com.hhvvg.launcher.icon.IconCache
 import com.hhvvg.launcher.icon.LauncherActivityCachingLogic
@@ -37,7 +38,8 @@ class LauncherHookProvider {
         FolderIcon::class.java,
         PreviewBackground::class.java,
         LauncherIconProvider::class.java,
-        LauncherIcons::class.java
+        LauncherIcons::class.java,
+        DotRenderer::class.java
     )
 
     fun init(param: XC_LoadPackage.LoadPackageParam) {
@@ -76,7 +78,7 @@ private class MethodProcessor(
     lateinit var launcherClassName: String
     lateinit var launcherMethodName: String
     lateinit var launcherMethodInject: Inject
-    lateinit var launcherMethodTypes: Array<Class<*>>
+    lateinit var launcherMethodTypes: Array<LauncherMethodType>
 
     init {
         process()
@@ -110,8 +112,8 @@ private class MethodProcessor(
         return launcherMethod.inject
     }
 
-    private fun parseMethodTypes(): Array<Class<*>> {
-        val result = ArrayList<Class<*>>()
+    private fun parseMethodTypes(): Array<LauncherMethodType> {
+        val result = ArrayList<LauncherMethodType>()
 
         for (i in 0 until method.parameters.size) {
             val param = method.parameters[i]
@@ -121,8 +123,8 @@ private class MethodProcessor(
                 throw IllegalArgumentException("First param of hooked method must be MethodHookParam")
             }
 
-            if (!paramType.isAssignableFrom(LauncherComponent::class.java)) {
-                result.add(paramType)
+            if (!LauncherComponent::class.java.isAssignableFrom(paramType)) {
+                result.add(LauncherMethodType(paramType))
                 continue
             }
 
@@ -133,7 +135,7 @@ private class MethodProcessor(
             val launcherArg = param.getDeclaredAnnotation(LauncherArgs::class.java)!!
             val className = launcherArg.className
             val clz = classLoader.loadClass(className)
-            result.add(clz)
+            result.add(LauncherComponentMethodType(clz, paramType))
         }
         return result.toTypedArray()
     }
@@ -154,23 +156,23 @@ private class MethodHook(
 
     fun hookMethod() {
         val launcherClass = XposedHelpers.findClass(methodProcessor.launcherClassName, classLoader)
-        val launcherMethodParams = methodProcessor.launcherMethodTypes
+        val launcherMethodParams = methodProcessor.launcherMethodTypes.map { it.clazz }.toTypedArray()
             .copyOfRange(1, methodProcessor.launcherMethodTypes.size)
 
         val callback: (param: MethodHookParam) -> Unit =  { p ->
             val realArgs = ArrayList<Any>()
-            methodProcessor.launcherMethodTypes.forEachIndexed { i, c ->
+            methodProcessor.launcherMethodTypes.forEachIndexed { i, type ->
                 if (i == 0) {
                     realArgs.add(p)
-                } else if (c.isAssignableFrom(LauncherComponent::class.java)) {
+                } else if (type is LauncherComponentMethodType) {
                     val instanceName = "_component_${component.javaClass.simpleName}"
                     var cachedComponent = p.thisObject.getAdditionalInstanceField<LauncherComponent>(instanceName)
                     if (cachedComponent == null) {
-                        cachedComponent = c.newInstance() as LauncherComponent
+                        cachedComponent = type.componentClazz.newInstance() as LauncherComponent
                         p.thisObject.setAdditionalInstanceField(instanceName, cachedComponent)
                     }
                     val realArg =cachedComponent
-                    val arg = p.args[i]
+                    val arg = p.args[i - 1]
                     realArg.instance = arg
                     realArgs.add(realArg)
                 } else {
@@ -216,3 +218,12 @@ private class MethodHook(
         }
     }
 }
+
+private open class LauncherMethodType(
+    val clazz: Class<*>
+)
+
+private class LauncherComponentMethodType(
+    val launcherClazz: Class<*>,
+    val componentClazz: Class<*>
+): LauncherMethodType(launcherClazz)

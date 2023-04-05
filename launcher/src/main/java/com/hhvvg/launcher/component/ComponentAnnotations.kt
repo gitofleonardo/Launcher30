@@ -6,7 +6,7 @@ annotation class LauncherMethod(
     val inject: Inject,
 )
 
-@Target(allowedTargets = [AnnotationTarget.TYPE_PARAMETER])
+@Target(allowedTargets = [AnnotationTarget.VALUE_PARAMETER])
 annotation class LauncherArgs (
     val className: String
 )
