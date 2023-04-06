@@ -4,9 +4,12 @@ import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import androidx.core.view.ViewCompat
+import androidx.core.view.WindowInsetsCompat
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.viewModels
 import androidx.navigation.fragment.findNavController
+import com.hhvvg.launcher3customizer.R
 import com.hhvvg.launcher3customizer.data.AppItem
 import com.hhvvg.launcher3customizer.databinding.FragmentAllAppsBinding
 
@@ -53,6 +56,18 @@ class AllAppsFragment : Fragment() {
             context?.let { allAppsViewModel.loadAllApps(it) }
         }
         return root
+    }
+
+    override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
+        super.onViewCreated(view, savedInstanceState)
+        ViewCompat.setOnApplyWindowInsetsListener(view) { v, windowInsets ->
+            val navInsets = windowInsets.getInsets(WindowInsetsCompat.Type.navigationBars())
+            val bottomInset = navInsets.bottom + view.context.resources.getDimensionPixelSize(R.dimen.navigation_height)
+            v.apply {
+                setPadding(paddingLeft, paddingTop, paddingRight, bottomInset)
+            }
+            WindowInsetsCompat.CONSUMED
+        }
     }
 
     override fun onDestroyView() {

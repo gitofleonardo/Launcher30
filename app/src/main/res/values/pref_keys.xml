@@ -9,4 +9,5 @@
     <string name="key_clear_icon_cache">key_clear_icon_cache</string>
     <string name="key_hide_icon_text">key_hide_icon_text</string>
     <string name="key_draw_notification_count">key_draw_notification_count</string>
+    <string name="key_hide_spring_loaded_bg">key_hide_spring_loaded_bg</string>
 </resources>

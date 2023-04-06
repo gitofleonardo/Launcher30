@@ -38,6 +38,7 @@ class HomeActivity : AppCompatActivity() {
         ViewCompat.setOnApplyWindowInsetsListener(binding.navView) { view, windowInsets ->
             val navInsets = windowInsets.getInsets(WindowInsetsCompat.Type.navigationBars())
             view.apply {
+                layoutParams.height = navInsets.bottom + resources.getDimensionPixelSize(R.dimen.navigation_height)
                 setPadding(paddingLeft, paddingTop, paddingRight, navInsets.bottom)
             }
             val actionBarInsets = windowInsets.getInsets(WindowInsetsCompat.Type.statusBars())

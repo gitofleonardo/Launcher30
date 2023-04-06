@@ -38,11 +38,10 @@
     </com.google.android.material.appbar.AppBarLayout>
 
     <com.google.android.material.bottomnavigation.BottomNavigationView
-        app:layout_behavior="com.google.android.material.behavior.HideBottomViewOnScrollBehavior"
         android:layout_gravity="bottom"
         android:id="@+id/nav_view"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
+        android:layout_height="@dimen/navigation_height"
         app:menu="@menu/bottom_nav_menu"/>
 
 </androidx.coordinatorlayout.widget.CoordinatorLayout>

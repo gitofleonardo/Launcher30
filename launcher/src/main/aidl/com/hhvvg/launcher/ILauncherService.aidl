@@ -32,4 +32,7 @@ interface ILauncherService {
 
     void setDrawNotificationCount(boolean enable);
     boolean isDrawNotificationCount();
+
+    void setSpringLoadedBgEnable(boolean enable);
+    boolean isSpringLoadedBgEnable();
 }

@@ -6,6 +6,8 @@ import android.view.View
 import android.view.ViewGroup
 import android.widget.TextView
 import android.widget.Toast
+import androidx.core.view.ViewCompat
+import androidx.core.view.WindowInsetsCompat
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.viewModels
 import androidx.lifecycle.ViewModelProvider
@@ -18,6 +20,17 @@ import com.hhvvg.launcher3customizer.databinding.FragmentMoreSettingsBinding
 class MoreSettingsFragment : PreferenceFragmentCompat() {
     private val service by lazy { LauncherService.getLauncherService() }
 
+    override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
+        super.onViewCreated(view, savedInstanceState)
+        ViewCompat.setOnApplyWindowInsetsListener(view) { v, windowInsets ->
+            val navInsets = windowInsets.getInsets(WindowInsetsCompat.Type.navigationBars())
+            val bottomInset = navInsets.bottom + view.context.resources.getDimensionPixelSize(R.dimen.navigation_height)
+            v.apply {
+                setPadding(paddingLeft, paddingTop, paddingRight, bottomInset)
+            }
+            WindowInsetsCompat.CONSUMED
+        }
+    }
     override fun onCreatePreferences(savedInstanceState: Bundle?, rootKey: String?) {
         setPreferencesFromResource(R.xml.more_preference_screen, rootKey)
     }

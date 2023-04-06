@@ -44,4 +44,8 @@
 
     <string name="title_category_icon">Icon</string>
     <string name="title_category_notification">Notification</string>
+    <string name="title_category_workspace">Workspace</string>
+
+    <string name="title_hide_spring_loaded_bg">Hide Dragging Background</string>
+    <string name="desc_hide_spring_loaded_bg">Hide desktop background while dragging icons, widgets etc.</string>
 </resources>

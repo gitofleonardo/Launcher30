@@ -65,6 +65,14 @@ class CommonRepository(private val context: Context) {
         return preferences.getBoolean(KEY_NOTIFICATION_COUNT_ENABLE, true)
     }
 
+    fun setSpringLoadedBgEnable(enable: Boolean) {
+        preferences.edit().putBoolean(KEY_SPRING_LOADED_BG_ENABLE, enable).commit()
+    }
+
+    fun isSpringLoadedBgEnable(): Boolean {
+        return preferences.getBoolean(KEY_SPRING_LOADED_BG_ENABLE, false)
+    }
+
     companion object {
         private const val KEY_ICON_CLICK_EFFECT_ENABLED = "KEY_ICON_CLICK_EFFECT_ENABLED"
         private const val KEY_DOT_PARAMS_COLOR = "KEY_DOT_PARAMS_COLOR"
@@ -72,5 +80,6 @@ class CommonRepository(private val context: Context) {
         private const val KEY_ADAPTIVE_ICON_ENABLE = "KEY_ADAPTIVE_ICON_ENABLE"
         private const val KEY_ICON_TEXT_VISIBLE = "KEY_ICON_TEXT_VISIBLE"
         private const val KEY_NOTIFICATION_COUNT_ENABLE = "KEY_NOTIFICATION_COUNT_ENABLE"
+        private const val KEY_SPRING_LOADED_BG_ENABLE = "KEY_SPRING_LOADED_BG_ENABLE"
     }
 }

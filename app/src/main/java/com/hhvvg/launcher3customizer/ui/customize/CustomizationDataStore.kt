@@ -22,6 +22,9 @@ class CustomizationDataStore(private val service: ILauncherService, private val 
             stringOf(R.string.key_draw_notification_count) -> {
                 service.isDrawNotificationCount
             }
+            stringOf(R.string.key_hide_spring_loaded_bg) -> {
+                !service.isSpringLoadedBgEnable
+            }
             else -> defValue
         }
     }
@@ -39,6 +42,9 @@ class CustomizationDataStore(private val service: ILauncherService, private val 
             }
             stringOf(R.string.key_draw_notification_count) -> {
                 service.isDrawNotificationCount = value
+            }
+            stringOf(R.string.key_hide_spring_loaded_bg) -> {
+                service.isSpringLoadedBgEnable = !value
             }
         }
     }

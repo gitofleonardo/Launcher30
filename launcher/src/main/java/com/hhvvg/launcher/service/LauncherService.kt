@@ -129,6 +129,17 @@ class LauncherService(private val context: Context) : ILauncherService.Stub() {
         return commonRepository.isDrawNotificationCount()
     }
 
+    override fun isSpringLoadedBgEnable(): Boolean {
+        return commonRepository.isSpringLoadedBgEnable()
+    }
+
+    override fun setSpringLoadedBgEnable(enable: Boolean) {
+        commonRepository.setSpringLoadedBgEnable(enable)
+        broadcast {
+            it.onSpringLoadedBgEnable(enable)
+        }
+    }
+
     private fun broadcast(action: (ILauncherCallbacks) -> Unit) {
         var i = callbackList.beginBroadcast()
         while (i > 0) {

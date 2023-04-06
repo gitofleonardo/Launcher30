@@ -39,7 +39,8 @@ class LauncherHookProvider {
         PreviewBackground::class.java,
         LauncherIconProvider::class.java,
         LauncherIcons::class.java,
-        DotRenderer::class.java
+        DotRenderer::class.java,
+        CellLayout::class.java
     )
 
     fun init(param: XC_LoadPackage.LoadPackageParam) {

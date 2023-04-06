@@ -110,6 +110,7 @@ public class Launcher extends LauncherComponent {
         BubbleTextView.sDotParamsColor = service.getDotParamsColor();
         LauncherIconProvider.sIconProvider = service.getIconPackProvider();
         DotRenderer.sDrawNotificationCount = service.isDrawNotificationCount();
+        CellLayout.sHideSpringLoadedBg = !service.isSpringLoadedBgEnable();
     }
 
     public void onIdpChanged(boolean modelPropertiesChanged) {
@@ -163,6 +164,11 @@ public class Launcher extends LauncherComponent {
         public void onDrawNotificationCountChanged(boolean enable) throws RemoteException {
             DotRenderer.sDrawNotificationCount = enable;
             getModel().forceReload();
+        }
+
+        @Override
+        public void onSpringLoadedBgEnable(boolean enable) throws RemoteException {
+            CellLayout.sHideSpringLoadedBg = !enable;
         }
     };
 }
