@@ -16,6 +16,7 @@ import com.hhvvg.launcher.component.Inject;
 import com.hhvvg.launcher.component.LauncherComponent;
 import com.hhvvg.launcher.component.LauncherMethod;
 import com.hhvvg.launcher.icon.BubbleTextView;
+import com.hhvvg.launcher.icon.DotRenderer;
 import com.hhvvg.launcher.icon.FastBitmapDrawable;
 import com.hhvvg.launcher.icon.LauncherActivityCachingLogic;
 import com.hhvvg.launcher.icon.LauncherIconProvider;
@@ -108,6 +109,7 @@ public class Launcher extends LauncherComponent {
         FastBitmapDrawable.sClickEffectEnable = service.isClickEffectEnable();
         BubbleTextView.sDotParamsColor = service.getDotParamsColor();
         LauncherIconProvider.sIconProvider = service.getIconPackProvider();
+        DotRenderer.sDrawNotificationCount = service.isDrawNotificationCount();
     }
 
     public void onIdpChanged(boolean modelPropertiesChanged) {
@@ -122,7 +124,7 @@ public class Launcher extends LauncherComponent {
 
         @Override
         public void onComponentLabelUpdated(ComponentName cn, UserHandle user, CharSequence label) throws RemoteException {
-            mModel.onPackageChanged(cn.getPackageName(), user);
+            getModel().onPackageChanged(cn.getPackageName(), user);
         }
 
         @Override
@@ -155,6 +157,12 @@ public class Launcher extends LauncherComponent {
                 getModel().getApp().getIdp().onConfigChanged(getInstance());
                 onIdpChanged(true);
             });
+        }
+
+        @Override
+        public void onDrawNotificationCountChanged(boolean enable) throws RemoteException {
+            DotRenderer.sDrawNotificationCount = enable;
+            getModel().forceReload();
         }
     };
 }

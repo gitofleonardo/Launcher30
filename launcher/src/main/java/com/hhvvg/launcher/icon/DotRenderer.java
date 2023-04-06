@@ -5,6 +5,8 @@ import android.graphics.Canvas;
 import android.graphics.Color;
 import android.graphics.Paint;
 import android.graphics.Rect;
+import android.graphics.RectF;
+import android.graphics.Typeface;
 
 import androidx.annotation.NonNull;
 
@@ -12,22 +14,28 @@ import com.hhvvg.launcher.component.Inject;
 import com.hhvvg.launcher.component.LauncherArgs;
 import com.hhvvg.launcher.component.LauncherComponent;
 import com.hhvvg.launcher.component.LauncherMethod;
-import com.hhvvg.launcher.utils.Logger;
 
 import de.robv.android.xposed.XC_MethodHook;
 import de.robv.android.xposed.XposedHelpers;
 
 public class DotRenderer extends LauncherComponent {
     private static final String CLASS = "com.android.launcher3.icons.DotRenderer";
+    private static final String EXCEED_TEXT = "···";
+    private static final float NOTIFICATION_COUNT_TEXT_SIZE_RATIO = 0.8f;
+    private static final float ROUND_RECT_RATIO = 1.3f;
+    private static final RectF sTmpRect = new RectF();
+
+    public static boolean sDrawNotificationCount = true;
 
     @LauncherMethod(inject = Inject.Before)
     public void override_draw(XC_MethodHook.MethodHookParam hookParam, Canvas canvas,
                               @LauncherArgs(className = "com.android.launcher3.icons.DotRenderer$DrawParams") DrawParams params) {
-        Logger.log("1");
         if (params.getInstance() == null) {
             return;
         }
-        Logger.log("2");
+        if (!sDrawNotificationCount) {
+            return;
+        }
         canvas.save();
 
         Rect iconBounds = params.getIconBounds();
@@ -49,13 +57,47 @@ public class DotRenderer extends LauncherComponent {
         getCirclePaint().setColor(Color.BLACK);
         canvas.drawBitmap(getBackgroundWithShadow(), getBitmapOffset(), getBitmapOffset(), getCirclePaint());
         getCirclePaint().setColor(params.getDotColor());
-        canvas.drawCircle(0, 0, getCircleRadius(), getCirclePaint());
+
+        int notificationCount = params.getNotificationCount();
+        boolean drawRoundRect = notificationCount >= 10;
+        String countText;
+        if (notificationCount >= 100) {
+            countText = EXCEED_TEXT;
+        } else {
+            countText = String.valueOf(notificationCount);
+        }
+        float radius = getCircleRadius();
+        Paint circlePaint = getCirclePaint();
+
+        if (drawRoundRect) {
+            float rectExtraSideWidth = radius * ROUND_RECT_RATIO - radius;
+            sTmpRect.set(-radius - rectExtraSideWidth, -radius, radius + rectExtraSideWidth, radius);
+            canvas.drawRoundRect(sTmpRect, radius, radius, circlePaint);
+        } else {
+            canvas.drawCircle(0, 0, getCircleRadius(), getCirclePaint());
+        }
+
         getCirclePaint().setColor(Color.WHITE);
-        canvas.drawText("00", 0, 0, getCirclePaint());
+        if (notificationCount > 0) {
+            Paint textPaint = getCirclePaint();
+            textPaint.setTextSize(getTextSize());
+            textPaint.setTypeface(Typeface.DEFAULT_BOLD);
+
+            Paint.FontMetrics fm = textPaint.getFontMetrics();
+            float fontHeight = fm.descent - fm.ascent;
+            float textOffsetY = fontHeight / 2 - fm.bottom;
+            float textOffsetX = textPaint.measureText(countText) / 2;
+
+            canvas.drawText(countText, -textOffsetX, textOffsetY, textPaint);
+        }
+
         canvas.restore();
 
         hookParam.args[1] = null;
-        Logger.log("3");
+    }
+
+    private float getTextSize() {
+        return getCircleRadius() * 2 * NOTIFICATION_COUNT_TEXT_SIZE_RATIO;
     }
 
     private float getCircleRadius() {

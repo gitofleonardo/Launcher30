@@ -57,11 +57,20 @@ class CommonRepository(private val context: Context) {
         return preferences.getBoolean(KEY_ICON_TEXT_VISIBLE, true)
     }
 
+    fun setDrawNotificationCount(draw: Boolean) {
+        preferences.edit().putBoolean(KEY_NOTIFICATION_COUNT_ENABLE, draw).commit()
+    }
+
+    fun isDrawNotificationCount(): Boolean {
+        return preferences.getBoolean(KEY_NOTIFICATION_COUNT_ENABLE, true)
+    }
+
     companion object {
         private const val KEY_ICON_CLICK_EFFECT_ENABLED = "KEY_ICON_CLICK_EFFECT_ENABLED"
         private const val KEY_DOT_PARAMS_COLOR = "KEY_DOT_PARAMS_COLOR"
         private const val KEY_ICON_PACK_PROVIDER = "KEY_ICON_PACK_PROVIDER"
         private const val KEY_ADAPTIVE_ICON_ENABLE = "KEY_ADAPTIVE_ICON_ENABLE"
         private const val KEY_ICON_TEXT_VISIBLE = "KEY_ICON_TEXT_VISIBLE"
+        private const val KEY_NOTIFICATION_COUNT_ENABLE = "KEY_NOTIFICATION_COUNT_ENABLE"
     }
 }

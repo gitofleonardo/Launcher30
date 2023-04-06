@@ -19,6 +19,9 @@ class CustomizationDataStore(private val service: ILauncherService, private val 
             stringOf(R.string.key_hide_icon_text) -> {
                 !service.isIconTextVisible
             }
+            stringOf(R.string.key_draw_notification_count) -> {
+                service.isDrawNotificationCount
+            }
             else -> defValue
         }
     }
@@ -33,6 +36,9 @@ class CustomizationDataStore(private val service: ILauncherService, private val 
             }
             stringOf(R.string.key_hide_icon_text) -> {
                 service.isIconTextVisible = !value
+            }
+            stringOf(R.string.key_draw_notification_count) -> {
+                service.isDrawNotificationCount = value
             }
         }
     }

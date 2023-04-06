@@ -29,4 +29,7 @@ interface ILauncherService {
 
     void setIconTextVisible(boolean visible);
     boolean isIconTextVisible();
+
+    void setDrawNotificationCount(boolean enable);
+    boolean isDrawNotificationCount();
 }

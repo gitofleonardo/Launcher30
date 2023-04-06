@@ -9,4 +9,5 @@ interface ILauncherCallbacks {
     void onIconPackProviderChanged(in String providerPkg);
     void onLauncherReload();
     void onIconTextVisibilityChanged(boolean visible);
+    void onDrawNotificationCountChanged(boolean enable);
 }

@@ -118,6 +118,17 @@ class LauncherService(private val context: Context) : ILauncherService.Stub() {
         return commonRepository.isIconTextVisible()
     }
 
+    override fun setDrawNotificationCount(enable: Boolean) {
+        commonRepository.setDrawNotificationCount(enable)
+        broadcast {
+            it.onDrawNotificationCountChanged(enable)
+        }
+    }
+
+    override fun isDrawNotificationCount(): Boolean {
+        return commonRepository.isDrawNotificationCount()
+    }
+
     private fun broadcast(action: (ILauncherCallbacks) -> Unit) {
         var i = callbackList.beginBroadcast()
         while (i > 0) {

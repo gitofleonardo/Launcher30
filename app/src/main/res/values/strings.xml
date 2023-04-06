@@ -39,4 +39,9 @@
 
     <string name="title_hide_icon_text">Hide Icon Text</string>
     <string name="desc_hide_icon_text">Do not display icon text</string>
+    <string name="title_draw_notification_dot">Show Notification Count</string>
+    <string name="desc_draw_notification_dot">Show badged notification count inside center of notification dots</string>
+
+    <string name="title_category_icon">Icon</string>
+    <string name="title_category_notification">Notification</string>
 </resources>

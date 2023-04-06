@@ -60,8 +60,6 @@ class LauncherHookProvider {
 private class ClassProcessor(val component: LauncherComponent) {
     val annotatedMethods: Array<Method> = findMethods()
     private fun findMethods(): Array<Method> {
-        Logger.log("Hook class: ${component.className}")
-
         val methods = component::class.java.declaredMethods
         return methods
             .filter {it.isAnnotationPresent(LauncherMethod::class.java)}
@@ -201,7 +199,6 @@ private class MethodHook(
             var parentClz = launcherClass
             var launcherMethod: Method? = null
             while (parentClz != Any::class.java) {
-                Logger.log("Current find method in class: ${parentClz.name}")
                 try {
                     launcherMethod = XposedHelpers.findMethodBestMatch(parentClz,
                         methodProcessor.launcherMethodName, *launcherMethodParams)
@@ -213,7 +210,6 @@ private class MethodHook(
             }
             launcherMethod?.let {
                 XposedBridge.hookMethod(it, methodHook)
-                Logger.log("Hook method: ${methodProcessor.launcherMethodName}")
             }
         }
     }
