@@ -6,16 +6,16 @@ import android.os.UserHandle
 import android.view.*
 import android.widget.Toast
 import androidx.core.view.MenuProvider
-import androidx.fragment.app.Fragment
 import androidx.fragment.app.viewModels
 import com.hhvvg.launcher.service.LauncherService
 import com.hhvvg.launcher3customizer.R
 import com.hhvvg.launcher3customizer.databinding.FragmentPerAppBinding
+import com.hhvvg.launcher3customizer.ui.InsettableFragment
 
 private const val ARG_PARAM_COMPONENT = "component"
 private const val ARG_PARAM_USER = "user"
 
-class PerAppFragment : Fragment(), MenuProvider {
+class PerAppFragment : InsettableFragment(), MenuProvider {
     private var _binding: FragmentPerAppBinding? = null
     private val binding: FragmentPerAppBinding
         get() = _binding!!

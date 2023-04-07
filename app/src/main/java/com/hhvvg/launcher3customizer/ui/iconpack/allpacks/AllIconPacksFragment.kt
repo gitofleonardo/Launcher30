@@ -3,7 +3,6 @@ package com.hhvvg.launcher3customizer.ui.iconpack.allpacks
 import android.os.Bundle
 import android.view.*
 import android.widget.Toast
-import androidx.fragment.app.Fragment
 import androidx.core.view.MenuProvider
 import androidx.fragment.app.viewModels
 import androidx.navigation.fragment.findNavController
@@ -11,8 +10,9 @@ import com.hhvvg.launcher.service.LauncherService
 import com.hhvvg.launcher3customizer.R
 import com.hhvvg.launcher3customizer.data.IconPackItem
 import com.hhvvg.launcher3customizer.databinding.FragmentAllIconPacksBinding
+import com.hhvvg.launcher3customizer.ui.InsettableFragment
 
-class AllIconPacksFragment : Fragment(), MenuProvider {
+class AllIconPacksFragment : InsettableFragment(), MenuProvider {
     private var _binding: FragmentAllIconPacksBinding? = null
     private val binding: FragmentAllIconPacksBinding
         get() = _binding!!

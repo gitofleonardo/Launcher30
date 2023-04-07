@@ -3,15 +3,15 @@ package com.hhvvg.launcher3customizer.ui.notificationcolor
 import android.os.Bundle
 import android.view.*
 import android.widget.Toast
-import androidx.fragment.app.Fragment
 import androidx.core.view.MenuProvider
 import com.hhvvg.launcher.service.LauncherService
 import com.hhvvg.launcher3customizer.R
 import com.hhvvg.launcher3customizer.databinding.FragmentNotificationColorPickerBinding
+import com.hhvvg.launcher3customizer.ui.InsettableFragment
 import com.skydoves.colorpickerview.flag.BubbleFlag
 import com.skydoves.colorpickerview.flag.FlagMode
 
-class NotificationColorPickerFragment : Fragment(), MenuProvider {
+class NotificationColorPickerFragment : InsettableFragment(), MenuProvider {
     private val launcherService by lazy { LauncherService.getLauncherService() }
 
     private var _binding: FragmentNotificationColorPickerBinding? = null

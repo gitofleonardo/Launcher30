@@ -3,7 +3,6 @@ package com.hhvvg.launcher3customizer.ui.iconpack.allicons
 import android.os.Bundle
 import android.view.*
 import android.widget.Toast
-import androidx.fragment.app.Fragment
 import androidx.core.view.MenuProvider
 import androidx.fragment.app.viewModels
 import androidx.lifecycle.lifecycleScope
@@ -11,13 +10,12 @@ import androidx.paging.LoadState
 import androidx.recyclerview.widget.GridLayoutManager
 import com.hhvvg.launcher.service.LauncherService
 import com.hhvvg.launcher3customizer.R
-import com.hhvvg.launcher3customizer.data.IconDrawableItem
-import com.hhvvg.launcher3customizer.data.IconPackItem
 import com.hhvvg.launcher3customizer.databinding.FragmentIconPackDetailsBinding
+import com.hhvvg.launcher3customizer.ui.InsettableFragment
 import kotlinx.coroutines.flow.collectLatest
 import kotlinx.coroutines.launch
 
-class IconPackDetailsFragment : Fragment(), MenuProvider {
+class IconPackDetailsFragment : InsettableFragment(), MenuProvider {
     private var _binding: FragmentIconPackDetailsBinding? = null
     private val binding: FragmentIconPackDetailsBinding
         get() = _binding!!

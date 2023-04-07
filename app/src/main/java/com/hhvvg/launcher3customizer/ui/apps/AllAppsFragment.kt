@@ -12,8 +12,9 @@ import androidx.navigation.fragment.findNavController
 import com.hhvvg.launcher3customizer.R
 import com.hhvvg.launcher3customizer.data.AppItem
 import com.hhvvg.launcher3customizer.databinding.FragmentAllAppsBinding
+import com.hhvvg.launcher3customizer.ui.InsettableFragment
 
-class AllAppsFragment : Fragment() {
+class AllAppsFragment : InsettableFragment() {
 
     private var _binding: FragmentAllAppsBinding? = null
 
