@@ -1,5 +1,6 @@
 package com.hhvvg.launcher
 
+import com.hhvvg.launcher.InvariantDeviceProfile.GridOption
 import com.hhvvg.launcher.component.Inject
 import com.hhvvg.launcher.component.LauncherArgs
 import com.hhvvg.launcher.component.LauncherComponent
@@ -40,7 +41,8 @@ class LauncherHookProvider {
         LauncherIconProvider::class.java,
         LauncherIcons::class.java,
         DotRenderer::class.java,
-        CellLayout::class.java
+        CellLayout::class.java,
+        GridOption::class.java
     )
 
     fun init(param: XC_LoadPackage.LoadPackageParam) {
