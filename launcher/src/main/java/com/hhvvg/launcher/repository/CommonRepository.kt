@@ -81,6 +81,14 @@ class CommonRepository(private val context: Context) {
         return preferences.getBoolean(KEY_QSB_ENABLE, true)
     }
 
+    fun setOpenedFolderCenter(center: Boolean) {
+        preferences.edit().putBoolean(KEY_OPENED_FOLDER_CENTER, center).commit()
+    }
+
+    fun isOpenedFolderCenter(): Boolean {
+        return preferences.getBoolean(KEY_OPENED_FOLDER_CENTER, true)
+    }
+
     companion object {
         private const val KEY_ICON_CLICK_EFFECT_ENABLED = "KEY_ICON_CLICK_EFFECT_ENABLED"
         private const val KEY_DOT_PARAMS_COLOR = "KEY_DOT_PARAMS_COLOR"
@@ -90,5 +98,6 @@ class CommonRepository(private val context: Context) {
         private const val KEY_NOTIFICATION_COUNT_ENABLE = "KEY_NOTIFICATION_COUNT_ENABLE"
         private const val KEY_SPRING_LOADED_BG_ENABLE = "KEY_SPRING_LOADED_BG_ENABLE"
         private const val KEY_QSB_ENABLE = "KEY_QSB_ENABLE"
+        private const val KEY_OPENED_FOLDER_CENTER = "KEY_OPENED_FOLDER_CENTER"
     }
 }

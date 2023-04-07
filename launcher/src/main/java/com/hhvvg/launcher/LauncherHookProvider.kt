@@ -5,6 +5,7 @@ import com.hhvvg.launcher.component.Inject
 import com.hhvvg.launcher.component.LauncherArgs
 import com.hhvvg.launcher.component.LauncherComponent
 import com.hhvvg.launcher.component.LauncherMethod
+import com.hhvvg.launcher.folder.Folder
 import com.hhvvg.launcher.folder.FolderIcon
 import com.hhvvg.launcher.folder.PreviewBackground
 import com.hhvvg.launcher.icon.BubbleTextView
@@ -42,7 +43,8 @@ class LauncherHookProvider {
         LauncherIcons::class.java,
         DotRenderer::class.java,
         CellLayout::class.java,
-        GridOption::class.java
+        GridOption::class.java,
+        Folder::class.java
     )
 
     fun init(param: XC_LoadPackage.LoadPackageParam) {

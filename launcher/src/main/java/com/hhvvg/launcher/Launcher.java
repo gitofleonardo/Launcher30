@@ -14,6 +14,7 @@ import androidx.annotation.NonNull;
 import com.hhvvg.launcher.component.Inject;
 import com.hhvvg.launcher.component.LauncherComponent;
 import com.hhvvg.launcher.component.LauncherMethod;
+import com.hhvvg.launcher.folder.Folder;
 import com.hhvvg.launcher.icon.BubbleTextView;
 import com.hhvvg.launcher.icon.DotRenderer;
 import com.hhvvg.launcher.icon.FastBitmapDrawable;
@@ -178,6 +179,11 @@ public class Launcher extends LauncherComponent {
         public void onQsbStateChanged(boolean enable) {
             CellLayout.sEnableQSB = enable;
             getModel().forceReload();
+        }
+
+        @Override
+        public void onOpenedFolderCenterChanged(boolean center) {
+            Folder.sCenterOpenedFolder = center;
         }
     };
 }

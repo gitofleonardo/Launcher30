@@ -51,4 +51,7 @@
 
     <string name="title_hide_qsb">Hide QSB</string>
     <string name="desc_hide_qsb">Hide quick search bar (or sometimes At A Glance) on first screen</string>
+
+    <string name="title_center_folder">Center Opened Folder</string>
+    <string name="desc_center_folder">Show an opened folder on center of screen</string>
 </resources>

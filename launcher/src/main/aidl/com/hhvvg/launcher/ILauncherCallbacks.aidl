@@ -12,4 +12,5 @@ interface ILauncherCallbacks {
     void onDrawNotificationCountChanged(boolean enable);
     void onSpringLoadedBgEnable(boolean enable);
     void onQsbStateChanged(boolean enable);
+    void onOpenedFolderCenterChanged(boolean center);
 }

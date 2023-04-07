@@ -38,4 +38,7 @@ interface ILauncherService {
 
     void setQsbEnable(boolean enable);
     boolean isQsbEnable();
+
+    void setOpenedFolderCenter(boolean center);
+    boolean isOpenedFolderCenter();
 }

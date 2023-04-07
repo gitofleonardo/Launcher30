@@ -11,4 +11,5 @@
     <string name="key_draw_notification_count">key_draw_notification_count</string>
     <string name="key_hide_spring_loaded_bg">key_hide_spring_loaded_bg</string>
     <string name="key_hide_qsb">key_hide_qsb</string>
+    <string name="key_center_opened_folder">key_center_opened_folder</string>
 </resources>

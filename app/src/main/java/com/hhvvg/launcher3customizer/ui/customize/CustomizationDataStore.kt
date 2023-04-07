@@ -28,6 +28,9 @@ class CustomizationDataStore(private val service: ILauncherService, private val 
             stringOf(R.string.key_hide_qsb) -> {
                 !service.isQsbEnable
             }
+            stringOf(R.string.key_center_opened_folder) -> {
+                service.isOpenedFolderCenter
+            }
             else -> defValue
         }
     }
@@ -51,6 +54,9 @@ class CustomizationDataStore(private val service: ILauncherService, private val 
             }
             stringOf(R.string.key_hide_qsb) -> {
                 service.isQsbEnable = !value
+            }
+            stringOf(R.string.key_center_opened_folder) -> {
+                service.isOpenedFolderCenter = value
             }
         }
     }

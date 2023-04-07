@@ -151,6 +151,17 @@ class LauncherService(private val context: Context) : ILauncherService.Stub() {
         return commonRepository.isQsbEnable()
     }
 
+    override fun setOpenedFolderCenter(center: Boolean) {
+        commonRepository.setOpenedFolderCenter(center)
+        broadcast {
+            it.onOpenedFolderCenterChanged(center)
+        }
+    }
+
+    override fun isOpenedFolderCenter(): Boolean {
+        return commonRepository.isOpenedFolderCenter()
+    }
+
     private fun broadcast(action: (ILauncherCallbacks) -> Unit) {
         var i = callbackList.beginBroadcast()
         while (i > 0) {

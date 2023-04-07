@@ -65,5 +65,12 @@
             app:persistent="true"
             app:title="@string/title_hide_qsb"
             app:summary="@string/desc_hide_qsb"/>
+
+        <com.hhvvg.launcher3customizer.view.MaterialSwitchPreference
+            app:icon="@drawable/ic_center_24"
+            app:key="@string/key_center_opened_folder"
+            app:persistent="true"
+            app:title="@string/title_center_folder"
+            app:summary="@string/desc_center_folder"/>
     </PreferenceCategory>
 </PreferenceScreen>
