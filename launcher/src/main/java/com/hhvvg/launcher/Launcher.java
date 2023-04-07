@@ -142,9 +142,13 @@ public class Launcher extends LauncherComponent {
 
         @Override
         public void onIconPackProviderChanged(String providerPkg) throws RemoteException {
-            LauncherIconProvider.sIconProvider = providerPkg;
-            LauncherIconProvider.sIconCaches.clear();
-            getModel().getApp().refreshAndReloadLauncher();
+            try {
+                LauncherIconProvider.sIconProvider = providerPkg;
+                LauncherIconProvider.sIconCaches.clear();
+                getModel().getApp().refreshAndReloadLauncher();
+            } catch (Exception e) {
+                Logger.log("error", e);
+            }
         }
 
         @Override
