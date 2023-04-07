@@ -11,4 +11,5 @@ interface ILauncherCallbacks {
     void onIconTextVisibilityChanged(boolean visible);
     void onDrawNotificationCountChanged(boolean enable);
     void onSpringLoadedBgEnable(boolean enable);
+    void onQsbStateChanged(boolean enable);
 }

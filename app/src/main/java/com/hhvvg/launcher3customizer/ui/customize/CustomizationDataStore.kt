@@ -25,6 +25,9 @@ class CustomizationDataStore(private val service: ILauncherService, private val 
             stringOf(R.string.key_hide_spring_loaded_bg) -> {
                 !service.isSpringLoadedBgEnable
             }
+            stringOf(R.string.key_hide_qsb) -> {
+                !service.isQsbEnable
+            }
             else -> defValue
         }
     }
@@ -45,6 +48,9 @@ class CustomizationDataStore(private val service: ILauncherService, private val 
             }
             stringOf(R.string.key_hide_spring_loaded_bg) -> {
                 service.isSpringLoadedBgEnable = !value
+            }
+            stringOf(R.string.key_hide_qsb) -> {
+                service.isQsbEnable = !value
             }
         }
     }

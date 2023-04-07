@@ -8,7 +8,6 @@ import android.os.Handler;
 import android.os.Looper;
 import android.os.RemoteException;
 import android.os.UserHandle;
-import android.util.Log;
 
 import androidx.annotation.NonNull;
 
@@ -18,7 +17,6 @@ import com.hhvvg.launcher.component.LauncherMethod;
 import com.hhvvg.launcher.icon.BubbleTextView;
 import com.hhvvg.launcher.icon.DotRenderer;
 import com.hhvvg.launcher.icon.FastBitmapDrawable;
-import com.hhvvg.launcher.icon.LauncherActivityCachingLogic;
 import com.hhvvg.launcher.icon.LauncherIconProvider;
 import com.hhvvg.launcher.icon.Workspace;
 import com.hhvvg.launcher.model.LauncherModel;
@@ -111,6 +109,7 @@ public class Launcher extends LauncherComponent {
         LauncherIconProvider.sIconProvider = service.getIconPackProvider();
         DotRenderer.sDrawNotificationCount = service.isDrawNotificationCount();
         CellLayout.sHideSpringLoadedBg = !service.isSpringLoadedBgEnable();
+        CellLayout.sEnableQSB = service.isQsbEnable();
     }
 
     public void onIdpChanged(boolean modelPropertiesChanged) {
@@ -173,6 +172,12 @@ public class Launcher extends LauncherComponent {
         @Override
         public void onSpringLoadedBgEnable(boolean enable) throws RemoteException {
             CellLayout.sHideSpringLoadedBg = !enable;
+        }
+
+        @Override
+        public void onQsbStateChanged(boolean enable) {
+            CellLayout.sEnableQSB = enable;
+            getModel().forceReload();
         }
     };
 }

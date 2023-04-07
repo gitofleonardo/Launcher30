@@ -140,6 +140,17 @@ class LauncherService(private val context: Context) : ILauncherService.Stub() {
         }
     }
 
+    override fun setQsbEnable(enable: Boolean) {
+        commonRepository.setQsbEnable(enable)
+        broadcast {
+            it.onQsbStateChanged(enable)
+        }
+    }
+
+    override fun isQsbEnable(): Boolean {
+        return commonRepository.isQsbEnable()
+    }
+
     private fun broadcast(action: (ILauncherCallbacks) -> Unit) {
         var i = callbackList.beginBroadcast()
         while (i > 0) {

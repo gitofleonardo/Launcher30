@@ -58,5 +58,12 @@
             app:persistent="true"
             app:title="@string/title_hide_spring_loaded_bg"
             app:summary="@string/desc_hide_spring_loaded_bg"/>
+
+        <com.hhvvg.launcher3customizer.view.MaterialSwitchPreference
+            app:icon="@drawable/ic_qsb_off_24"
+            app:key="@string/key_hide_qsb"
+            app:persistent="true"
+            app:title="@string/title_hide_qsb"
+            app:summary="@string/desc_hide_qsb"/>
     </PreferenceCategory>
 </PreferenceScreen>

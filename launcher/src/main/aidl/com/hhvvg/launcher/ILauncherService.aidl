@@ -35,4 +35,7 @@ interface ILauncherService {
 
     void setSpringLoadedBgEnable(boolean enable);
     boolean isSpringLoadedBgEnable();
+
+    void setQsbEnable(boolean enable);
+    boolean isQsbEnable();
 }
