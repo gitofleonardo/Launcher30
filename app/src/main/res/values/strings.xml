@@ -54,4 +54,12 @@
 
     <string name="title_center_folder">Center Opened Folder</string>
     <string name="desc_center_folder">Show an opened folder on center of screen</string>
+
+    <string name="title_this_proj_source">Source Code</string>
+    <string name="desc_this_proj_source">Get the source code of this project from Github</string>
+
+    <string name="title_oss">Open Source Licenses</string>
+
+    <string name="title_category_launcher">Launcher</string>
+    <string name="title_category_proj">Project</string>
 </resources>

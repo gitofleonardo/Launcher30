@@ -1,14 +1,31 @@
 <?xml version="1.0" encoding="utf-8"?>
-<PreferenceScreen xmlns:android="http://schemas.android.com/apk/res/android">
-    <Preference
-        android:icon="@drawable/ic_restart_alt_24"
-        android:key="@string/key_reload_launcher"
-        android:title="@string/title_reload_launcher"
-        android:summary="@string/desc_reload_launcher"/>
+<PreferenceScreen xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto">
+    <PreferenceCategory
+        app:title="@string/title_category_launcher">
+        <Preference
+            android:icon="@drawable/ic_restart_alt_24"
+            android:key="@string/key_reload_launcher"
+            android:title="@string/title_reload_launcher"
+            android:summary="@string/desc_reload_launcher"/>
 
-    <Preference
-        android:icon="@drawable/ic_clear_all_24"
-        android:key="@string/key_clear_icon_cache"
-        android:title="@string/title_clear_icon_caches"
-        android:summary="@string/desc_clear_icon_caches"/>
+        <Preference
+            android:icon="@drawable/ic_clear_all_24"
+            android:key="@string/key_clear_icon_cache"
+            android:title="@string/title_clear_icon_caches"
+            android:summary="@string/desc_clear_icon_caches"/>
+    </PreferenceCategory>
+
+    <PreferenceCategory
+        app:title="@string/title_category_proj">
+        <Preference
+            app:icon="@drawable/ic_code_24"
+            app:key="@string/key_proj_source"
+            app:title="@string/title_this_proj_source"
+            app:summary="@string/desc_this_proj_source"/>
+
+        <Preference
+            app:key="@string/key_proj_oss"
+            app:title="@string/title_oss"/>
+    </PreferenceCategory>
 </PreferenceScreen>
