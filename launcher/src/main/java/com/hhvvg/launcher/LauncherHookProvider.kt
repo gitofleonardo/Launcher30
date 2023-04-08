@@ -18,6 +18,7 @@ import com.hhvvg.launcher.icon.LauncherIcons
 import com.hhvvg.launcher.utils.Logger
 import com.hhvvg.launcher.utils.getAdditionalInstanceField
 import com.hhvvg.launcher.utils.setAdditionalInstanceField
+import com.hhvvg.launcher.view.OptionsPopupView
 import de.robv.android.xposed.XC_MethodHook
 import de.robv.android.xposed.XC_MethodHook.MethodHookParam
 import de.robv.android.xposed.XposedBridge
@@ -44,7 +45,8 @@ class LauncherHookProvider {
         DotRenderer::class.java,
         CellLayout::class.java,
         GridOption::class.java,
-        Folder::class.java
+        Folder::class.java,
+        OptionsPopupView::class.java
     )
 
     fun init(param: XC_LoadPackage.LoadPackageParam) {
@@ -168,16 +170,21 @@ private class MethodHook(
                 if (i == 0) {
                     realArgs.add(p)
                 } else if (type is LauncherComponentMethodType) {
-                    val instanceName = "_component_${component.javaClass.simpleName}"
-                    var cachedComponent = p.thisObject.getAdditionalInstanceField<LauncherComponent>(instanceName)
-                    if (cachedComponent == null) {
-                        cachedComponent = type.componentClazz.newInstance() as LauncherComponent
-                        p.thisObject.setAdditionalInstanceField(instanceName, cachedComponent)
+                    val cachedComponent = if (p.thisObject != null) {
+                        val instanceName = "_component_${component.javaClass.simpleName}"
+                        var cachedComponent =
+                            p.thisObject.getAdditionalInstanceField<LauncherComponent>(instanceName)
+                        if (cachedComponent == null) {
+                            cachedComponent = type.componentClazz.newInstance() as LauncherComponent
+                            p.thisObject.setAdditionalInstanceField(instanceName, cachedComponent)
+                        }
+                        cachedComponent
+                    } else {
+                        type.componentClazz.newInstance() as LauncherComponent
                     }
-                    val realArg =cachedComponent
                     val arg = p.args[i - 1]
-                    realArg.instance = arg
-                    realArgs.add(realArg)
+                    cachedComponent.instance = arg
+                    realArgs.add(cachedComponent)
                 } else {
                     realArgs.add(p.args[i - 1])
                 }

@@ -3,14 +3,16 @@ package com.hhvvg.launcher
 import android.content.res.Resources
 import android.content.res.XModuleResources
 import com.hhvvg.launcher.service.LauncherService
+import de.robv.android.xposed.IXposedHookInitPackageResources
 import de.robv.android.xposed.IXposedHookLoadPackage
 import de.robv.android.xposed.IXposedHookZygoteInit
+import de.robv.android.xposed.callbacks.XC_InitPackageResources
 import de.robv.android.xposed.callbacks.XC_LoadPackage
 
 /**
  * @author hhvvg
  */
-class Init : IXposedHookLoadPackage, IXposedHookZygoteInit{
+class Init : IXposedHookLoadPackage, IXposedHookZygoteInit, IXposedHookInitPackageResources {
     private val launcherProvider by lazy {
         LauncherHookProvider()
     }
@@ -30,6 +32,10 @@ class Init : IXposedHookLoadPackage, IXposedHookZygoteInit{
         }
     }
 
+    override fun handleInitPackageResources(resparam: XC_InitPackageResources.InitPackageResourcesParam) {
+        xModuleRes = XModuleResources.createInstance(modulePath, resparam.res)
+    }
+
     override fun initZygote(param: IXposedHookZygoteInit.StartupParam) {
         modulePath = param.modulePath
         moduleRes = createModuleRes(modulePath)
@@ -44,6 +50,9 @@ class Init : IXposedHookLoadPackage, IXposedHookZygoteInit{
 
         @JvmStatic
         lateinit var modulePath: String
+
+        @JvmStatic
+        lateinit var xModuleRes: XModuleResources
 
         @JvmStatic
         fun createModuleRes(path: String): Resources {

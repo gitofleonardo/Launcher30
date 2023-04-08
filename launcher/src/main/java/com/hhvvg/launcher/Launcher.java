@@ -30,6 +30,7 @@ import de.robv.android.xposed.XC_MethodHook;
 import de.robv.android.xposed.XposedHelpers;
 
 public class Launcher extends LauncherComponent {
+    public static final String CLASS = "com.android.launcher3.Launcher";
 
     private LauncherModel mModel;
     private Workspace mWorkspace;
@@ -83,7 +84,7 @@ public class Launcher extends LauncherComponent {
     @NonNull
     @Override
     public String getClassName() {
-        return "com.android.launcher3.Launcher";
+        return CLASS;
     }
 
     private void initLauncherService() {

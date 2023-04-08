@@ -18,8 +18,10 @@
             android:name=".HomeActivity"
             android:exported="true">
             <intent-filter>
+                <action android:name="com.hhvvg.launcher30.home_activity"/>
                 <action android:name="android.intent.action.MAIN" />
                 <category android:name="android.intent.category.LAUNCHER" />
+                <category android:name="android.intent.category.DEFAULT"/>
             </intent-filter>
         </activity>
 
