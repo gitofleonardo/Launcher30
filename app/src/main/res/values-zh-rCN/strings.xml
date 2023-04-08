@@ -1,0 +1,65 @@
+<resources>
+    <string name="app_name">Launcher30</string>
+    <string name="title_activity_home">HomeActivity</string>
+    <string name="title_all_apps">应用</string>
+    <string name="title_customize">个性化</string>
+    <string name="title_more_settings">更多</string>
+    <string name="title_app_settings">应用设置</string>
+    <string name="title_icon_packs">图标包</string>
+    <string name="title_icon_pack_icons">全部图标</string>
+
+    <string name="title_nav_all_apps">应用</string>
+    <string name="title_nav_customize">个性化</string>
+    <string name="title_nav_more_settings">更多</string>
+    <string name="cancel">取消</string>
+    <string name="confirm">确定</string>
+    <string name="restore">恢复</string>
+
+    <string name="title_icon_touch_effect">图标点击效果</string>
+    <string name="desc_icon_touch_effect">点击图标的时候图标会缩小，而不是放大</string>
+    <string name="title_notification_dot_color">图标通知颜色</string>
+    <string name="desc_notification_dot_color">图标顶部的通知圆点的颜色</string>
+    <string name="desc_icon_packs">所有可用图标包</string>
+    <string name="reset_app_settings">重置应用设置</string>
+    <string name="btn_apply">应用</string>
+    <string name="reset">重置</string>
+    <string name="title_enable_adaptive_icon">使用自适应图标</string>
+    <string name="desc_adaptive_icon">自适应图标包括了前景跟背景，其背景形状是由设备的遮罩路径决定的</string>
+
+    <string name="desc_reset_notification_color">通知圆点颜色重置需要重启桌面</string>
+
+    <string name="title_done_toast">完成</string>
+    <string name="title_icon_applied">图标已应用</string>
+    <string name="title_notification_dot_color_applied">颜色已应用</string>
+
+    <string name="title_reload_launcher">重新加载桌面</string>
+    <string name="desc_reload_launcher">强制重新加载桌面并重新绑定所有的桌面组件</string>
+    <string name="title_clear_icon_caches">清除图标缓存</string>
+    <string name="desc_clear_icon_caches">清除数据库中的图标缓存，并重新加载桌面</string>
+
+    <string name="title_hide_icon_text">隐藏图标文本</string>
+    <string name="desc_hide_icon_text">不展示图标下方的文本</string>
+    <string name="title_draw_notification_dot">显示通知数量</string>
+    <string name="desc_draw_notification_dot">在通知圆点中显示当前应用的通知数量</string>
+
+    <string name="title_category_icon">图标</string>
+    <string name="title_category_notification">通知</string>
+    <string name="title_category_workspace">桌面</string>
+
+    <string name="title_hide_spring_loaded_bg">隐藏拖动背景</string>
+    <string name="desc_hide_spring_loaded_bg">当拖动图标、插件的时候隐藏桌面的背景</string>
+
+    <string name="title_hide_qsb">隐藏 QSB 组件</string>
+    <string name="desc_hide_qsb">QSB 是一个桌面首页顶部的组件，用来展示时钟、天气等</string>
+
+    <string name="title_center_folder">文件夹打开居中</string>
+    <string name="desc_center_folder">居中打开的文件夹，而不是以文件夹图标为中心</string>
+
+    <string name="title_this_proj_source">源码</string>
+    <string name="desc_this_proj_source">从 Github 上获取本项目的源码</string>
+
+    <string name="title_oss">开源许可</string>
+
+    <string name="title_category_launcher">桌面</string>
+    <string name="title_category_proj">项目</string>
+</resources>
