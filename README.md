@@ -4,6 +4,10 @@ English | [简体中文](README_CN.MD)
 
 Utilities for `Launcher3` customizations
 
+# Prerequisite
+
+`LSPosed` installed.
+
 # Features
 
 + Change icon packs
