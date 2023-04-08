@@ -31,6 +31,17 @@ public class DeviceProfile extends LauncherComponent {
         }
     }
 
+    @LauncherMethod(inject = Inject.After)
+    public void override_updateFolderCellSize(XC_MethodHook.MethodHookParam param, float scale, Resources resources) throws RemoteException {
+        if (!getService().isIconTextVisible()) {
+            setFolderChildTextSize(0);
+        }
+    }
+
+    private void setFolderChildTextSize(int sizePx) {
+        XposedHelpers.setIntField(getInstance(), "folderChildTextSizePx", sizePx);
+    }
+
     private void setIconTextSize(int sizePx) {
         XposedHelpers.setIntField(getInstance(), "iconTextSizePx", sizePx);
     }
