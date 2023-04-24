@@ -62,4 +62,7 @@
 
     <string name="title_category_launcher">桌面</string>
     <string name="title_category_proj">项目</string>
+
+    <string name="title_privacy_apps">隐私应用</string>
+    <string name="desc_privacy_apps">隐私应用将从应用抽屉与桌面中隐藏。当你长按桌面的时候，你可以找到隐私应用的入口</string>
 </resources>

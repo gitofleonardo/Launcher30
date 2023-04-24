@@ -26,6 +26,9 @@ import com.hhvvg.launcher.utils.Executors;
 import com.hhvvg.launcher.utils.ExtensionsKt;
 import com.hhvvg.launcher.utils.Logger;
 
+import java.util.List;
+import java.util.Set;
+
 import de.robv.android.xposed.XC_MethodHook;
 import de.robv.android.xposed.XposedHelpers;
 
@@ -112,6 +115,7 @@ public class Launcher extends LauncherComponent {
         DotRenderer.sDrawNotificationCount = service.isDrawNotificationCount();
         CellLayout.sHideSpringLoadedBg = !service.isSpringLoadedBgEnable();
         CellLayout.sEnableQSB = service.isQsbEnable();
+        AppFilter.updateGlobalFilteredComponents(Set.copyOf(service.getPrivacyItems()));
     }
 
     public void onIdpChanged(boolean modelPropertiesChanged) {
@@ -185,6 +189,15 @@ public class Launcher extends LauncherComponent {
         @Override
         public void onOpenedFolderCenterChanged(boolean center) {
             Folder.sCenterOpenedFolder = center;
+        }
+
+        @Override
+        public void onPrivacyItemChange(ComponentName cn, boolean isPrivacy) throws RemoteException {
+            Set<ComponentName> privacyItems = Set.copyOf(mLauncherService.getPrivacyItems());
+            Executors.postUiThread(() -> {
+                AppFilter.updateGlobalFilteredComponents(privacyItems);
+                getModel().onPackageChanged(cn.getPackageName(), UserHandle.getUserHandleForUid(0));
+            });
         }
     };
 }

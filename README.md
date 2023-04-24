@@ -20,6 +20,7 @@ Utilities for `Launcher3` customizations
 + Hide SpringLoaded background
 + Hide useless Qsb on first screen
 + Center opened folder
++ Manage privacy apps
 + ... May be more
 
 # Updates

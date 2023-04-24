@@ -4,6 +4,11 @@
     <PreferenceCategory
         app:title="@string/title_category_launcher">
         <Preference
+            app:icon="@drawable/outline_privacy_24"
+            app:key="@string/key_privacy_apps"
+            app:title="@string/title_privacy_apps"
+            app:summary="@string/desc_privacy_apps"/>
+        <Preference
             android:icon="@drawable/ic_restart_alt_24"
             android:key="@string/key_reload_launcher"
             android:title="@string/title_reload_launcher"

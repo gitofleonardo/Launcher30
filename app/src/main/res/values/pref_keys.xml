@@ -14,4 +14,5 @@
     <string name="key_center_opened_folder">key_center_opened_folder</string>
     <string name="key_proj_source">key_about_proj</string>
     <string name="key_proj_oss">key_proj_oss</string>
+    <string name="key_privacy_apps">key_privacy_apps</string>
 </resources>

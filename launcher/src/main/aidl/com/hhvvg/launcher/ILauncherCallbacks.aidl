@@ -13,4 +13,5 @@ interface ILauncherCallbacks {
     void onSpringLoadedBgEnable(boolean enable);
     void onQsbStateChanged(boolean enable);
     void onOpenedFolderCenterChanged(boolean center);
+    void onPrivacyItemChange(in ComponentName cn, boolean isPrivacy);
 }

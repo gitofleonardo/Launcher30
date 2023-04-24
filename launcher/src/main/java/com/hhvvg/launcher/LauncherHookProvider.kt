@@ -15,6 +15,7 @@ import com.hhvvg.launcher.icon.IconCache
 import com.hhvvg.launcher.icon.LauncherActivityCachingLogic
 import com.hhvvg.launcher.icon.LauncherIconProvider
 import com.hhvvg.launcher.icon.LauncherIcons
+import com.hhvvg.launcher.model.AllAppsList
 import com.hhvvg.launcher.utils.Logger
 import com.hhvvg.launcher.utils.getAdditionalInstanceField
 import com.hhvvg.launcher.utils.setAdditionalInstanceField
@@ -46,7 +47,9 @@ class LauncherHookProvider {
         CellLayout::class.java,
         GridOption::class.java,
         Folder::class.java,
-        OptionsPopupView::class.java
+        OptionsPopupView::class.java,
+        AppFilter::class.java,
+        AllAppsList::class.java
     )
 
     fun init(param: XC_LoadPackage.LoadPackageParam) {

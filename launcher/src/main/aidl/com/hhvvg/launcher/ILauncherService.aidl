@@ -41,4 +41,7 @@ interface ILauncherService {
 
     void setOpenedFolderCenter(boolean center);
     boolean isOpenedFolderCenter();
+
+    void changePrivacyItem(in ComponentName cn, boolean isPrivacy);
+    List<ComponentName> getPrivacyItems();
 }

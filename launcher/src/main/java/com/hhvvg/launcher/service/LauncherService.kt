@@ -8,6 +8,7 @@ import com.hhvvg.launcher.ILauncherCallbacks
 import com.hhvvg.launcher.ILauncherService
 import com.hhvvg.launcher.repository.AppLabelRepository
 import com.hhvvg.launcher.repository.CommonRepository
+import com.hhvvg.launcher.repository.PrivacyAppsRepository
 import com.hhvvg.launcher.utils.Logger
 import com.kaisar.xservicemanager.XServiceManager
 
@@ -22,6 +23,9 @@ class LauncherService(private val context: Context) : ILauncherService.Stub() {
     }
     private val commonRepository by lazy {
         CommonRepository(context)
+    }
+    private val privacyAppsRepository by lazy {
+        PrivacyAppsRepository(context)
     }
 
     override fun registerLauncherCallbacks(callbacks: ILauncherCallbacks) {
@@ -160,6 +164,17 @@ class LauncherService(private val context: Context) : ILauncherService.Stub() {
 
     override fun isOpenedFolderCenter(): Boolean {
         return commonRepository.isOpenedFolderCenter()
+    }
+
+    override fun changePrivacyItem(cn: ComponentName, isPrivacy: Boolean) {
+        privacyAppsRepository.putPrivacyApp(cn, isPrivacy)
+        broadcast {
+            it.onPrivacyItemChange(cn, isPrivacy)
+        }
+    }
+
+    override fun getPrivacyItems(): List<ComponentName> {
+        return privacyAppsRepository.getPrivacyItems()
     }
 
     private fun broadcast(action: (ILauncherCallbacks) -> Unit) {

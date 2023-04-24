@@ -45,7 +45,15 @@
         android:id="@+id/navigation_more_settings"
         android:name="com.hhvvg.launcher3customizer.ui.more.MoreSettingsFragment"
         android:label="@string/title_more_settings"
-        tools:layout="@layout/fragment_more_settings" />
+        tools:layout="@layout/fragment_more_settings" >
+        <action
+            android:id="@+id/action_navigation_more_settings_to_privacySettingsFragment"
+            app:destination="@id/privacySettingsFragment"
+            app:enterAnim="@anim/anim_window_open_enter"
+            app:exitAnim="@anim/anim_window_open_exit"
+            app:popEnterAnim="@anim/anim_window_close_enter"
+            app:popExitAnim="@anim/anim_window_close_exit"/>
+    </fragment>
 
     <fragment android:id="@+id/navigation_per_app"
         android:name="com.hhvvg.launcher3customizer.ui.perapps.PerAppFragment"
@@ -66,7 +74,11 @@
         tools:layout="@layout/fragment_all_icon_packs">
         <action
             android:id="@+id/action_navigation_icon_packs_to_navigation_icon_pack_icons"
-            app:destination="@id/navigation_icon_pack_icons">
+            app:destination="@id/navigation_icon_pack_icons"
+            app:enterAnim="@anim/anim_window_open_enter"
+            app:exitAnim="@anim/anim_window_open_exit"
+            app:popEnterAnim="@anim/anim_window_close_enter"
+            app:popExitAnim="@anim/anim_window_close_exit">
             <argument android:name="icon_pkg" app:argType="string" app:nullable="false"/>
         </action>
     </fragment>
@@ -74,4 +86,9 @@
     <fragment android:id="@+id/navigation_icon_pack_icons"
         android:name="com.hhvvg.launcher3customizer.ui.iconpack.allicons.IconPackDetailsFragment"
         android:label="@string/title_icon_pack_icons"/>
+    <fragment
+        android:id="@+id/privacySettingsFragment"
+        android:name="com.hhvvg.launcher3customizer.ui.privacy.PrivacySettingsFragment"
+        android:label="@string/title_privacy_apps"
+        tools:layout="@layout/fragment_privacy_settings" />
 </navigation>

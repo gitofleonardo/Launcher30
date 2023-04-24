@@ -62,4 +62,7 @@
 
     <string name="title_category_launcher">Launcher</string>
     <string name="title_category_proj">Project</string>
+
+    <string name="title_privacy_apps">Privacy Apps</string>
+    <string name="desc_privacy_apps">Privacy apps will be hidden from drawer and desktop. You can find an entry for all privacy apps when long-clicking workspace</string>
 </resources>

@@ -22,12 +22,12 @@ class Init : IXposedHookLoadPackage, IXposedHookZygoteInit, IXposedHookInitPacka
         if ("com.hhvvg.launcher3customizer" == pkg) {
             return
         }
-        if ("android" == param.packageName) {
+        if ("android" == pkg) {
             // Init ILauncherService
             LauncherService.initLauncherService()
         }
         classLoader = param.classLoader
-        if ("android" != param.packageName) {
+        if ("android" != pkg) {
             launcherProvider.init(param)
         }
     }

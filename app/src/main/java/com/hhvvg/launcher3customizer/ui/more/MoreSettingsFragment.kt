@@ -7,6 +7,7 @@ import android.view.View
 import android.widget.Toast
 import androidx.core.view.ViewCompat
 import androidx.core.view.WindowInsetsCompat
+import androidx.navigation.fragment.findNavController
 import androidx.preference.Preference
 import com.google.android.gms.oss.licenses.OssLicensesMenuActivity
 import com.hhvvg.launcher.service.LauncherService
@@ -54,6 +55,11 @@ class MoreSettingsFragment : InsettablePreferenceFragment() {
             getString(R.string.key_proj_oss) -> {
                 val intent = Intent(requireContext(), OssLicensesMenuActivity::class.java)
                 startActivity(intent)
+                true
+            }
+            getString(R.string.key_privacy_apps) -> {
+                val action = MoreSettingsFragmentDirections.actionNavigationMoreSettingsToPrivacySettingsFragment()
+                findNavController().navigate(action)
                 true
             }
             else -> false
