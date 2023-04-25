@@ -68,4 +68,14 @@
 
     <string name="text_fail_start_privacy_app">Failed to start app</string>
     <string name="title_no_privacy_app">No Privacy App</string>
+
+    <string name="title_all_privacy_apps">All Privacy Apps</string>
+    <string name="title_enable_privacy_biometric">Use Biometric Authentication</string>
+    <string name="desc_enable_privacy_biometric">Use biometric authentication to use or modify privacy apps</string>
+
+    <string name="title_authenticate">Authenticate</string>
+    <string name="subtitle_auth">Use biometric to authenticate</string>
+    <string name="title_auth_failed">Failed to authenticate</string>
+    <string name="title_privacy_settings">Privacy Settings</string>
+    <string name="desc_biometric_unavailable">Biometric not available now</string>
 </resources>

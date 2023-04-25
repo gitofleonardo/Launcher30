@@ -15,4 +15,7 @@
     <string name="key_proj_source">key_about_proj</string>
     <string name="key_proj_oss">key_proj_oss</string>
     <string name="key_privacy_apps">key_privacy_apps</string>
+
+    <string name="key_all_privacy_apps">key_all_privacy_apps</string>
+    <string name="key_privacy_enable_biometric">key_privacy_enable_biometric</string>
 </resources>

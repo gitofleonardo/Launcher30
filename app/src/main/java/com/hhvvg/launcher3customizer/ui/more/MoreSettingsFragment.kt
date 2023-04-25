@@ -18,18 +18,6 @@ private const val GITHUB_URL = "https://github.com/gitofleonardo/Launcher30"
 
 class MoreSettingsFragment : InsettablePreferenceFragment() {
     private val service by lazy { LauncherService.getLauncherService() }
-
-    override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
-        super.onViewCreated(view, savedInstanceState)
-        ViewCompat.setOnApplyWindowInsetsListener(view) { v, windowInsets ->
-            val navInsets = windowInsets.getInsets(WindowInsetsCompat.Type.navigationBars())
-            val bottomInset = navInsets.bottom + view.context.resources.getDimensionPixelSize(R.dimen.navigation_height)
-            v.apply {
-                setPadding(paddingLeft, paddingTop, paddingRight, bottomInset)
-            }
-            WindowInsetsCompat.CONSUMED
-        }
-    }
     override fun onCreatePreferences(savedInstanceState: Bundle?, rootKey: String?) {
         setPreferencesFromResource(R.xml.more_preference_screen, rootKey)
     }
@@ -58,7 +46,7 @@ class MoreSettingsFragment : InsettablePreferenceFragment() {
                 true
             }
             getString(R.string.key_privacy_apps) -> {
-                val action = MoreSettingsFragmentDirections.actionNavigationMoreSettingsToPrivacySettingsFragment()
+                val action = MoreSettingsFragmentDirections.actionNavigationMoreSettingsToPrivacyAppsSettingsFragment()
                 findNavController().navigate(action)
                 true
             }

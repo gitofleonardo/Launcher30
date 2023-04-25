@@ -2,4 +2,11 @@
 <resources>
     <string name="title_customization">个性化</string>
     <string name="title_privacy_apps">隐私应用</string>
+    <string name="title_biometric_not_available">生物识别不可用</string>
+
+    <string name="title_authenticate">验证</string>
+    <string name="subtitle_auth">使用生物验证身份</string>
+    <string name="title_auth_failed">验证失败</string>
+
+    <string name="cancel">取消</string>
 </resources>

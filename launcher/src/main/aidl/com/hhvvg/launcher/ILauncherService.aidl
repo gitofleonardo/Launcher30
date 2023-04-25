@@ -44,4 +44,7 @@ interface ILauncherService {
 
     void changePrivacyItem(in ComponentName cn, boolean isPrivacy);
     List<ComponentName> getPrivacyItems();
+
+    void setBiometricPrivacyApps(boolean useBiometric);
+    boolean useBiometricPrivacyApps();
 }

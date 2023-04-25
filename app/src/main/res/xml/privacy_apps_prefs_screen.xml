@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="utf-8"?>
+<PreferenceScreen xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto">
+    <Preference
+        app:icon="@drawable/outline_privacy_24"
+        android:key="@string/key_all_privacy_apps"
+        app:title="@string/title_all_privacy_apps"/>
+
+    <com.hhvvg.launcher3customizer.view.MaterialSwitchPreference
+        app:icon="@drawable/ic_fingerprint_24"
+        android:key="@string/key_privacy_enable_biometric"
+        app:title="@string/title_enable_privacy_biometric"
+        app:summary="@string/desc_enable_privacy_biometric"/>
+</PreferenceScreen>

@@ -2,6 +2,8 @@ package com.hhvvg.launcher.view;
 
 import android.content.Intent;
 import android.graphics.drawable.Drawable;
+import android.net.Uri;
+import android.os.RemoteException;
 import android.view.View;
 
 import androidx.annotation.NonNull;
@@ -14,6 +16,8 @@ import com.hhvvg.launcher.component.Inject;
 import com.hhvvg.launcher.component.LauncherArgs;
 import com.hhvvg.launcher.component.LauncherComponent;
 import com.hhvvg.launcher.component.LauncherMethod;
+import com.hhvvg.launcher.service.LauncherService;
+import com.hhvvg.launcher.utils.BiometricUtil;
 
 import java.lang.reflect.Constructor;
 import java.lang.reflect.InvocationTargetException;
@@ -48,10 +52,23 @@ public class OptionsPopupView extends LauncherComponent {
     }
 
     private static boolean onOpenPrivacyPage(View v) {
-        Intent intent = new Intent("com.hhvvg.launcher3customizer.privacy.ALL_APPS");
-        intent.addCategory(Intent.CATEGORY_DEFAULT);
-        intent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
-        v.getContext().startActivity(intent);
+        try {
+            Intent intent = new Intent();
+            String targetAction = "com.hhvvg.launcher3customizer.privacy.ALL_APPS";
+            if (LauncherService.getLauncherService().useBiometricPrivacyApps()) {
+                intent.setAction("com.hhvvg.launcher.BIOMETRIC_PROXY");
+                intent.addCategory(Intent.CATEGORY_DEFAULT);
+                intent.setData(Uri.parse("activity://com.hhvvg.launcher/biometricProxy?target=" + targetAction + "&allowDirectStart=true"));
+                intent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
+            } else {
+                intent.setAction(targetAction);
+                intent.addCategory(Intent.CATEGORY_DEFAULT);
+                intent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
+            }
+            v.getContext().startActivity(intent);
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
         return true;
     }
 

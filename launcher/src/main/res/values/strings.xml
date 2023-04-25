@@ -2,4 +2,11 @@
 <resources>
     <string name="title_customization">Customizations</string>
     <string name="title_privacy_apps">Privacy Apps</string>
+    <string name="title_biometric_not_available">Biometric Unavailable</string>
+
+    <string name="title_authenticate">Authenticate</string>
+    <string name="subtitle_auth">Use biometric to authenticate</string>
+    <string name="title_auth_failed">Failed to authenticate</string>
+
+    <string name="cancel">Cancel</string>
 </resources>

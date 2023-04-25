@@ -68,4 +68,14 @@
 
     <string name="text_fail_start_privacy_app">启动应用失败</string>
     <string name="title_no_privacy_app">无隐私应用</string>
+
+    <string name="title_all_privacy_apps">所有隐私应用</string>
+    <string name="title_enable_privacy_biometric">使用生物验证</string>
+    <string name="desc_enable_privacy_biometric">使用生物验证来打开或者修改隐私应用</string>
+
+    <string name="title_authenticate">验证</string>
+    <string name="subtitle_auth">使用生物验证身份</string>
+    <string name="title_auth_failed">验证失败</string>
+    <string name="title_privacy_settings">隐私设置</string>
+    <string name="desc_biometric_unavailable">生物验证目前不可用</string>
 </resources>
