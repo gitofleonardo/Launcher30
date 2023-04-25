@@ -36,8 +36,23 @@ public class OptionsPopupView extends LauncherComponent {
                 OptionsPopupView::onOpenLauncher30
         );
 
+        OptionItem privacyItem = OptionItem.buildOptionItem(
+                Init.xModuleRes.getString(R.string.title_privacy_apps),
+                ResourcesCompat.getDrawable(Init.xModuleRes, R.drawable.ic_privacy_24, null),
+                OptionsPopupView::onOpenPrivacyPage
+        );
+
         ArrayList result = (ArrayList) param.getResult();
         result.add(item.getInstance());
+        result.add(privacyItem.getInstance());
+    }
+
+    private static boolean onOpenPrivacyPage(View v) {
+        Intent intent = new Intent("com.hhvvg.launcher3customizer.privacy.ALL_APPS");
+        intent.addCategory(Intent.CATEGORY_DEFAULT);
+        intent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
+        v.getContext().startActivity(intent);
+        return true;
     }
 
     private static boolean onOpenLauncher30(View v) {

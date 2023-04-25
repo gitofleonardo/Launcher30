@@ -1,4 +1,5 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
     <string name="title_customization">个性化</string>
+    <string name="title_privacy_apps">隐私应用</string>
 </resources>

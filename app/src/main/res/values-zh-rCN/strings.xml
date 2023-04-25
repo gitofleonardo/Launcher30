@@ -65,4 +65,7 @@
 
     <string name="title_privacy_apps">隐私应用</string>
     <string name="desc_privacy_apps">隐私应用将从应用抽屉与桌面中隐藏。当你长按桌面的时候，你可以找到隐私应用的入口</string>
+
+    <string name="text_fail_start_privacy_app">启动应用失败</string>
+    <string name="title_no_privacy_app">无隐私应用</string>
 </resources>
