@@ -185,6 +185,14 @@ class LauncherService(private val context: Context) : ILauncherService.Stub() {
         return commonRepository.useBiometricPrivacyApps()
     }
 
+    override fun setPrivacyHiddenFromRecents(hidden: Boolean) {
+        commonRepository.setPrivacyAppsHiddenFromRecents(hidden)
+    }
+
+    override fun isPrivacyHiddenFromRecents(): Boolean {
+        return commonRepository.isPrivacyAppsHiddenFromRecents()
+    }
+
     private fun broadcast(action: (ILauncherCallbacks) -> Unit) {
         var i = callbackList.beginBroadcast()
         while (i > 0) {

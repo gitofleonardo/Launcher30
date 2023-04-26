@@ -78,4 +78,7 @@
     <string name="title_auth_failed">验证失败</string>
     <string name="title_privacy_settings">隐私设置</string>
     <string name="desc_biometric_unavailable">生物验证目前不可用</string>
+
+    <string name="title_hide_privacy_from_recents">从最近任务中隐藏</string>
+    <string name="desc_hide_privacy_from_recents">从最近任务中隐藏隐私应用</string>
 </resources>

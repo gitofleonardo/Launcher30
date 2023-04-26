@@ -7,6 +7,12 @@
         app:title="@string/title_all_privacy_apps"/>
 
     <com.hhvvg.launcher3customizer.view.MaterialSwitchPreference
+        app:icon="@drawable/ic_hide_source_24"
+        android:key="@string/key_hide_privacy_app_from_recents"
+        app:title="@string/title_hide_privacy_from_recents"
+        app:summary="@string/desc_hide_privacy_from_recents"/>
+
+    <com.hhvvg.launcher3customizer.view.MaterialSwitchPreference
         app:icon="@drawable/ic_fingerprint_24"
         android:key="@string/key_privacy_enable_biometric"
         app:title="@string/title_enable_privacy_biometric"

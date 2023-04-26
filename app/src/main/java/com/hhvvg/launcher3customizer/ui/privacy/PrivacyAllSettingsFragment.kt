@@ -14,7 +14,7 @@ import com.hhvvg.launcher3customizer.view.MaterialSwitchPreference
 
 private const val BIOMETRIC_TYPE = BiometricUtil.BIOMETRIC_NON_CREDENTIAL
 
-class PrivacyAppsSettingsFragment : InsettablePreferenceFragment(), OnPreferenceChangeListener {
+class PrivacyAllSettingsFragment : InsettablePreferenceFragment(), OnPreferenceChangeListener {
 
     private val service = LauncherService.getLauncherService()
     private val dataStore  = object : PreferenceDataStore() {
@@ -22,6 +22,9 @@ class PrivacyAppsSettingsFragment : InsettablePreferenceFragment(), OnPreference
             return when (key) {
                 getString(R.string.key_privacy_enable_biometric) -> {
                     service.useBiometricPrivacyApps()
+                }
+                getString(R.string.key_hide_privacy_app_from_recents) -> {
+                    service.isPrivacyHiddenFromRecents
                 }
                 else -> false
             }
@@ -31,6 +34,9 @@ class PrivacyAppsSettingsFragment : InsettablePreferenceFragment(), OnPreference
             when (key) {
                 getString(R.string.key_privacy_enable_biometric) -> {
                     service.setBiometricPrivacyApps(value)
+                }
+                getString(R.string.key_hide_privacy_app_from_recents) -> {
+                    service.isPrivacyHiddenFromRecents = value
                 }
             }
         }
@@ -116,7 +122,7 @@ class PrivacyAppsSettingsFragment : InsettablePreferenceFragment(), OnPreference
     }
 
     private fun realNavigatePrivacyApps() {
-        val action = PrivacyAppsSettingsFragmentDirections.actionPrivacyAppsSettingsFragmentToPrivacySettingsFragment()
+        val action = PrivacyAllSettingsFragmentDirections.actionPrivacyAllSettingsFragmentToPrivacyAppSettingsFragment()
         findNavController().navigate(action)
     }
 }

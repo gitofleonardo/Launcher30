@@ -10,7 +10,7 @@ import com.hhvvg.launcher.service.LauncherService
 import com.hhvvg.launcher3customizer.databinding.FragmentPrivacySettingsBinding
 import com.hhvvg.launcher3customizer.ui.InsettableFragment
 
-class PrivacySettingsFragment : InsettableFragment() {
+class PrivacyAppSettingsFragment : InsettableFragment() {
     private var _binding: FragmentPrivacySettingsBinding? = null
     private val binding
         get() = _binding!!

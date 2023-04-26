@@ -46,7 +46,7 @@ class MoreSettingsFragment : InsettablePreferenceFragment() {
                 true
             }
             getString(R.string.key_privacy_apps) -> {
-                val action = MoreSettingsFragmentDirections.actionNavigationMoreSettingsToPrivacyAppsSettingsFragment()
+                val action = MoreSettingsFragmentDirections.actionNavigationMoreSettingsToPrivacyAllSettingsFragment()
                 findNavController().navigate(action)
                 true
             }

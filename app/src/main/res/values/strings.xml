@@ -78,4 +78,7 @@
     <string name="title_auth_failed">Failed to authenticate</string>
     <string name="title_privacy_settings">Privacy Settings</string>
     <string name="desc_biometric_unavailable">Biometric not available now</string>
+
+    <string name="title_hide_privacy_from_recents">Hide From Recents</string>
+    <string name="desc_hide_privacy_from_recents">Hide privacy apps from recent tasks</string>
 </resources>

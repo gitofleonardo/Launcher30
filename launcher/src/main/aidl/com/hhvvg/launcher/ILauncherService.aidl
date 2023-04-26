@@ -47,4 +47,7 @@ interface ILauncherService {
 
     void setBiometricPrivacyApps(boolean useBiometric);
     boolean useBiometricPrivacyApps();
+
+    void setPrivacyHiddenFromRecents(boolean hide);
+    boolean isPrivacyHiddenFromRecents();
 }

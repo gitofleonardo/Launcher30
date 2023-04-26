@@ -47,12 +47,8 @@
         android:label="@string/title_more_settings"
         tools:layout="@layout/fragment_more_settings" >
         <action
-            android:id="@+id/action_navigation_more_settings_to_privacyAppsSettingsFragment"
-            app:destination="@id/privacyAppsSettingsFragment"
-            app:enterAnim="@anim/anim_window_open_enter"
-            app:exitAnim="@anim/anim_window_open_exit"
-            app:popEnterAnim="@anim/anim_window_close_enter"
-            app:popExitAnim="@anim/anim_window_close_exit" />
+            android:id="@+id/action_navigation_more_settings_to_privacyAllSettingsFragment"
+            app:destination="@id/privacyAllSettingsFragment" />
     </fragment>
 
     <fragment android:id="@+id/navigation_per_app"
@@ -87,20 +83,20 @@
         android:name="com.hhvvg.launcher3customizer.ui.iconpack.allicons.IconPackDetailsFragment"
         android:label="@string/title_icon_pack_icons"/>
     <fragment
-        android:id="@+id/privacySettingsFragment"
-        android:name="com.hhvvg.launcher3customizer.ui.privacy.PrivacySettingsFragment"
+        android:id="@+id/privacyAppSettingsFragment"
+        android:name="com.hhvvg.launcher3customizer.ui.privacy.PrivacyAppSettingsFragment"
         android:label="@string/title_privacy_apps"
-        tools:layout="@layout/fragment_privacy_settings" />
+        tools:layout="@layout/fragment_privacy_settings"/>
     <fragment
-        android:id="@+id/privacyAppsSettingsFragment"
-        android:name="com.hhvvg.launcher3customizer.ui.privacy.PrivacyAppsSettingsFragment"
+        android:id="@+id/privacyAllSettingsFragment"
+        android:name="com.hhvvg.launcher3customizer.ui.privacy.PrivacyAllSettingsFragment"
         android:label="@string/title_privacy_settings" >
         <action
-            android:id="@+id/action_privacyAppsSettingsFragment_to_privacySettingsFragment"
-            app:destination="@id/privacySettingsFragment"
+            android:id="@+id/action_privacyAllSettingsFragment_to_privacyAppSettingsFragment"
+            app:destination="@id/privacyAppSettingsFragment"
             app:enterAnim="@anim/anim_window_open_enter"
             app:exitAnim="@anim/anim_window_open_exit"
             app:popEnterAnim="@anim/anim_window_close_enter"
-            app:popExitAnim="@anim/anim_window_close_exit" />
+            app:popExitAnim="@anim/anim_window_close_exit"/>
     </fragment>
 </navigation>
