@@ -7,6 +7,7 @@ import android.os.RemoteException;
 import android.util.FloatProperty;
 import android.view.animation.AccelerateDecelerateInterpolator;
 import android.view.animation.Interpolator;
+import android.view.animation.PathInterpolator;
 
 import com.hhvvg.launcher.component.Inject;
 import com.hhvvg.launcher.component.LauncherComponent;
@@ -16,9 +17,9 @@ import com.hhvvg.launcher.utils.ExtensionsKt;
 import de.robv.android.xposed.XC_MethodHook;
 
 public class FastBitmapDrawable extends LauncherComponent {
-    private static final Interpolator ACCEL = new AccelerateDecelerateInterpolator();
+    private static final Interpolator INTERPOLATOR = new PathInterpolator(0, .57f, .33f, 1f);
     private static final float ICON_SCALE = 0.8F;
-    private static final long DURATION = 100;
+    private static final long DURATION = 400;
 
     public static boolean sClickEffectEnable = true;
 
@@ -39,7 +40,7 @@ public class FastBitmapDrawable extends LauncherComponent {
             }
             ObjectAnimator animator = ObjectAnimator.ofFloat(getInstance(), getScaleProperty(), ICON_SCALE);
             animator.setDuration(DURATION);
-            animator.setInterpolator(ACCEL);
+            animator.setInterpolator(INTERPOLATOR);
             animator.start();
             setScaleAnimator(animator);
         }
