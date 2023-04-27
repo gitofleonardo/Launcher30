@@ -102,7 +102,7 @@ public class Launcher extends LauncherComponent {
 
     private void destroyLauncherService() {
         try {
-            mLauncherService.registerLauncherCallbacks(mCallbacks);
+            mLauncherService.unregisterLauncherCallbacks(mCallbacks);
         } catch (Exception e) {
             Logger.log("Error unregistering callbacks service", e);
         }
