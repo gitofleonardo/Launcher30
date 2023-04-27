@@ -53,7 +53,8 @@ class LauncherHookProvider {
         AppFilter::class.java,
         AllAppsList::class.java,
         RecentsView::class.java,
-        SpringLoadedState::class.java
+        SpringLoadedState::class.java,
+        Workspace::class.java
     )
 
     fun init(param: XC_LoadPackage.LoadPackageParam) {

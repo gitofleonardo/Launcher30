@@ -10,7 +10,6 @@ import com.hhvvg.launcher.component.Inject;
 import com.hhvvg.launcher.component.LauncherArgs;
 import com.hhvvg.launcher.component.LauncherComponent;
 import com.hhvvg.launcher.component.LauncherMethod;
-import com.hhvvg.launcher.icon.Workspace;
 
 import de.robv.android.xposed.XC_MethodHook;
 import de.robv.android.xposed.XposedHelpers;

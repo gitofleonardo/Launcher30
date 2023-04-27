@@ -19,14 +19,12 @@ import com.hhvvg.launcher.icon.BubbleTextView;
 import com.hhvvg.launcher.icon.DotRenderer;
 import com.hhvvg.launcher.icon.FastBitmapDrawable;
 import com.hhvvg.launcher.icon.LauncherIconProvider;
-import com.hhvvg.launcher.icon.Workspace;
 import com.hhvvg.launcher.model.LauncherModel;
 import com.hhvvg.launcher.service.LauncherService;
 import com.hhvvg.launcher.utils.Executors;
 import com.hhvvg.launcher.utils.ExtensionsKt;
 import com.hhvvg.launcher.utils.Logger;
 
-import java.util.List;
 import java.util.Set;
 
 import de.robv.android.xposed.XC_MethodHook;
