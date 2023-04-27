@@ -48,7 +48,11 @@
         tools:layout="@layout/fragment_more_settings" >
         <action
             android:id="@+id/action_navigation_more_settings_to_privacyAllSettingsFragment"
-            app:destination="@id/privacyAllSettingsFragment" />
+            app:destination="@id/privacyAllSettingsFragment"
+            app:enterAnim="@anim/anim_window_open_enter"
+            app:exitAnim="@anim/anim_window_open_exit"
+            app:popEnterAnim="@anim/anim_window_close_enter"
+            app:popExitAnim="@anim/anim_window_close_exit"/>
     </fragment>
 
     <fragment android:id="@+id/navigation_per_app"
