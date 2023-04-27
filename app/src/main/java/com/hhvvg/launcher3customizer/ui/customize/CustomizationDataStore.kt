@@ -31,6 +31,9 @@ class CustomizationDataStore(private val service: ILauncherService, private val 
             stringOf(R.string.key_center_opened_folder) -> {
                 service.isOpenedFolderCenter
             }
+            stringOf(R.string.key_custom_spring_loaded_effect) -> {
+                service.isUseCustomSpringLoadedEffect
+            }
             else -> defValue
         }
     }
@@ -57,6 +60,9 @@ class CustomizationDataStore(private val service: ILauncherService, private val 
             }
             stringOf(R.string.key_center_opened_folder) -> {
                 service.isOpenedFolderCenter = value
+            }
+            stringOf(R.string.key_custom_spring_loaded_effect) -> {
+                service.isUseCustomSpringLoadedEffect = value
             }
         }
     }

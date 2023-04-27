@@ -10,7 +10,6 @@ import com.hhvvg.launcher.component.Inject;
 import com.hhvvg.launcher.component.LauncherComponent;
 import com.hhvvg.launcher.component.LauncherMethod;
 import com.hhvvg.launcher.service.LauncherService;
-import com.hhvvg.launcher.utils.Logger;
 
 import de.robv.android.xposed.XC_MethodHook;
 import de.robv.android.xposed.XposedHelpers;
@@ -31,8 +30,10 @@ public class DeviceProfile extends LauncherComponent {
             setIconTextSize(0);
         }
 
-        XposedHelpers.setIntField(getInstance(), "dropTargetBarTopMarginPx", 0);
-        XposedHelpers.setIntField(getInstance(), "dropTargetBarBottomMarginPx", 0);
+        if (getService().isUseCustomSpringLoadedEffect()) {
+            XposedHelpers.setIntField(getInstance(), "dropTargetBarTopMarginPx", 0);
+            XposedHelpers.setIntField(getInstance(), "dropTargetBarBottomMarginPx", 0);
+        }
     }
 
     @LauncherMethod(inject = Inject.After)
@@ -43,9 +44,11 @@ public class DeviceProfile extends LauncherComponent {
     }
 
     @LauncherMethod(inject = Inject.After)
-    public void override_getWorkspaceSpringLoadScale(XC_MethodHook.MethodHookParam param, Context context) {
-        float result = (float) param.getResult();
-        param.setResult(1f);
+    public void override_getWorkspaceSpringLoadScale(XC_MethodHook.MethodHookParam param, Context context) throws RemoteException {
+        if (getService().isUseCustomSpringLoadedEffect()) {
+            float result = (float) param.getResult();
+            param.setResult(1f);
+        }
     }
 
     private void setFolderChildTextSize(int sizePx) {

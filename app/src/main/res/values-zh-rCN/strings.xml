@@ -81,4 +81,7 @@
 
     <string name="title_hide_privacy_from_recents">从最近任务中隐藏</string>
     <string name="desc_hide_privacy_from_recents">从最近任务中隐藏隐私应用</string>
+
+    <string name="title_custom_spring_loaded_effect">自定义拖动效果</string>
+    <string name="desc_custom_spring_loaded_effect">当拖动图标、插件的时候，桌面将不会缩放</string>
 </resources>

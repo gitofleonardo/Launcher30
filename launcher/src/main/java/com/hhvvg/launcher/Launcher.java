@@ -199,5 +199,13 @@ public class Launcher extends LauncherComponent {
                 getModel().onPackageChanged(cn.getPackageName(), UserHandle.getUserHandleForUid(0));
             });
         }
+
+        @Override
+        public void onSetUseCustomSpringLoadedEffect(boolean use) {
+            Executors.postUiThread(() -> {
+                getModel().getApp().getIdp().onConfigChanged(getInstance());
+                onIdpChanged(true);
+            });
+        }
     };
 }

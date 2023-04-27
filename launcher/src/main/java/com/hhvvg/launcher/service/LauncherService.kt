@@ -193,6 +193,17 @@ class LauncherService(private val context: Context) : ILauncherService.Stub() {
         return commonRepository.isPrivacyAppsHiddenFromRecents()
     }
 
+    override fun setUseCustomSpringLoadedEffect(use: Boolean) {
+        commonRepository.setUseCustomSpringLoadedEffect(use)
+        broadcast {
+            it.onSetUseCustomSpringLoadedEffect(use)
+        }
+    }
+
+    override fun isUseCustomSpringLoadedEffect(): Boolean {
+        return commonRepository.isUseCustomSpringLoadedEffect()
+    }
+
     private fun broadcast(action: (ILauncherCallbacks) -> Unit) {
         var i = callbackList.beginBroadcast()
         while (i > 0) {

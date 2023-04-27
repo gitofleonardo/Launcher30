@@ -105,6 +105,14 @@ class CommonRepository(private val context: Context) {
         preferences.edit().putBoolean(KEY_HIDE_PRIVACY_APPS_FROM_RECENTS, hidden).commit()
     }
 
+    fun setUseCustomSpringLoadedEffect(use: Boolean) {
+        preferences.edit().putBoolean(KEY_USE_CUSTOM_SPRING_LOADED_EFFECT, use).commit()
+    }
+
+    fun isUseCustomSpringLoadedEffect(): Boolean {
+        return preferences.getBoolean(KEY_USE_CUSTOM_SPRING_LOADED_EFFECT, true)
+    }
+
     companion object {
         private const val KEY_ICON_CLICK_EFFECT_ENABLED = "KEY_ICON_CLICK_EFFECT_ENABLED"
         private const val KEY_DOT_PARAMS_COLOR = "KEY_DOT_PARAMS_COLOR"
@@ -117,5 +125,6 @@ class CommonRepository(private val context: Context) {
         private const val KEY_OPENED_FOLDER_CENTER = "KEY_OPENED_FOLDER_CENTER"
         private const val KEY_USE_BIOMETRIC_PRIVACY_APPS = "KEY_USE_BIOMETRIC_PRIVACY_APPS"
         private const val KEY_HIDE_PRIVACY_APPS_FROM_RECENTS = "KEY_HIDE_PRIVACY_APPS_FROM_RECENTS"
+        private const val KEY_USE_CUSTOM_SPRING_LOADED_EFFECT = "KEY_USE_CUSTOM_SPRING_LOADED_EFFECT"
     }
 }

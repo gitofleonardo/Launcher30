@@ -50,4 +50,7 @@ interface ILauncherService {
 
     void setPrivacyHiddenFromRecents(boolean hide);
     boolean isPrivacyHiddenFromRecents();
+
+    void setUseCustomSpringLoadedEffect(boolean use);
+    boolean isUseCustomSpringLoadedEffect();
 }

@@ -19,4 +19,6 @@
     <string name="key_all_privacy_apps">key_all_privacy_apps</string>
     <string name="key_privacy_enable_biometric">key_privacy_enable_biometric</string>
     <string name="key_hide_privacy_app_from_recents">key_hide_privacy_app_from_recents</string>
+
+    <string name="key_custom_spring_loaded_effect">key_custom_spring_loaded_effect</string>
 </resources>

@@ -81,4 +81,7 @@
 
     <string name="title_hide_privacy_from_recents">Hide From Recents</string>
     <string name="desc_hide_privacy_from_recents">Hide privacy apps from recent tasks</string>
+
+    <string name="title_custom_spring_loaded_effect">Custom Drag Behavior</string>
+    <string name="desc_custom_spring_loaded_effect">Launcher workspace will not be scaled while dragging icons/widgets</string>
 </resources>

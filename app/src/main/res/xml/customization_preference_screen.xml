@@ -52,6 +52,13 @@
 
     <PreferenceCategory
         app:title="@string/title_category_workspace">
+
+        <com.hhvvg.launcher3customizer.view.MaterialSwitchPreference
+            android:key="@string/key_custom_spring_loaded_effect"
+            app:title="@string/title_custom_spring_loaded_effect"
+            app:summary="@string/desc_custom_spring_loaded_effect"
+            app:icon="@drawable/ic_ad_units_24"/>
+
         <com.hhvvg.launcher3customizer.view.MaterialSwitchPreference
             app:icon="@drawable/ic_cross_rect_24"
             app:key="@string/key_hide_spring_loaded_bg"
