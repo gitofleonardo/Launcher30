@@ -15,8 +15,8 @@ android {
         applicationId "com.hhvvg.launcher3customizer"
         minSdk 30
         targetSdk 33
-        versionCode 2
-        versionName "0.0.3-dev"
+        versionCode 3
+        versionName "0.0.4-dev"
 
         testInstrumentationRunner "androidx.test.runner.AndroidJUnitRunner"
     }
