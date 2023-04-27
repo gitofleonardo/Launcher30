@@ -1,5 +1,6 @@
 package com.hhvvg.launcher;
 
+import android.content.Context;
 import android.content.res.Resources;
 import android.os.RemoteException;
 
@@ -29,6 +30,9 @@ public class DeviceProfile extends LauncherComponent {
         if (!getService().isIconTextVisible()) {
             setIconTextSize(0);
         }
+
+        XposedHelpers.setIntField(getInstance(), "dropTargetBarTopMarginPx", 0);
+        XposedHelpers.setIntField(getInstance(), "dropTargetBarBottomMarginPx", 0);
     }
 
     @LauncherMethod(inject = Inject.After)
@@ -36,6 +40,12 @@ public class DeviceProfile extends LauncherComponent {
         if (!getService().isIconTextVisible()) {
             setFolderChildTextSize(0);
         }
+    }
+
+    @LauncherMethod(inject = Inject.After)
+    public void override_getWorkspaceSpringLoadScale(XC_MethodHook.MethodHookParam param, Context context) {
+        float result = (float) param.getResult();
+        param.setResult(1f);
     }
 
     private void setFolderChildTextSize(int sizePx) {

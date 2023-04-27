@@ -17,6 +17,7 @@ import com.hhvvg.launcher.icon.LauncherIconProvider
 import com.hhvvg.launcher.icon.LauncherIcons
 import com.hhvvg.launcher.model.AllAppsList
 import com.hhvvg.launcher.quickstep.RecentsView
+import com.hhvvg.launcher.states.SpringLoadedState
 import com.hhvvg.launcher.utils.Logger
 import com.hhvvg.launcher.utils.getAdditionalInstanceField
 import com.hhvvg.launcher.utils.setAdditionalInstanceField
@@ -51,7 +52,8 @@ class LauncherHookProvider {
         OptionsPopupView::class.java,
         AppFilter::class.java,
         AllAppsList::class.java,
-        RecentsView::class.java
+        RecentsView::class.java,
+        SpringLoadedState::class.java
     )
 
     fun init(param: XC_LoadPackage.LoadPackageParam) {
