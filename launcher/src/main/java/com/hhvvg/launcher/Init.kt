@@ -2,6 +2,7 @@ package com.hhvvg.launcher
 
 import android.content.res.Resources
 import android.content.res.XModuleResources
+import com.hhvvg.launcher.hook.init
 import com.hhvvg.launcher.service.LauncherService
 import de.robv.android.xposed.IXposedHookInitPackageResources
 import de.robv.android.xposed.IXposedHookLoadPackage
@@ -13,9 +14,6 @@ import de.robv.android.xposed.callbacks.XC_LoadPackage
  * @author hhvvg
  */
 class Init : IXposedHookLoadPackage, IXposedHookZygoteInit, IXposedHookInitPackageResources {
-    private val launcherProvider by lazy {
-        LauncherHookProvider()
-    }
 
     override fun handleLoadPackage(param: XC_LoadPackage.LoadPackageParam) {
         val pkg = param.packageName
@@ -28,7 +26,7 @@ class Init : IXposedHookLoadPackage, IXposedHookZygoteInit, IXposedHookInitPacka
         }
         classLoader = param.classLoader
         if ("android" != pkg) {
-            launcherProvider.init(param)
+            init()
         }
     }
 

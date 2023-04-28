@@ -1,29 +1,20 @@
 package com.hhvvg.launcher.icon;
 
 import android.graphics.Canvas;
-import android.view.View;
 
-import androidx.annotation.NonNull;
-
-import com.hhvvg.launcher.component.Inject;
 import com.hhvvg.launcher.component.LauncherComponent;
 import com.hhvvg.launcher.component.LauncherMethod;
-import com.hhvvg.launcher.utils.Logger;
+import com.hhvvg.launcher.component.ViewComponent;
 
 import de.robv.android.xposed.XC_MethodHook;
 import de.robv.android.xposed.XposedHelpers;
 
-public class BubbleTextView extends LauncherComponent {
+@LauncherComponent(className = "com.android.launcher3.BubbleTextView")
+public class BubbleTextView extends ViewComponent {
     public static Integer sDotParamsColor = null;
 
-    @NonNull
-    @Override
-    public String getClassName() {
-        return "com.android.launcher3.BubbleTextView";
-    }
-
-    @LauncherMethod(inject = Inject.Before)
-    public void override_drawDotIfNecessary(XC_MethodHook.MethodHookParam param, Canvas canvas) {
+    @LauncherMethod
+    public void before$drawDotIfNecessary(XC_MethodHook.MethodHookParam param, Canvas canvas) {
         if (sDotParamsColor != null) {
             setDotParamsColor(sDotParamsColor);
         }
@@ -47,9 +38,5 @@ public class BubbleTextView extends LauncherComponent {
 
     private Object getDotParams() {
         return XposedHelpers.getObjectField(getInstance(), "mDotParams");
-    }
-
-    public void invalidate() {
-        ((View) getInstance()).invalidate();
     }
 }

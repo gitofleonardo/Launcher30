@@ -5,10 +5,8 @@ import android.content.Context;
 import android.content.pm.LauncherActivityInfo;
 import android.graphics.drawable.Drawable;
 
-import androidx.annotation.NonNull;
-
-import com.hhvvg.launcher.component.Inject;
 import com.hhvvg.launcher.component.LauncherComponent;
+import com.hhvvg.launcher.component.Component;
 import com.hhvvg.launcher.component.LauncherMethod;
 import com.hhvvg.launcher.model.IconModel;
 
@@ -18,13 +16,14 @@ import java.util.Map;
 import de.robv.android.xposed.XC_MethodHook;
 import de.robv.android.xposed.XposedHelpers;
 
-public class LauncherIconProvider extends LauncherComponent {
+@LauncherComponent(className = "com.android.launcher3.icons.LauncherIconProvider")
+public class LauncherIconProvider extends Component {
     public static String sIconProvider = null;
     public static final Map<ComponentName, IconModel.LauncherIconResource> sIconCaches = new HashMap<>();
     private final IconModel mModel = new IconModel();
 
-    @LauncherMethod(inject = Inject.After)
-    public void override_getIcon(XC_MethodHook.MethodHookParam param, LauncherActivityInfo info, int dpi) {
+    @LauncherMethod
+    public void $getIcon(XC_MethodHook.MethodHookParam param, LauncherActivityInfo info, int dpi) {
         if (sIconCaches.isEmpty()) {
             mModel.loadAllIcons(sIconProvider, getContext(), sIconCaches);
         }
@@ -42,11 +41,5 @@ public class LauncherIconProvider extends LauncherComponent {
 
     private Context getContext() {
         return (Context) XposedHelpers.getObjectField(getInstance(), "mContext");
-    }
-
-    @NonNull
-    @Override
-    public String getClassName() {
-        return "com.android.launcher3.icons.LauncherIconProvider";
     }
 }

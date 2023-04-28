@@ -3,14 +3,12 @@ package com.hhvvg.launcher.quickstep;
 import android.content.ComponentName;
 import android.os.RemoteException;
 
-import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 
 import com.hhvvg.launcher.ILauncherService;
-import com.hhvvg.launcher.component.Inject;
-import com.hhvvg.launcher.component.LauncherArgs;
 import com.hhvvg.launcher.component.LauncherComponent;
 import com.hhvvg.launcher.component.LauncherMethod;
+import com.hhvvg.launcher.component.ViewGroupComponent;
 import com.hhvvg.launcher.service.LauncherService;
 
 import java.util.ArrayList;
@@ -20,11 +18,12 @@ import java.util.Set;
 import de.robv.android.xposed.XC_MethodHook;
 import de.robv.android.xposed.XposedHelpers;
 
-public class RecentsView extends LauncherComponent {
+@LauncherComponent(className = "com.android.quickstep.views.RecentsView")
+public class RecentsView extends ViewGroupComponent {
     private final ILauncherService mService = LauncherService.getLauncherService();
 
-    @LauncherMethod(inject = Inject.Before)
-    public void override_applyLoadPlan(XC_MethodHook.MethodHookParam param, ArrayList tasks) throws RemoteException {
+    @LauncherMethod
+    public void before$applyLoadPlan(XC_MethodHook.MethodHookParam param, ArrayList tasks) throws RemoteException {
         if (!mService.isPrivacyHiddenFromRecents()) {
             return;
         }
@@ -59,11 +58,5 @@ public class RecentsView extends LauncherComponent {
         }
         Object task2Key = XposedHelpers.getObjectField(task2, "key");
         return (ComponentName) XposedHelpers.callMethod(task2Key, "getComponent");
-    }
-
-    @NonNull
-    @Override
-    public String getClassName() {
-        return "com.android.quickstep.views.RecentsView";
     }
 }

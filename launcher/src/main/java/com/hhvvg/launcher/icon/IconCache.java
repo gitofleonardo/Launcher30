@@ -1,13 +1,8 @@
 package com.hhvvg.launcher.icon;
 
-import androidx.annotation.NonNull;
-
+import com.hhvvg.launcher.component.Component;
 import com.hhvvg.launcher.component.LauncherComponent;
 
-public class IconCache extends LauncherComponent {
-    @NonNull
-    @Override
-    public String getClassName() {
-        return "com.android.launcher3.icons.IconCache";
-    }
+@LauncherComponent(className = "com.android.launcher3.icons.IconCache")
+public class IconCache extends Component {
 }

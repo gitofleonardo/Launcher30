@@ -1,13 +1,6 @@
 package com.hhvvg.launcher.utils
 
-import android.app.Application
-import com.hhvvg.launcher.Launcher
-import com.hhvvg.launcher.LauncherApplication
 import de.robv.android.xposed.XposedHelpers
-
-var Application.launcher: Launcher
-    get() = getAdditionalInstanceField(LauncherApplication.LAUNCHER)!!
-    set(value) = setAdditionalInstanceField(LauncherApplication.LAUNCHER, value)
 
 fun Any.setAdditionalInstanceField(name: String, obj: Any?) {
     XposedHelpers.setAdditionalInstanceField(this, name, obj)

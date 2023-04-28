@@ -4,18 +4,16 @@ import android.content.Context;
 import android.content.pm.LauncherActivityInfo;
 import android.os.RemoteException;
 
-import androidx.annotation.NonNull;
-
 import com.hhvvg.launcher.ILauncherService;
-import com.hhvvg.launcher.component.Inject;
 import com.hhvvg.launcher.component.LauncherComponent;
+import com.hhvvg.launcher.component.Component;
 import com.hhvvg.launcher.component.LauncherMethod;
 import com.hhvvg.launcher.service.LauncherService;
-import com.hhvvg.launcher.utils.Logger;
 
 import de.robv.android.xposed.XC_MethodHook;
 
-public class LauncherActivityCachingLogic extends LauncherComponent {
+@LauncherComponent(className = "com.android.launcher3.icons.LauncherActivityCachingLogic")
+public class LauncherActivityCachingLogic extends Component {
     private ILauncherService mService;
 
     private ILauncherService getService() {
@@ -25,22 +23,16 @@ public class LauncherActivityCachingLogic extends LauncherComponent {
         return mService;
     }
 
-    @LauncherMethod(inject = Inject.After)
-    public void override_getLabel(XC_MethodHook.MethodHookParam param, LauncherActivityInfo info) throws RemoteException {
+    @LauncherMethod
+    public void $getLabel(XC_MethodHook.MethodHookParam param, LauncherActivityInfo info) throws RemoteException {
         CharSequence label = getService().getComponentLabel(info.getComponentName(), info.getUser());
         if (label != null) {
             param.setResult(label.toString());
         }
     }
 
-    @LauncherMethod(inject = Inject.After)
-    public void override_loadIcon(XC_MethodHook.MethodHookParam param, Context context,
+    @LauncherMethod
+    public void $loadIcon(XC_MethodHook.MethodHookParam param, Context context,
                                   LauncherActivityInfo info) {
-    }
-
-    @NonNull
-    @Override
-    public String getClassName() {
-        return "com.android.launcher3.icons.LauncherActivityCachingLogic";
     }
 }

@@ -8,18 +8,15 @@ import android.graphics.Rect;
 import android.graphics.RectF;
 import android.graphics.Typeface;
 
-import androidx.annotation.NonNull;
-
-import com.hhvvg.launcher.component.Inject;
-import com.hhvvg.launcher.component.LauncherArgs;
 import com.hhvvg.launcher.component.LauncherComponent;
+import com.hhvvg.launcher.component.Component;
 import com.hhvvg.launcher.component.LauncherMethod;
 
 import de.robv.android.xposed.XC_MethodHook;
 import de.robv.android.xposed.XposedHelpers;
 
-public class DotRenderer extends LauncherComponent {
-    private static final String CLASS = "com.android.launcher3.icons.DotRenderer";
+@LauncherComponent(className = "com.android.launcher3.icons.DotRenderer")
+public class DotRenderer extends Component {
     private static final String EXCEED_TEXT = "···";
     private static final float NOTIFICATION_COUNT_TEXT_SIZE_RATIO = 0.8f;
     private static final float ROUND_RECT_RATIO = 1.3f;
@@ -27,9 +24,8 @@ public class DotRenderer extends LauncherComponent {
 
     public static boolean sDrawNotificationCount = true;
 
-    @LauncherMethod(inject = Inject.Before)
-    public void override_draw(XC_MethodHook.MethodHookParam hookParam, Canvas canvas,
-                              @LauncherArgs(className = "com.android.launcher3.icons.DotRenderer$DrawParams") DrawParams params) {
+    @LauncherMethod
+    public void before$draw(XC_MethodHook.MethodHookParam hookParam, Canvas canvas, DrawParams params) {
         if (params.getInstance() == null) {
             return;
         }
@@ -122,11 +118,5 @@ public class DotRenderer extends LauncherComponent {
 
     private Paint getCirclePaint() {
         return (Paint) XposedHelpers.getObjectField(getInstance(), "mCirclePaint");
-    }
-
-    @NonNull
-    @Override
-    public String getClassName() {
-        return CLASS;
     }
 }

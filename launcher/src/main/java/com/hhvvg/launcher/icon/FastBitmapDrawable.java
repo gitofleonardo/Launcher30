@@ -1,36 +1,28 @@
 package com.hhvvg.launcher.icon;
 
-import androidx.annotation.NonNull;
-
 import android.animation.ObjectAnimator;
 import android.os.RemoteException;
 import android.util.FloatProperty;
-import android.view.animation.AccelerateDecelerateInterpolator;
 import android.view.animation.Interpolator;
 import android.view.animation.PathInterpolator;
 
-import com.hhvvg.launcher.component.Inject;
 import com.hhvvg.launcher.component.LauncherComponent;
+import com.hhvvg.launcher.component.Component;
 import com.hhvvg.launcher.component.LauncherMethod;
 import com.hhvvg.launcher.utils.ExtensionsKt;
 
 import de.robv.android.xposed.XC_MethodHook;
 
-public class FastBitmapDrawable extends LauncherComponent {
+@LauncherComponent(className = "com.android.launcher3.icons.FastBitmapDrawable")
+public class FastBitmapDrawable extends Component {
     private static final Interpolator INTERPOLATOR = new PathInterpolator(0, .57f, .33f, 1f);
     private static final float ICON_SCALE = 0.8F;
     private static final long DURATION = 400;
 
     public static boolean sClickEffectEnable = true;
 
-    @NonNull
-    @Override
-    public String getClassName() {
-        return "com.android.launcher3.icons.FastBitmapDrawable";
-    }
-
-    @LauncherMethod(inject = Inject.After)
-    public void override_onStateChange(XC_MethodHook.MethodHookParam param, int[] state) throws RemoteException {
+    @LauncherMethod
+    public void $onStateChange(XC_MethodHook.MethodHookParam param, int[] state) throws RemoteException {
         if (!sClickEffectEnable) {
             return;
         }

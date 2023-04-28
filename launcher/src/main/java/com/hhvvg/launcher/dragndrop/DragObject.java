@@ -1,13 +1,12 @@
 package com.hhvvg.launcher.dragndrop;
 
-import androidx.annotation.NonNull;
-
+import com.hhvvg.launcher.component.Component;
 import com.hhvvg.launcher.component.LauncherComponent;
 
 import de.robv.android.xposed.XposedHelpers;
 
-public class DragObject extends LauncherComponent {
-    public static final String CLASS = "com.android.launcher3.DropTarget$DragObject";
+@LauncherComponent(className = "com.android.launcher3.DropTarget$DragObject")
+public class DragObject extends Component {
 
     public float getY() {
         return XposedHelpers.getFloatField(getInstance(), "y");
@@ -15,11 +14,5 @@ public class DragObject extends LauncherComponent {
 
     public float getX() {
         return XposedHelpers.getFloatField(getInstance(), "x");
-    }
-
-    @NonNull
-    @Override
-    public String getClassName() {
-        return CLASS;
     }
 }

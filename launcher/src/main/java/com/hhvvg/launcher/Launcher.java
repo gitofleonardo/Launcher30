@@ -1,17 +1,13 @@
 package com.hhvvg.launcher;
 
-import android.app.AndroidAppHelper;
 import android.content.ComponentName;
 import android.content.Context;
 import android.os.Bundle;
-import android.os.Handler;
-import android.os.Looper;
 import android.os.RemoteException;
 import android.os.UserHandle;
+import android.util.Log;
 
-import androidx.annotation.NonNull;
-
-import com.hhvvg.launcher.component.Inject;
+import com.hhvvg.launcher.component.Component;
 import com.hhvvg.launcher.component.LauncherComponent;
 import com.hhvvg.launcher.component.LauncherMethod;
 import com.hhvvg.launcher.folder.Folder;
@@ -22,7 +18,6 @@ import com.hhvvg.launcher.icon.LauncherIconProvider;
 import com.hhvvg.launcher.model.LauncherModel;
 import com.hhvvg.launcher.service.LauncherService;
 import com.hhvvg.launcher.utils.Executors;
-import com.hhvvg.launcher.utils.ExtensionsKt;
 import com.hhvvg.launcher.utils.Logger;
 
 import java.util.Set;
@@ -30,32 +25,31 @@ import java.util.Set;
 import de.robv.android.xposed.XC_MethodHook;
 import de.robv.android.xposed.XposedHelpers;
 
-public class Launcher extends LauncherComponent {
-    public static final String CLASS = "com.android.launcher3.Launcher";
+@LauncherComponent(className = "com.android.launcher3.Launcher")
+public class Launcher extends Component {
+
+    private static ILauncherCallbacks sLauncherCallback;
 
     private LauncherModel mModel;
     private Workspace mWorkspace;
 
-    private ILauncherService mLauncherService;
-    private final Handler mHandler = new Handler(Looper.getMainLooper());
+    private final ILauncherService mLauncherService = LauncherService.getLauncherService();
 
-    @LauncherMethod(inject = Inject.After)
-    public void override_onCreate(XC_MethodHook.MethodHookParam param, Bundle bundle) {
+    @LauncherMethod
+    public void $onCreate(XC_MethodHook.MethodHookParam param, Bundle savedState) {
         initLauncherService();
-        LauncherApplication.setLauncher(this);
-        getLauncher().setInstance(param.thisObject);
 
         mModel = createLauncherModel();
         mWorkspace = createWorkspace();
     }
 
-    @LauncherMethod(inject = Inject.After)
-    public void override_onDestroy(XC_MethodHook.MethodHookParam param) {
+    @LauncherMethod
+    public void $onDestroy(XC_MethodHook.MethodHookParam param) {
         destroyLauncherService();
     }
 
     protected Context getContext() {
-        return (Context) getLauncher().getInstance();
+        return (Context) getInstance();
     }
 
     private LauncherModel createLauncherModel() {
@@ -78,20 +72,10 @@ public class Launcher extends LauncherComponent {
         return mWorkspace;
     }
 
-    public static Launcher getLauncher() {
-        return ExtensionsKt.getLauncher(AndroidAppHelper.currentApplication());
-    }
-
-    @NonNull
-    @Override
-    public String getClassName() {
-        return CLASS;
-    }
-
     private void initLauncherService() {
-        mLauncherService = LauncherService.getLauncherService();
         try {
-            mLauncherService.registerLauncherCallbacks(mCallbacks);
+            sLauncherCallback = new LauncherCallback();
+            mLauncherService.registerLauncherCallbacks(sLauncherCallback);
             initConfigurations(mLauncherService);
         } catch (Exception e) {
             Logger.log("Error registering callbacks service", e);
@@ -100,7 +84,9 @@ public class Launcher extends LauncherComponent {
 
     private void destroyLauncherService() {
         try {
-            mLauncherService.unregisterLauncherCallbacks(mCallbacks);
+            if (sLauncherCallback != null) {
+                mLauncherService.unregisterLauncherCallbacks(sLauncherCallback);
+            }
         } catch (Exception e) {
             Logger.log("Error unregistering callbacks service", e);
         }
@@ -120,7 +106,7 @@ public class Launcher extends LauncherComponent {
         XposedHelpers.callMethod(getInstance(), "onIdpChanged", modelPropertiesChanged);
     }
 
-    private final ILauncherCallbacks mCallbacks = new ILauncherCallbacks.Stub() {
+    private class LauncherCallback extends ILauncherCallbacks.Stub {
         @Override
         public void onIconClickEffectEnable(boolean enabled) throws RemoteException {
             FastBitmapDrawable.sClickEffectEnable = enabled;
@@ -133,14 +119,18 @@ public class Launcher extends LauncherComponent {
 
         @Override
         public void onDotParamsColorChanged(int color) throws RemoteException {
-            BubbleTextView.sDotParamsColor = color;
-            getWorkspace().invalidate();
+            Executors.postUiThread(() -> {
+                BubbleTextView.sDotParamsColor = color;
+                onLauncherReload();
+            });
         }
 
         @Override
         public void onDotParamsColorRestored() {
-            BubbleTextView.sDotParamsColor = null;
-            getWorkspace().invalidate();
+            Executors.postUiThread(() -> {
+                BubbleTextView.sDotParamsColor = null;
+                onLauncherReload();
+            });
         }
 
         @Override
@@ -149,9 +139,7 @@ public class Launcher extends LauncherComponent {
                 LauncherIconProvider.sIconProvider = providerPkg;
                 LauncherIconProvider.sIconCaches.clear();
                 getModel().getApp().refreshAndReloadLauncher();
-            } catch (Exception e) {
-                Logger.log("error", e);
-            }
+            } catch (Exception e) { }
         }
 
         @Override
@@ -170,7 +158,7 @@ public class Launcher extends LauncherComponent {
         @Override
         public void onDrawNotificationCountChanged(boolean enable) throws RemoteException {
             DotRenderer.sDrawNotificationCount = enable;
-            getModel().forceReload();
+            onLauncherReload();
         }
 
         @Override
@@ -181,7 +169,7 @@ public class Launcher extends LauncherComponent {
         @Override
         public void onQsbStateChanged(boolean enable) {
             CellLayout.sEnableQSB = enable;
-            getModel().forceReload();
+            onLauncherReload();
         }
 
         @Override

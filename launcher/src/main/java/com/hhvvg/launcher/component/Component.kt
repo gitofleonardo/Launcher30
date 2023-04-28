@@ -1,6 +1,5 @@
 package com.hhvvg.launcher.component
 
-abstract class LauncherComponent {
-    abstract val className: String
+abstract class Component {
     var instance: Any? = null
 }

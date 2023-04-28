@@ -2,20 +2,19 @@ package com.hhvvg.launcher.folder;
 
 import android.view.ViewGroup;
 
-import androidx.annotation.NonNull;
-
-import com.hhvvg.launcher.component.Inject;
 import com.hhvvg.launcher.component.LauncherComponent;
 import com.hhvvg.launcher.component.LauncherMethod;
+import com.hhvvg.launcher.component.ViewGroupComponent;
 
 import de.robv.android.xposed.XC_MethodHook;
 import de.robv.android.xposed.XposedHelpers;
 
-public class Folder extends LauncherComponent {
+@LauncherComponent(className = "com.android.launcher3.folder.Folder")
+public class Folder extends ViewGroupComponent {
     public static boolean sCenterOpenedFolder = true;
 
-    @LauncherMethod(inject = Inject.After)
-    public void override_centerAboutIcon(XC_MethodHook.MethodHookParam param) {
+    @LauncherMethod
+    public void $centerAboutIcon(XC_MethodHook.MethodHookParam param) {
         if (sCenterOpenedFolder) {
             centerAboutDragLayer();
         }
@@ -52,11 +51,5 @@ public class Folder extends LauncherComponent {
 
     private ViewGroup getDragLayer() {
         return (ViewGroup) XposedHelpers.callMethod(getActivityContext(), "getDragLayer");
-    }
-
-    @NonNull
-    @Override
-    public String getClassName() {
-        return "com.android.launcher3.folder.Folder";
     }
 }

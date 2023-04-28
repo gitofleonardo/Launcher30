@@ -1,17 +1,14 @@
 package com.hhvvg.launcher.component
 
-
 @Target(allowedTargets = [AnnotationTarget.FUNCTION])
-annotation class LauncherMethod(
-    val inject: Inject,
-)
+annotation class LauncherMethod
 
-@Target(allowedTargets = [AnnotationTarget.VALUE_PARAMETER])
-annotation class LauncherArgs (
+@Target(allowedTargets = [AnnotationTarget.CLASS])
+annotation class LauncherComponent(
     val className: String
 )
 
-enum class Inject {
+enum class MethodInjection {
     Before,
     After
 }

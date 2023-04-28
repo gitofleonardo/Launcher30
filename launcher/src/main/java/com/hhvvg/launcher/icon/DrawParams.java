@@ -4,11 +4,13 @@ import android.graphics.Rect;
 
 import androidx.annotation.NonNull;
 
+import com.hhvvg.launcher.component.Component;
 import com.hhvvg.launcher.component.LauncherComponent;
 
 import de.robv.android.xposed.XposedHelpers;
 
-public class DrawParams extends LauncherComponent {
+@LauncherComponent(className = "com.android.launcher3.icons.DotRenderer$DrawParams")
+public class DrawParams extends Component {
     public static final String EXTRA_NOTIFICATION_COUNT = "_extra_notification_total_count";
 
     public int getDotColor() {
@@ -33,11 +35,5 @@ public class DrawParams extends LauncherComponent {
             return 0;
         }
         return (Integer) count;
-    }
-
-    @NonNull
-    @Override
-    public String getClassName() {
-        return "com.android.launcher3.icons.DotRenderer$DrawParams";
     }
 }
