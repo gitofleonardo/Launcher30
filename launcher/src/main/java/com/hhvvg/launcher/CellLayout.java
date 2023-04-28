@@ -1,6 +1,7 @@
 package com.hhvvg.launcher;
 
 import android.graphics.drawable.Drawable;
+import android.os.RemoteException;
 import android.view.View;
 
 import androidx.annotation.Nullable;
@@ -10,6 +11,7 @@ import com.hhvvg.launcher.component.Component;
 import com.hhvvg.launcher.component.LauncherMethod;
 import com.hhvvg.launcher.component.ViewGroupComponent;
 import com.hhvvg.launcher.hook.HookProviderKt;
+import com.hhvvg.launcher.service.LauncherService;
 
 import de.robv.android.xposed.XC_MethodHook;
 import de.robv.android.xposed.XposedHelpers;
@@ -17,7 +19,6 @@ import de.robv.android.xposed.XposedHelpers;
 @LauncherComponent(className = "com.android.launcher3.CellLayout")
 public class CellLayout extends ViewGroupComponent {
     public static boolean sHideSpringLoadedBg = true;
-    public static boolean sEnableQSB = false;
 
     @LauncherMethod
     public void $updateBgAlpha(XC_MethodHook.MethodHookParam param) {
@@ -28,8 +29,9 @@ public class CellLayout extends ViewGroupComponent {
 
     @LauncherMethod
     public void before$addViewToCellLayout(XC_MethodHook.MethodHookParam hookParam, View child,
-                                           int index, int childId, LayoutParams params, boolean markCells) {
-        if (!sEnableQSB && getWorkspace() != null && getWorkspace().getQsb() == child) {
+                                           int index, int childId, LayoutParams params, boolean markCells) throws RemoteException {
+        if (!LauncherService.getLauncherService().isQsbEnable() && getWorkspace() != null &&
+                getWorkspace().getQsb() == child) {
             params.setCellX(-1);
         }
     }

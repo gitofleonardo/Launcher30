@@ -98,7 +98,6 @@ public class Launcher extends Component {
         LauncherIconProvider.sIconProvider = service.getIconPackProvider();
         DotRenderer.sDrawNotificationCount = service.isDrawNotificationCount();
         CellLayout.sHideSpringLoadedBg = !service.isSpringLoadedBgEnable();
-        CellLayout.sEnableQSB = service.isQsbEnable();
         AppFilter.updateGlobalFilteredComponents(Set.copyOf(service.getPrivacyItems()));
     }
 
@@ -168,7 +167,6 @@ public class Launcher extends Component {
 
         @Override
         public void onQsbStateChanged(boolean enable) {
-            CellLayout.sEnableQSB = enable;
             onLauncherReload();
         }
 
