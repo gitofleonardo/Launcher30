@@ -24,7 +24,7 @@ public class LauncherActivityCachingLogic extends Component {
     }
 
     @LauncherMethod
-    public void $getLabel(XC_MethodHook.MethodHookParam param, LauncherActivityInfo info) throws RemoteException {
+    public void getLabel(XC_MethodHook.MethodHookParam param, LauncherActivityInfo info) throws RemoteException {
         CharSequence label = getService().getComponentLabel(info.getComponentName(), info.getUser());
         if (label != null) {
             param.setResult(label.toString());
@@ -32,7 +32,6 @@ public class LauncherActivityCachingLogic extends Component {
     }
 
     @LauncherMethod
-    public void $loadIcon(XC_MethodHook.MethodHookParam param, Context context,
-                                  LauncherActivityInfo info) {
+    public void loadIcon(Context context, LauncherActivityInfo info) {
     }
 }

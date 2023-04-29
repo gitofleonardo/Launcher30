@@ -11,7 +11,7 @@ import de.robv.android.xposed.XC_MethodHook;
 public class PreviewBackground extends Component {
 
     @LauncherMethod
-    public void $getDotColor(XC_MethodHook.MethodHookParam param) {
+    public void getDotColor(XC_MethodHook.MethodHookParam param) {
         if (BubbleTextView.sDotParamsColor != null) {
             param.setResult(BubbleTextView.sDotParamsColor);
         }

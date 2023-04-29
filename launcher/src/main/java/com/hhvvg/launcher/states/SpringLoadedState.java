@@ -25,7 +25,7 @@ public class SpringLoadedState extends Component {
     }
 
     @LauncherMethod
-    public void $getHotseatScaleAndTranslation(XC_MethodHook.MethodHookParam param,
+    public void getHotseatScaleAndTranslation(XC_MethodHook.MethodHookParam param,
                                                        Launcher launcher) throws RemoteException {
         if (!getService().isUseCustomSpringLoadedEffect()) {
             return;
@@ -40,7 +40,7 @@ public class SpringLoadedState extends Component {
     }
 
     @LauncherMethod
-    public void $getWorkspaceScaleAndTranslation(XC_MethodHook.MethodHookParam param,
+    public void getWorkspaceScaleAndTranslation(XC_MethodHook.MethodHookParam param,
                                                          Launcher launcher) throws RemoteException {
         if (!getService().isUseCustomSpringLoadedEffect()) {
             return;

@@ -36,7 +36,7 @@ public class Launcher extends Component {
     private final ILauncherService mLauncherService = LauncherService.getLauncherService();
 
     @LauncherMethod
-    public void $onCreate(XC_MethodHook.MethodHookParam param, Bundle savedState) {
+    public void onCreate(Bundle savedState) {
         initLauncherService();
 
         mModel = createLauncherModel();
@@ -44,7 +44,7 @@ public class Launcher extends Component {
     }
 
     @LauncherMethod
-    public void $onDestroy(XC_MethodHook.MethodHookParam param) {
+    public void onDestroy() {
         destroyLauncherService();
     }
 

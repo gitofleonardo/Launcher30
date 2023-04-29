@@ -17,14 +17,14 @@ import de.robv.android.xposed.XC_MethodHook;
 public class AllAppsList extends Component {
 
     @LauncherMethod
-    public void $findAppInfo(XC_MethodHook.MethodHookParam param, ComponentName cn, UserHandle user) {
+    public void findAppInfo(XC_MethodHook.MethodHookParam param, ComponentName cn, UserHandle user) {
         if (AppFilter.getFilteredComponents().contains(cn)) {
             param.setResult(null);
         }
     }
 
     @LauncherMethod
-    public void $findActivity(XC_MethodHook.MethodHookParam param, List<LauncherActivityInfo> apps, ComponentName cn) {
+    public void findActivity(XC_MethodHook.MethodHookParam param, List<LauncherActivityInfo> apps, ComponentName cn) {
         if (AppFilter.getFilteredComponents().contains(cn)) {
             param.setResult(false);
         }

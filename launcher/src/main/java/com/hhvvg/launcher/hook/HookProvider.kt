@@ -15,6 +15,9 @@ import de.robv.android.xposed.XposedHelpers
 import java.lang.reflect.Method
 import kotlin.reflect.KClass
 
+/**
+ * Initialized from {@link de.robv.android.xposed.IXposedHookLoadPackage#handleLoadPackage}.
+ */
 fun init() {
     for (cn in components) {
         for (method in cn.getLauncherMethods()) {
@@ -24,6 +27,9 @@ fun init() {
     }
 }
 
+/**
+ * Retrieve all annotated methods, which will be hooked later.
+ */
 fun KClass<*>.getLauncherMethods(): Array<Method> {
     val methods = java.declaredMethods
     return methods
@@ -33,10 +39,13 @@ fun KClass<*>.getLauncherMethods(): Array<Method> {
         .toTypedArray()
 }
 
+/**
+ * Parse an annotated method.
+ */
 fun <T : Component> Method.parseLauncherMethod(component: KClass<T>): LauncherMethodEntry<T>? {
     return try {
         val launcherClass = component.getLauncherClass()
-        val injections = name.parseInjections()
+        val injections = parseInjections()
         val argTypes = parseLauncherMethodArgTypes()
         val launcherMethodName = parseLauncherMethodName()
         val isConstructor = launcherMethodName == "constructor"
@@ -57,6 +66,9 @@ fun <T : Component> Method.parseLauncherMethod(component: KClass<T>): LauncherMe
     }
 }
 
+/**
+ * Get specified launcher class, for which this class stands.
+ */
 fun KClass<*>.getLauncherClass(): KClass<*> {
     val component = java.annotations
         .filterIsInstance(LauncherComponent::class.java)
@@ -65,30 +77,39 @@ fun KClass<*>.getLauncherClass(): KClass<*> {
     return XposedHelpers.findClass(launcherClassName, Init.classLoader).kotlin
 }
 
+/**
+ * Get specified launcher class, for which this class stands.
+ */
 fun Class<*>.getLauncherClass(): KClass<*> {
     return kotlin.getLauncherClass()
 }
 
+/**
+ * Get specified launcher java class, for which this class stands.
+ */
 fun Class<*>.getLauncherJavaClass(): Class<*> {
     return getLauncherClass().java
 }
 
+/**
+ * Parse launcher method name from module method name. Module method name often equals with the
+ * launcher name, but sometimes it starts with {@code _override} to avoid ambiguity.
+ */
 private fun Method.parseLauncherMethodName(): String {
-    val methodName = name
-    return methodName.substringAfter('$')
+    val thisMethodName = name
+    if (thisMethodName.startsWith("override_")) {
+        return thisMethodName.substringAfter("override_")
+    }
+    return thisMethodName
 }
 
-private fun String.parseInjections(): Array<MethodInjection> {
-    val methodSplit = substringBefore('$').split('_')
-    val injections = HashSet<MethodInjection>()
-
-    for (element in methodSplit) {
-        if ("before" == element) {
-            injections.add(MethodInjection.Before)
-        } else if ("after" == element) {
-            injections.add(MethodInjection.After)
-        }
-    }
+/**
+ * Parse method injection position. By default, module method runs after launcher method.
+ */
+private fun Method.parseInjections(): Array<MethodInjection> {
+    val launcherMethodAnnotation = getAnnotation(LauncherMethod::class.java)
+        ?: throw IllegalArgumentException("Method must be annotated with LauncherMethod")
+    val injections = launcherMethodAnnotation.injections.toHashSet()
 
     if (injections.isEmpty()) {
         injections.add(MethodInjection.After)
@@ -97,6 +118,9 @@ private fun String.parseInjections(): Array<MethodInjection> {
     return injections.toTypedArray()
 }
 
+/**
+ * Parse module method argument types.
+ */
 private fun Method.parseLauncherMethodArgTypes(): List<KClass<*>> {
     val result = ArrayList<KClass<*>>()
 
@@ -104,39 +128,47 @@ private fun Method.parseLauncherMethodArgTypes(): List<KClass<*>> {
         val param = parameters[i]
         val paramType = param.type
 
-        if (i == 0 && !paramType.isAssignableFrom(MethodHookParam::class.java)) {
-            throw IllegalArgumentException("First param of hooked method must be MethodHookParam")
-        }
-
         result.add(paramType.kotlin)
     }
     return result
 }
 
+/**
+ * Apply module method hook.
+ */
 private fun LauncherMethodEntry<*>.applyMethodHook() {
     try {
-        val methodParams = methodArgTypes
+        val startsWithHookParam = methodArgTypes.isNotEmpty() &&
+                methodArgTypes[0].java.isAssignableFrom(MethodHookParam::class.java)
+        var methodParams = methodArgTypes
             .map {
-                return@map if (Component::class.java.isAssignableFrom(it.java)) {
+                if (Component::class.java.isAssignableFrom(it.java)) {
                     it.getLauncherClass().java
                 } else {
                     it.java
                 }
             }
             .toTypedArray()
-            .copyOfRange(1, methodArgTypes.size)
+        if (startsWithHookParam) {
+            methodParams = methodParams.copyOfRange(1, methodArgTypes.size)
+        }
 
         val callback: (param: MethodHookParam) -> Unit = { param ->
             val realArgs = ArrayList<Any?>()
 
             for (i in methodArgTypes.indices) {
-                if (i == 0) {
+                if (i == 0 && startsWithHookParam) {
                     realArgs.add(param)
                     continue
                 }
 
                 val type = methodArgTypes[i]
 
+                val realArgIndex = if (startsWithHookParam) {
+                    i - 1
+                } else {
+                    i
+                }
                 if (Component::class.java.isAssignableFrom(type.java)) {
                     val component: Component = if (param.thisObject == null) {
                         // Is a static method
@@ -145,18 +177,19 @@ private fun LauncherMethodEntry<*>.applyMethodHook() {
                         param.getCachedComponent(type, launcherClass.java.simpleName)
                     }
 
-                    val realArg = param.args[i - 1]
+                    val realArg = param.args[realArgIndex]
                     component.instance = realArg
 
                     realArgs.add(component)
                     continue
                 }
 
-                realArgs.add(param.args[i - 1])
+                realArgs.add(param.args[realArgIndex])
             }
 
             val realComponent = component.java.newInstance()
             realComponent.instance = param.thisObject
+            method.isAccessible = true
             method.invoke(realComponent, *realArgs.toTypedArray())
         }
 
@@ -186,6 +219,10 @@ private fun LauncherMethodEntry<*>.applyMethodHook() {
     }
 }
 
+/**
+ * Get cached component from launcher instance. Ensure this method be called within a non-static
+ * method.
+ */
 private fun MethodHookParam.getCachedComponent(type: KClass<*>, className: String): Component {
     val instanceName = "_component_cached_instance_${className}"
     var cachedComponent = thisObject.getAdditionalInstanceField<Component>(instanceName)

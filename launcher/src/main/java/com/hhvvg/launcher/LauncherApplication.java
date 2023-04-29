@@ -10,7 +10,7 @@ import de.robv.android.xposed.XC_MethodHook;
 public class LauncherApplication extends Component {
 
     @LauncherMethod
-    public void override$onCreate(XC_MethodHook.MethodHookParam param) {
+    public void onCreate() {
 
     }
 }

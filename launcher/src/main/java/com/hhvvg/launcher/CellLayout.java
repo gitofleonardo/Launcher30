@@ -9,6 +9,7 @@ import androidx.annotation.Nullable;
 import com.hhvvg.launcher.component.LauncherComponent;
 import com.hhvvg.launcher.component.Component;
 import com.hhvvg.launcher.component.LauncherMethod;
+import com.hhvvg.launcher.component.MethodInjection;
 import com.hhvvg.launcher.component.ViewGroupComponent;
 import com.hhvvg.launcher.hook.HookProviderKt;
 import com.hhvvg.launcher.service.LauncherService;
@@ -21,15 +22,15 @@ public class CellLayout extends ViewGroupComponent {
     public static boolean sHideSpringLoadedBg = true;
 
     @LauncherMethod
-    public void $updateBgAlpha(XC_MethodHook.MethodHookParam param) {
+    public void updateBgAlpha() {
         if (sHideSpringLoadedBg) {
             getBackground().setAlpha(0);
         }
     }
 
-    @LauncherMethod
-    public void before$addViewToCellLayout(XC_MethodHook.MethodHookParam hookParam, View child,
-                                           int index, int childId, LayoutParams params, boolean markCells) throws RemoteException {
+    @LauncherMethod(injections = MethodInjection.Before)
+    public void addViewToCellLayout(View child, int index, int childId, LayoutParams params,
+                                           boolean markCells) throws RemoteException {
         if (!LauncherService.getLauncherService().isQsbEnable() && getWorkspace() != null &&
                 getWorkspace().getQsb() == child) {
             params.setCellX(-1);

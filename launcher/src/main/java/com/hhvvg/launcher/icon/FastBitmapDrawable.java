@@ -11,8 +11,6 @@ import com.hhvvg.launcher.component.Component;
 import com.hhvvg.launcher.component.LauncherMethod;
 import com.hhvvg.launcher.utils.ExtensionsKt;
 
-import de.robv.android.xposed.XC_MethodHook;
-
 @LauncherComponent(className = "com.android.launcher3.icons.FastBitmapDrawable")
 public class FastBitmapDrawable extends Component {
     private static final Interpolator INTERPOLATOR = new PathInterpolator(0, .57f, .33f, 1f);
@@ -22,7 +20,7 @@ public class FastBitmapDrawable extends Component {
     public static boolean sClickEffectEnable = true;
 
     @LauncherMethod
-    public void $onStateChange(XC_MethodHook.MethodHookParam param, int[] state) throws RemoteException {
+    public void onStateChange(int[] state) throws RemoteException {
         if (!sClickEffectEnable) {
             return;
         }
@@ -39,18 +37,18 @@ public class FastBitmapDrawable extends Component {
     }
 
     private boolean isPressed() {
-        return ExtensionsKt.getBooleanField(getInstance(), "mIsPressed");
+        return ExtensionsKt.getBooleanField(getInstanceNonNull(), "mIsPressed");
     }
 
     private ObjectAnimator getScaleAnimator() {
-        return ExtensionsKt.getObjectField(getInstance(), "mScaleAnimation");
+        return ExtensionsKt.getObjectField(getInstanceNonNull(), "mScaleAnimation");
     }
 
     private void setScaleAnimator(ObjectAnimator animator) {
-        ExtensionsKt.setObjectField(getInstance(), "mScaleAnimation", animator);
+        ExtensionsKt.setObjectField(getInstanceNonNull(), "mScaleAnimation", animator);
     }
 
     private FloatProperty<Object> getScaleProperty() {
-        return ExtensionsKt.getStaticField(getInstance().getClass(), "SCALE");
+        return ExtensionsKt.getStaticField(getInstanceNonNull().getClass(), "SCALE");
     }
 }

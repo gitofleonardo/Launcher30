@@ -14,7 +14,7 @@ public class Folder extends ViewGroupComponent {
     public static boolean sCenterOpenedFolder = true;
 
     @LauncherMethod
-    public void $centerAboutIcon(XC_MethodHook.MethodHookParam param) {
+    public void centerAboutIcon() {
         if (sCenterOpenedFolder) {
             centerAboutDragLayer();
         }

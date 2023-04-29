@@ -23,7 +23,7 @@ public class LauncherIconProvider extends Component {
     private final IconModel mModel = new IconModel();
 
     @LauncherMethod
-    public void $getIcon(XC_MethodHook.MethodHookParam param, LauncherActivityInfo info, int dpi) {
+    public void getIcon(XC_MethodHook.MethodHookParam param, LauncherActivityInfo info, int dpi) {
         if (sIconCaches.isEmpty()) {
             mModel.loadAllIcons(sIconProvider, getContext(), sIconCaches);
         }

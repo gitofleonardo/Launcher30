@@ -23,8 +23,7 @@ public class InvariantDeviceProfile extends Component {
     public static final class GridOption extends Component {
 
         @LauncherMethod
-        public void $constructor(XC_MethodHook.MethodHookParam param, Context context,
-                                AttributeSet attrs, int deviceType) throws RemoteException {
+        public void constructor(Context context, AttributeSet attrs, int deviceType) throws RemoteException {
             if (!LauncherService.getLauncherService().isQsbEnable()) {
                 XposedHelpers.setIntField(getInstance(), "numSearchContainerColumns", 0);
             }

@@ -9,10 +9,10 @@ import de.robv.android.xposed.XposedHelpers;
 public class DragObject extends Component {
 
     public float getY() {
-        return XposedHelpers.getFloatField(getInstance(), "y");
+        return XposedHelpers.getFloatField(getTargetInstanceNonNull(), "y");
     }
 
     public float getX() {
-        return XposedHelpers.getFloatField(getInstance(), "x");
+        return XposedHelpers.getFloatField(getTargetInstanceNonNull(), "x");
     }
 }

@@ -8,6 +8,7 @@ import androidx.annotation.Nullable;
 import com.hhvvg.launcher.ILauncherService;
 import com.hhvvg.launcher.component.LauncherComponent;
 import com.hhvvg.launcher.component.LauncherMethod;
+import com.hhvvg.launcher.component.MethodInjection;
 import com.hhvvg.launcher.component.ViewGroupComponent;
 import com.hhvvg.launcher.service.LauncherService;
 
@@ -15,15 +16,14 @@ import java.util.ArrayList;
 import java.util.Iterator;
 import java.util.Set;
 
-import de.robv.android.xposed.XC_MethodHook;
 import de.robv.android.xposed.XposedHelpers;
 
 @LauncherComponent(className = "com.android.quickstep.views.RecentsView")
 public class RecentsView extends ViewGroupComponent {
     private final ILauncherService mService = LauncherService.getLauncherService();
 
-    @LauncherMethod
-    public void before$applyLoadPlan(XC_MethodHook.MethodHookParam param, ArrayList tasks) throws RemoteException {
+    @LauncherMethod(injections = MethodInjection.Before)
+    public void applyLoadPlan(ArrayList tasks) throws RemoteException {
         if (!mService.isPrivacyHiddenFromRecents()) {
             return;
         }

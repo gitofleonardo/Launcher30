@@ -24,7 +24,7 @@ public class DeviceProfile extends Component {
     }
 
     @LauncherMethod
-    public void $updateIconSize(XC_MethodHook.MethodHookParam param, float scale, Resources resources) throws RemoteException {
+    public void updateIconSize(float scale, Resources resources) throws RemoteException {
         if (!getService().isIconTextVisible()) {
             setIconTextSize(0);
         }
@@ -36,14 +36,14 @@ public class DeviceProfile extends Component {
     }
 
     @LauncherMethod
-    public void $updateFolderCellSize(XC_MethodHook.MethodHookParam param, float scale, Resources resources) throws RemoteException {
+    public void updateFolderCellSize(float scale, Resources resources) throws RemoteException {
         if (!getService().isIconTextVisible()) {
             setFolderChildTextSize(0);
         }
     }
 
     @LauncherMethod
-    public void $getWorkspaceSpringLoadScale(XC_MethodHook.MethodHookParam param, Context context) throws RemoteException {
+    public void getWorkspaceSpringLoadScale(XC_MethodHook.MethodHookParam param, Context context) throws RemoteException {
         if (getService().isUseCustomSpringLoadedEffect()) {
             float result = (float) param.getResult();
             param.setResult(1f);

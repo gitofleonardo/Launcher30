@@ -16,7 +16,7 @@ public class AppFilter extends Component {
     private static final Set<ComponentName> sFilteredComponents = new HashSet<>();
 
     @LauncherMethod
-    public void $shouldShowApp(XC_MethodHook.MethodHookParam param, ComponentName cn) {
+    public void shouldShowApp(XC_MethodHook.MethodHookParam param, ComponentName cn) {
         if (sFilteredComponents.contains(cn)) {
             param.setResult(false);
         }

@@ -11,6 +11,7 @@ import android.graphics.Typeface;
 import com.hhvvg.launcher.component.LauncherComponent;
 import com.hhvvg.launcher.component.Component;
 import com.hhvvg.launcher.component.LauncherMethod;
+import com.hhvvg.launcher.component.MethodInjection;
 
 import de.robv.android.xposed.XC_MethodHook;
 import de.robv.android.xposed.XposedHelpers;
@@ -24,8 +25,8 @@ public class DotRenderer extends Component {
 
     public static boolean sDrawNotificationCount = true;
 
-    @LauncherMethod
-    public void before$draw(XC_MethodHook.MethodHookParam hookParam, Canvas canvas, DrawParams params) {
+    @LauncherMethod(injections = MethodInjection.Before)
+    public void draw(XC_MethodHook.MethodHookParam hookParam, Canvas canvas, DrawParams params) {
         if (params.getInstance() == null) {
             return;
         }

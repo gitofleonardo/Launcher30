@@ -4,17 +4,17 @@ import android.graphics.Canvas;
 
 import com.hhvvg.launcher.component.LauncherComponent;
 import com.hhvvg.launcher.component.LauncherMethod;
+import com.hhvvg.launcher.component.MethodInjection;
 import com.hhvvg.launcher.component.ViewComponent;
 
-import de.robv.android.xposed.XC_MethodHook;
 import de.robv.android.xposed.XposedHelpers;
 
 @LauncherComponent(className = "com.android.launcher3.BubbleTextView")
 public class BubbleTextView extends ViewComponent {
     public static Integer sDotParamsColor = null;
 
-    @LauncherMethod
-    public void before$drawDotIfNecessary(XC_MethodHook.MethodHookParam param, Canvas canvas) {
+    @LauncherMethod(injections = MethodInjection.Before)
+    public void drawDotIfNecessary(Canvas canvas) {
         if (sDotParamsColor != null) {
             setDotParamsColor(sDotParamsColor);
         }

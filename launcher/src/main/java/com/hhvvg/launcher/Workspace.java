@@ -15,7 +15,7 @@ import de.robv.android.xposed.XposedHelpers;
 public class Workspace extends ViewGroupComponent {
 
     @LauncherMethod
-    public void $checkDragObjectIsOverNeighbourPages(XC_MethodHook.MethodHookParam param,
+    public void checkDragObjectIsOverNeighbourPages(XC_MethodHook.MethodHookParam param,
                                                              DragObject d, float centerX) {
         if (param.getResult() != null) {
             return;

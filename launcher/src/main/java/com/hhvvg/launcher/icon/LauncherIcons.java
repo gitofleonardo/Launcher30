@@ -68,8 +68,8 @@ public class LauncherIcons extends Component {
         }
     }
 
-    @LauncherMethod
-    public void before$normalizeAndWrapToAdaptiveIcon(XC_MethodHook.MethodHookParam param,
+    @LauncherMethod(injections = MethodInjection.Before)
+    public void normalizeAndWrapToAdaptiveIcon(XC_MethodHook.MethodHookParam param,
                                                         Drawable icon, boolean shrinkNonAdaptiveIcons,
                                                         RectF outIconBounds, float[] outScale) throws RemoteException {
         if (icon == null) {

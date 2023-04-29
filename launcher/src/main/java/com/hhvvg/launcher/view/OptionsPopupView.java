@@ -28,7 +28,7 @@ import de.robv.android.xposed.XposedHelpers;
 public class OptionsPopupView extends ViewGroupComponent {
 
     @LauncherMethod
-    public static void $getOptions(XC_MethodHook.MethodHookParam param,
+    public static void getOptions(XC_MethodHook.MethodHookParam param,
                                     Launcher launcher) throws InvocationTargetException, IllegalAccessException, InstantiationException {
         Drawable drawable = ResourcesCompat.getDrawable(Init.xModuleRes, R.drawable.ic_palette_24, null);
         String title = Init.xModuleRes.getString(R.string.title_customization);
