@@ -15,6 +15,10 @@ Utilities for `Launcher3` customizations
 + Customized icon touch effect
 + Adaptive icon supported
 + Able to hide icon text on workspace
++ Able to hide icon text on apps drawer
++ Able to change icon size
++ Able to change icon text size
++ Able to change icon text drawable padding
 + Change color of notification dots
 + Show notification count on badges
 + Hide SpringLoaded background
