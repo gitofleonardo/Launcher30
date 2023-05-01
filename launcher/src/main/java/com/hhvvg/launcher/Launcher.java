@@ -215,5 +215,13 @@ public class Launcher extends Component {
                 onIdpChanged(true);
             });
         }
+
+        @Override
+        public void onAllAppsIconVisibilityChanged(boolean visible) {
+            Executors.postUiThread(() -> {
+                getModel().getApp().getIdp().onConfigChanged(getInstance());
+                onIdpChanged(true);
+            });
+        }
     }
 }

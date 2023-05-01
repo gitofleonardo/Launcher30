@@ -34,6 +34,9 @@ class CustomizationDataStore(private val service: ILauncherService, private val 
             stringOf(R.string.key_custom_spring_loaded_effect) -> {
                 service.isUseCustomSpringLoadedEffect
             }
+            stringOf(R.string.key_hide_all_apps_icon_text) -> {
+                !service.isAllAppsIconTextVisible
+            }
             else -> defValue
         }
     }
@@ -63,6 +66,9 @@ class CustomizationDataStore(private val service: ILauncherService, private val 
             }
             stringOf(R.string.key_custom_spring_loaded_effect) -> {
                 service.isUseCustomSpringLoadedEffect = value
+            }
+            stringOf(R.string.key_hide_all_apps_icon_text) -> {
+                service.isAllAppsIconTextVisible = !value
             }
         }
     }

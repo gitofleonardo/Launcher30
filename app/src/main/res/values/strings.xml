@@ -90,4 +90,7 @@
     <string name="title_icon_size_scale">Icon Size Scale</string>
     <string name="title_icon_text_size_scale">Icon Text Size Scale</string>
     <string name="titl_icon_drawable_padding">Icon Text Padding Scale</string>
+
+    <string name="title_hide_all_apps_icon_text">Hide Drawer Icon Text</string>
+    <string name="desc_hide_all_apps_icon_text">Do not display icon text on drawer</string>
 </resources>

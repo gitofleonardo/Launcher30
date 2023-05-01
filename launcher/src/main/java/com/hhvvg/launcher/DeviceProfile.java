@@ -53,6 +53,10 @@ public class DeviceProfile extends Component {
 
     @LauncherMethod
     public void updateAllAppsIconSize(float scale, Resources res) throws RemoteException {
+        if (!getService().isAllAppsIconTextVisible()) {
+            setAllAppsIconTextSize(0);
+        }
+
         float iconTextScale = getService().getIconTextScale();
         if (Float.compare(iconTextScale, 1.0f) != 0) {
             float allAppsTextSize = getAllAppsIconTextSize();

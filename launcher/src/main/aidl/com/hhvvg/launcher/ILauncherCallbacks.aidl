@@ -18,4 +18,5 @@ interface ILauncherCallbacks {
     void onIconScaleChanged(float scale);
     void onIconTextScaleChanged(float scale);
     void onIconDrawablePaddingScaleChanged(float scale);
+    void onAllAppsIconVisibilityChanged(boolean visible);
 }

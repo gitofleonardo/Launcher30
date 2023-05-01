@@ -62,4 +62,7 @@ interface ILauncherService {
 
     void setIconDrawablePaddingScale(float scale);
     float getIconDrawablePaddingScale();
+
+    void setAllAppsIconTextVisible(boolean visible);
+    boolean isAllAppsIconTextVisible();
 }

@@ -137,6 +137,14 @@ class CommonRepository(private val context: Context) {
         return preferences.getFloat(KEY_ICON_DRAWABLE_PADDING_SCALE, 1.0f)
     }
 
+    fun setAllAppsIconTextVisible(visible: Boolean) {
+        preferences.edit().putBoolean(KEY_ALL_APPS_ICON_TEXT_VISIBLE, visible).commit()
+    }
+
+    fun isAllAppsIconTextVisible(): Boolean {
+        return preferences.getBoolean(KEY_ALL_APPS_ICON_TEXT_VISIBLE, true)
+    }
+
     companion object {
         private const val KEY_ICON_CLICK_EFFECT_ENABLED = "KEY_ICON_CLICK_EFFECT_ENABLED"
         private const val KEY_DOT_PARAMS_COLOR = "KEY_DOT_PARAMS_COLOR"
@@ -153,5 +161,6 @@ class CommonRepository(private val context: Context) {
         private const val KEY_ICON_SCALE = "KEY_ICON_SCALE"
         private const val KEY_ICON_TEXT_SCALE = "KEY_ICON_TEXT_SCALE"
         private const val KEY_ICON_DRAWABLE_PADDING_SCALE = "KEY_ICON_DRAWABLE_PADDING_SCALE"
+        private const val KEY_ALL_APPS_ICON_TEXT_VISIBLE = "KEY_ALL_APPS_ICON_TEXT_VISIBLE"
     }
 }

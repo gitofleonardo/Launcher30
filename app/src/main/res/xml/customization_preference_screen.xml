@@ -37,6 +37,12 @@
             app:title="@string/title_hide_icon_text"
             app:icon="@drawable/ic_text_fields_24"
             app:summary="@string/desc_hide_icon_text"/>
+
+        <com.hhvvg.launcher3customizer.view.MaterialSwitchPreference
+            app:persistent="true"
+            app:key="@string/key_hide_all_apps_icon_text"
+            app:title="@string/title_hide_all_apps_icon_text"
+            app:summary="@string/desc_hide_all_apps_icon_text"/>
     </PreferenceCategory>
 
     <PreferenceCategory

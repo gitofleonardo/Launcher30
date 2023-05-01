@@ -237,6 +237,17 @@ class LauncherService(private val context: Context) : ILauncherService.Stub() {
         return commonRepository.getIconDrawablePaddingScale()
     }
 
+    override fun setAllAppsIconTextVisible(visible: Boolean) {
+        commonRepository.setAllAppsIconTextVisible(visible)
+        broadcast {
+            it.onAllAppsIconVisibilityChanged(visible)
+        }
+    }
+
+    override fun isAllAppsIconTextVisible(): Boolean {
+        return commonRepository.isAllAppsIconTextVisible()
+    }
+
     private fun broadcast(action: (ILauncherCallbacks) -> Unit) {
         var i = callbackList.beginBroadcast()
         while (i > 0) {
