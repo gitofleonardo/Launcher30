@@ -204,6 +204,39 @@ class LauncherService(private val context: Context) : ILauncherService.Stub() {
         return commonRepository.isUseCustomSpringLoadedEffect()
     }
 
+    override fun getIconScale(): Float {
+        return commonRepository.getIconScale()
+    }
+
+    override fun setIconScale(scale: Float) {
+        commonRepository.setIconScale(scale)
+        broadcast {
+            it.onIconScaleChanged(scale)
+        }
+    }
+
+    override fun getIconTextScale(): Float {
+        return commonRepository.getIconTextScale()
+    }
+
+    override fun setIconTextScale(scale: Float) {
+        commonRepository.setIconTextScale(scale)
+        broadcast {
+            it.onIconTextScaleChanged(scale)
+        }
+    }
+
+    override fun setIconDrawablePaddingScale(scale: Float) {
+        commonRepository.setIconDrawablePaddingScale(scale)
+        broadcast {
+            it.onIconDrawablePaddingScaleChanged(scale)
+        }
+    }
+
+    override fun getIconDrawablePaddingScale(): Float {
+        return commonRepository.getIconDrawablePaddingScale()
+    }
+
     private fun broadcast(action: (ILauncherCallbacks) -> Unit) {
         var i = callbackList.beginBroadcast()
         while (i > 0) {

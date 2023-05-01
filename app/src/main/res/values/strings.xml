@@ -84,4 +84,10 @@
 
     <string name="title_custom_spring_loaded_effect">Custom Drag Behavior</string>
     <string name="desc_custom_spring_loaded_effect">Launcher workspace will not be scaled while dragging icons/widgets</string>
+
+    <string name="title_icon_specs_settings">Icon Size</string>
+    <string name="desc_icon_specs_settings">Setting icon size scale and icon text size scale</string>
+    <string name="title_icon_size_scale">Icon Size Scale</string>
+    <string name="title_icon_text_size_scale">Icon Text Size Scale</string>
+    <string name="titl_icon_drawable_padding">Icon Text Padding Scale</string>
 </resources>

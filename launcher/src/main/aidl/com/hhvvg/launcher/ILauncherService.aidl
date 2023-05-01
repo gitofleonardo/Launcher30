@@ -53,4 +53,13 @@ interface ILauncherService {
 
     void setUseCustomSpringLoadedEffect(boolean use);
     boolean isUseCustomSpringLoadedEffect();
+
+    void setIconScale(float scale);
+    float getIconScale();
+
+    void setIconTextScale(float scale);
+    float getIconTextScale();
+
+    void setIconDrawablePaddingScale(float scale);
+    float getIconDrawablePaddingScale();
 }

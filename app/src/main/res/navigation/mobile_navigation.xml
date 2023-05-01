@@ -39,6 +39,13 @@
             app:exitAnim="@anim/anim_window_open_exit"
             app:popEnterAnim="@anim/anim_window_close_enter"
             app:popExitAnim="@anim/anim_window_close_exit"/>
+        <action
+            android:id="@+id/action_navigation_customization_to_iconSpecsFragment"
+            app:destination="@id/iconSpecsFragment"
+            app:enterAnim="@anim/anim_window_open_enter"
+            app:exitAnim="@anim/anim_window_open_exit"
+            app:popEnterAnim="@anim/anim_window_close_enter"
+            app:popExitAnim="@anim/anim_window_close_exit"/>
     </fragment>
 
     <fragment
@@ -103,4 +110,9 @@
             app:popEnterAnim="@anim/anim_window_close_enter"
             app:popExitAnim="@anim/anim_window_close_exit"/>
     </fragment>
+    <fragment
+        android:id="@+id/iconSpecsFragment"
+        android:name="com.hhvvg.launcher3customizer.ui.iconsize.IconSpecsFragment"
+        android:label="@string/title_icon_specs_settings"
+        tools:layout="@layout/fragment_icon_specs" />
 </navigation>

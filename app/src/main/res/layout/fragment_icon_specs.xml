@@ -1,0 +1,54 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.core.widget.NestedScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".ui.iconsize.IconSpecsFragment">
+
+    <LinearLayout
+        android:padding="20dp"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical">
+        <TextView
+            android:text="@string/title_icon_size_scale"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"/>
+        <com.google.android.material.slider.RangeSlider
+            android:layout_marginTop="10dp"
+            android:valueFrom="0.1"
+            android:valueTo="2.0"
+            android:id="@+id/icon_size_slider"
+            style="@style/Widget.Material3.Slider"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"/>
+
+        <TextView
+            android:layout_marginTop="10dp"
+            android:text="@string/title_icon_text_size_scale"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"/>
+        <com.google.android.material.slider.RangeSlider
+            android:layout_marginTop="10dp"
+            android:valueFrom="0.1"
+            android:valueTo="2.0"
+            android:id="@+id/icon_text_size_slider"
+            style="@style/Widget.Material3.Slider"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"/>
+
+        <TextView
+            android:text="@string/titl_icon_drawable_padding"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"/>
+
+        <com.google.android.material.slider.RangeSlider
+            android:layout_marginTop="10dp"
+            android:valueFrom="0"
+            android:valueTo="2.0"
+            android:id="@+id/icon_drawable_padding_scale_slider"
+            style="@style/Widget.Material3.Slider"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"/>
+    </LinearLayout>
+</androidx.core.widget.NestedScrollView>

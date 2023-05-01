@@ -15,4 +15,7 @@ interface ILauncherCallbacks {
     void onOpenedFolderCenterChanged(boolean center);
     void onPrivacyItemChange(in ComponentName cn, boolean isPrivacy);
     void onSetUseCustomSpringLoadedEffect(boolean use);
+    void onIconScaleChanged(float scale);
+    void onIconTextScaleChanged(float scale);
+    void onIconDrawablePaddingScaleChanged(float scale);
 }

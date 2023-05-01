@@ -6,6 +6,7 @@ import androidx.preference.Preference
 import com.hhvvg.launcher.service.LauncherService
 import com.hhvvg.launcher3customizer.R
 import com.hhvvg.launcher3customizer.ui.InsettablePreferenceFragment
+import com.hhvvg.launcher3customizer.ui.customize.CustomizeFragmentDirections.actionNavigationCustomizationToIconSpecsFragment
 import com.hhvvg.launcher3customizer.ui.customize.CustomizeFragmentDirections.actionNavigationCustomizationToNavigationIconPacks
 import com.hhvvg.launcher3customizer.ui.customize.CustomizeFragmentDirections.actionNavigationCustomizationToNavigationNotificationColor
 
@@ -27,6 +28,11 @@ class CustomizeFragment : InsettablePreferenceFragment() {
             }
             getString(R.string.key_icon_packs) -> {
                 val action = actionNavigationCustomizationToNavigationIconPacks()
+                findNavController().navigate(action)
+                true
+            }
+            getString(R.string.key_icon_specs) -> {
+                val action = actionNavigationCustomizationToIconSpecsFragment()
                 findNavController().navigate(action)
                 true
             }

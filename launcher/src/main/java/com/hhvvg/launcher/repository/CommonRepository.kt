@@ -113,6 +113,30 @@ class CommonRepository(private val context: Context) {
         return preferences.getBoolean(KEY_USE_CUSTOM_SPRING_LOADED_EFFECT, true)
     }
 
+    fun getIconScale(): Float {
+        return preferences.getFloat(KEY_ICON_SCALE, 1.0f)
+    }
+
+    fun setIconScale(scale: Float) {
+        preferences.edit().putFloat(KEY_ICON_SCALE, scale).commit()
+    }
+
+    fun setIconTextScale(scale: Float) {
+        preferences.edit().putFloat(KEY_ICON_TEXT_SCALE, scale).commit()
+    }
+
+    fun getIconTextScale(): Float {
+        return preferences.getFloat(KEY_ICON_TEXT_SCALE, 1.0f)
+    }
+
+    fun setIconDrawablePaddingScale(scale: Float) {
+        preferences.edit().putFloat(KEY_ICON_DRAWABLE_PADDING_SCALE, scale).commit()
+    }
+
+    fun getIconDrawablePaddingScale(): Float {
+        return preferences.getFloat(KEY_ICON_DRAWABLE_PADDING_SCALE, 1.0f)
+    }
+
     companion object {
         private const val KEY_ICON_CLICK_EFFECT_ENABLED = "KEY_ICON_CLICK_EFFECT_ENABLED"
         private const val KEY_DOT_PARAMS_COLOR = "KEY_DOT_PARAMS_COLOR"
@@ -126,5 +150,8 @@ class CommonRepository(private val context: Context) {
         private const val KEY_USE_BIOMETRIC_PRIVACY_APPS = "KEY_USE_BIOMETRIC_PRIVACY_APPS"
         private const val KEY_HIDE_PRIVACY_APPS_FROM_RECENTS = "KEY_HIDE_PRIVACY_APPS_FROM_RECENTS"
         private const val KEY_USE_CUSTOM_SPRING_LOADED_EFFECT = "KEY_USE_CUSTOM_SPRING_LOADED_EFFECT"
+        private const val KEY_ICON_SCALE = "KEY_ICON_SCALE"
+        private const val KEY_ICON_TEXT_SCALE = "KEY_ICON_TEXT_SCALE"
+        private const val KEY_ICON_DRAWABLE_PADDING_SCALE = "KEY_ICON_DRAWABLE_PADDING_SCALE"
     }
 }

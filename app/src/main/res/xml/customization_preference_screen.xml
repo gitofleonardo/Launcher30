@@ -25,6 +25,12 @@
             app:icon="@drawable/ic_clock_24"
             app:summary="@string/desc_adaptive_icon"/>
 
+        <Preference
+            app:icon="@drawable/ic_scale_24"
+            android:key="@string/key_icon_specs"
+            app:title="@string/title_icon_specs_settings"
+            app:summary="@string/desc_icon_specs_settings"/>
+
         <com.hhvvg.launcher3customizer.view.MaterialSwitchPreference
             app:persistent="true"
             app:key="@string/key_hide_icon_text"

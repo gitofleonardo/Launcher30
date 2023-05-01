@@ -191,5 +191,29 @@ public class Launcher extends Component {
                 onIdpChanged(true);
             });
         }
-    };
+
+        @Override
+        public void onIconScaleChanged(float scale) {
+            Executors.postUiThread(() -> {
+                getModel().getApp().getIdp().onConfigChanged(getInstance());
+                onIdpChanged(true);
+            });
+        }
+
+        @Override
+        public void onIconTextScaleChanged(float scale) {
+            Executors.postUiThread(() -> {
+                getModel().getApp().getIdp().onConfigChanged(getInstance());
+                onIdpChanged(true);
+            });
+        }
+
+        @Override
+        public void onIconDrawablePaddingScaleChanged(float scale) {
+            Executors.postUiThread(() -> {
+                getModel().getApp().getIdp().onConfigChanged(getInstance());
+                onIdpChanged(true);
+            });
+        }
+    }
 }
