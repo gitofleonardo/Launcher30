@@ -11,7 +11,7 @@ import de.robv.android.xposed.XposedHelpers;
 
 @LauncherComponent(className = "com.android.launcher3.BubbleTextView")
 public class BubbleTextView extends ViewComponent {
-    public static Integer sDotParamsColor = null;
+    public static volatile Integer sDotParamsColor = null;
 
     @LauncherMethod(injections = MethodInjection.Before)
     public void drawDotIfNecessary(Canvas canvas) {

@@ -23,7 +23,7 @@ public class DotRenderer extends Component {
     private static final float ROUND_RECT_RATIO = 1.3f;
     private static final RectF sTmpRect = new RectF();
 
-    public static boolean sDrawNotificationCount = true;
+    public static volatile boolean sDrawNotificationCount = true;
 
     @LauncherMethod(injections = MethodInjection.Before)
     public void draw(XC_MethodHook.MethodHookParam hookParam, Canvas canvas, DrawParams params) {

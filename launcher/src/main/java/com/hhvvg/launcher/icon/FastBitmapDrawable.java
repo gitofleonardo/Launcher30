@@ -17,7 +17,7 @@ public class FastBitmapDrawable extends Component {
     private static final float ICON_SCALE = 0.8F;
     private static final long DURATION = 400;
 
-    public static boolean sClickEffectEnable = true;
+    public static volatile boolean sClickEffectEnable = true;
 
     @LauncherMethod
     public void onStateChange(int[] state) throws RemoteException {

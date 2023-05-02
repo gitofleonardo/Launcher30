@@ -14,12 +14,11 @@ import com.hhvvg.launcher.component.ViewGroupComponent;
 import com.hhvvg.launcher.hook.HookProviderKt;
 import com.hhvvg.launcher.service.LauncherService;
 
-import de.robv.android.xposed.XC_MethodHook;
 import de.robv.android.xposed.XposedHelpers;
 
 @LauncherComponent(className = "com.android.launcher3.CellLayout")
 public class CellLayout extends ViewGroupComponent {
-    public static boolean sHideSpringLoadedBg = true;
+    public static volatile boolean sHideSpringLoadedBg = true;
 
     @LauncherMethod
     public void updateBgAlpha() {

@@ -18,12 +18,15 @@ import de.robv.android.xposed.XposedHelpers;
 
 @LauncherComponent(className = "com.android.launcher3.icons.LauncherIconProvider")
 public class LauncherIconProvider extends Component {
-    public static String sIconProvider = null;
+    public static volatile String sIconProvider = null;
     public static final Map<ComponentName, IconModel.LauncherIconResource> sIconCaches = new HashMap<>();
     private final IconModel mModel = new IconModel();
 
     @LauncherMethod
     public void getIcon(XC_MethodHook.MethodHookParam param, LauncherActivityInfo info, int dpi) {
+        if (sIconProvider == null) {
+            return;
+        }
         if (sIconCaches.isEmpty()) {
             mModel.loadAllIcons(sIconProvider, getContext(), sIconCaches);
         }

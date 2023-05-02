@@ -3,7 +3,7 @@ package com.hhvvg.launcher.repository
 import android.content.Context
 import com.hhvvg.launcher.service.getSystemSharedPreferences
 
-private const val SP_NAME = "CommonPreferences"
+private const val SP_NAME = "CommonPreferences.xml"
 
 /**
  * @author hhvvg

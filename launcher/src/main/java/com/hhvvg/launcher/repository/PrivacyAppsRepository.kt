@@ -5,7 +5,7 @@ import android.content.Context
 import android.content.SharedPreferences
 import com.hhvvg.launcher.service.getSystemSharedPreferences
 
-private const val SP_NAME = "PrivacyApps"
+private const val SP_NAME = "PrivacyApps.xml"
 
 class PrivacyAppsRepository(private val context: Context) {
     private val dataPreference: SharedPreferences by lazy {

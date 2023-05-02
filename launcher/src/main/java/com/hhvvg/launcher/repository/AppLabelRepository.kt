@@ -7,7 +7,7 @@ import android.os.UserHandle
 import com.hhvvg.launcher.service.getSystemSharedPreferences
 import com.hhvvg.launcher.user.ComponentKey
 
-private const val SP_NAME = "AppLabelData"
+private const val SP_NAME = "AppLabelData.xml"
 
 /**
  * @author hhvvg

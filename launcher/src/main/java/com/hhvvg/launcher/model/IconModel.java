@@ -24,6 +24,9 @@ public class IconModel {
     private static final Pattern sComponentPattern = Pattern.compile("ComponentInfo\\{(.*)\\}");
 
     public void loadAllIcons(String iconPkg, Context context, Map<ComponentName, LauncherIconResource> outIcons) {
+        if (iconPkg == null) {
+            return;
+        }
         try {
             Context pkgContext = context.createPackageContext(iconPkg, Context.CONTEXT_IGNORE_SECURITY);
             Resources iconResources = context.getPackageManager().getResourcesForApplication(iconPkg);
