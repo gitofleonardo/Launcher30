@@ -9,6 +9,7 @@ import androidx.core.view.ViewCompat
 import androidx.core.view.WindowInsetsCompat
 import androidx.navigation.fragment.findNavController
 import androidx.preference.Preference
+import androidx.preference.PreferenceDataStore
 import com.google.android.gms.oss.licenses.OssLicensesMenuActivity
 import com.hhvvg.launcher.service.LauncherService
 import com.hhvvg.launcher3customizer.R
@@ -18,7 +19,29 @@ private const val GITHUB_URL = "https://github.com/gitofleonardo/Launcher30"
 
 class MoreSettingsFragment : InsettablePreferenceFragment() {
     private val service by lazy { LauncherService.getLauncherService() }
+
+    private val dataStore = object : PreferenceDataStore() {
+        override fun getBoolean(key: String?, defValue: Boolean): Boolean {
+            return when (key) {
+                getString(R.string.key_show_app_entry_on_options) -> {
+                    service.isShowAppEntryOnOptions
+                }
+                else -> super.getBoolean(key, defValue)
+            }
+        }
+
+        override fun putBoolean(key: String?, value: Boolean) {
+            when (key) {
+                getString(R.string.key_show_app_entry_on_options) -> {
+                    service.isShowAppEntryOnOptions = value
+                }
+                else -> super.putBoolean(key, value)
+            }
+        }
+    }
+
     override fun onCreatePreferences(savedInstanceState: Bundle?, rootKey: String?) {
+        preferenceManager.preferenceDataStore = dataStore
         setPreferencesFromResource(R.xml.more_preference_screen, rootKey)
     }
 

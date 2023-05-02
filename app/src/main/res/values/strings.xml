@@ -93,4 +93,7 @@
 
     <string name="title_hide_all_apps_icon_text">Hide Drawer Icon Text</string>
     <string name="desc_hide_all_apps_icon_text">Do not display icon text on drawer</string>
+
+    <string name="title_show_app_entry_on_options">Show App Entry</string>
+    <string name="desc_show_app_entry_on_options">Show app entry on launcher options</string>
 </resources>

@@ -24,4 +24,5 @@
     <string name="key_icon_specs">key_icon_specs</string>
 
     <string name="key_hide_all_apps_icon_text">key_hide_all_apps_icon_text</string>
+    <string name="key_show_app_entry_on_options">key_show_app_entry_on_options</string>
 </resources>

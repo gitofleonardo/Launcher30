@@ -1,12 +1,16 @@
 package com.hhvvg.launcher.view;
 
+import android.content.ComponentName;
 import android.content.Intent;
 import android.graphics.drawable.Drawable;
 import android.net.Uri;
+import android.os.RemoteException;
 import android.view.View;
 
 import androidx.core.content.res.ResourcesCompat;
 
+import com.hhvvg.launcher.BuildConfig;
+import com.hhvvg.launcher.ILauncherService;
 import com.hhvvg.launcher.Init;
 import com.hhvvg.launcher.Launcher;
 import com.hhvvg.launcher.R;
@@ -20,6 +24,8 @@ import com.hhvvg.launcher.service.LauncherService;
 import java.lang.reflect.Constructor;
 import java.lang.reflect.InvocationTargetException;
 import java.util.ArrayList;
+import java.util.Set;
+import java.util.stream.Collectors;
 
 import de.robv.android.xposed.XC_MethodHook;
 import de.robv.android.xposed.XposedHelpers;
@@ -29,24 +35,36 @@ public class OptionsPopupView extends ViewGroupComponent {
 
     @LauncherMethod
     public static void getOptions(XC_MethodHook.MethodHookParam param,
-                                    Launcher launcher) throws InvocationTargetException, IllegalAccessException, InstantiationException {
-        Drawable drawable = ResourcesCompat.getDrawable(Init.xModuleRes, R.drawable.ic_palette_24, null);
-        String title = Init.xModuleRes.getString(R.string.title_customization);
-        OptionItem item = OptionItem.buildOptionItem(
-                title,
-                drawable,
-                OptionsPopupView::onOpenLauncher30
-        );
+                                    Launcher launcher) throws InvocationTargetException, IllegalAccessException, InstantiationException, RemoteException {
+        ArrayList result = (ArrayList) param.getResult();
+
+        ILauncherService service = LauncherService.getLauncherService();
+
+        if (service.isShowAppEntryOnOptions() || forceShowAppEntryOptions(service)) {
+            Drawable drawable = ResourcesCompat.getDrawable(Init.xModuleRes, R.drawable.ic_palette_24, null);
+            String title = Init.xModuleRes.getString(R.string.title_customization);
+            OptionItem item = OptionItem.buildOptionItem(
+                    title,
+                    drawable,
+                    OptionsPopupView::onOpenLauncher30
+            );
+            result.add(item.getInstance());
+        }
 
         OptionItem privacyItem = OptionItem.buildOptionItem(
                 Init.xModuleRes.getString(R.string.title_privacy_apps),
                 ResourcesCompat.getDrawable(Init.xModuleRes, R.drawable.ic_privacy_24, null),
                 OptionsPopupView::onOpenPrivacyPage
         );
-
-        ArrayList result = (ArrayList) param.getResult();
-        result.add(item.getInstance());
         result.add(privacyItem.getInstance());
+    }
+
+    private static boolean forceShowAppEntryOptions(ILauncherService service) throws RemoteException {
+        Set<String> privacyItems = service.getPrivacyItems()
+                .stream()
+                .map(ComponentName::getPackageName)
+                .collect(Collectors.toSet());
+        return privacyItems.contains(BuildConfig.MODULE_PACKAGE_NAME);
     }
 
     private static boolean onOpenPrivacyPage(View v) {

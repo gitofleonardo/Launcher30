@@ -65,4 +65,7 @@ interface ILauncherService {
 
     void setAllAppsIconTextVisible(boolean visible);
     boolean isAllAppsIconTextVisible();
+
+    void setShowAppEntryOnOptions(boolean show);
+    boolean isShowAppEntryOnOptions();
 }

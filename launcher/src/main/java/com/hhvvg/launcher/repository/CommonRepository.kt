@@ -145,6 +145,14 @@ class CommonRepository(private val context: Context) {
         return preferences.getBoolean(KEY_ALL_APPS_ICON_TEXT_VISIBLE, true)
     }
 
+    fun setShowAppEntryOnOptions(show: Boolean) {
+        preferences.edit().putBoolean(KEY_SHOW_APP_ENTRY_ON_OPTIONS, show).commit()
+    }
+
+    fun isShowAppEntryOnOptions(): Boolean {
+        return preferences.getBoolean(KEY_SHOW_APP_ENTRY_ON_OPTIONS, true)
+    }
+
     companion object {
         private const val KEY_ICON_CLICK_EFFECT_ENABLED = "KEY_ICON_CLICK_EFFECT_ENABLED"
         private const val KEY_DOT_PARAMS_COLOR = "KEY_DOT_PARAMS_COLOR"
@@ -162,5 +170,6 @@ class CommonRepository(private val context: Context) {
         private const val KEY_ICON_TEXT_SCALE = "KEY_ICON_TEXT_SCALE"
         private const val KEY_ICON_DRAWABLE_PADDING_SCALE = "KEY_ICON_DRAWABLE_PADDING_SCALE"
         private const val KEY_ALL_APPS_ICON_TEXT_VISIBLE = "KEY_ALL_APPS_ICON_TEXT_VISIBLE"
+        private const val KEY_SHOW_APP_ENTRY_ON_OPTIONS = "KEY_SHOW_APP_ENTRY_ON_OPTIONS"
     }
 }

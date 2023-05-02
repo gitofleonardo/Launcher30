@@ -248,6 +248,14 @@ class LauncherService(private val context: Context) : ILauncherService.Stub() {
         return commonRepository.isAllAppsIconTextVisible()
     }
 
+    override fun setShowAppEntryOnOptions(show: Boolean) {
+        commonRepository.setShowAppEntryOnOptions(show)
+    }
+
+    override fun isShowAppEntryOnOptions(): Boolean {
+        return commonRepository.isShowAppEntryOnOptions()
+    }
+
     private fun broadcast(action: (ILauncherCallbacks) -> Unit) {
         var i = callbackList.beginBroadcast()
         while (i > 0) {

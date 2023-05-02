@@ -93,4 +93,7 @@
 
     <string name="title_hide_all_apps_icon_text">隐藏抽屉图标标题</string>
     <string name="desc_hide_all_apps_icon_text">不要在抽屉里的图标显示标题</string>
+
+    <string name="title_show_app_entry_on_options">显示应用入口</string>
+    <string name="desc_show_app_entry_on_options">在桌面选项中展示应用入口</string>
 </resources>

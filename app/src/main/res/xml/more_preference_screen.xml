@@ -8,6 +8,13 @@
             app:key="@string/key_privacy_apps"
             app:title="@string/title_privacy_apps"
             app:summary="@string/desc_privacy_apps"/>
+
+        <com.hhvvg.launcher3customizer.view.MaterialSwitchPreference
+            app:key="@string/key_show_app_entry_on_options"
+            app:title="@string/title_show_app_entry_on_options"
+            app:summary="@string/desc_show_app_entry_on_options"
+            app:icon="@drawable/ic_app_entry_24"/>
+
         <Preference
             android:icon="@drawable/ic_restart_alt_24"
             android:key="@string/key_reload_launcher"
